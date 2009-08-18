@@ -15,9 +15,9 @@ lib/Rabbit/Document.pm
 lib/Rabbit/Node.pm
 lib/Rabbit/Parser.pm
 lib/Rabbit/RootNode.pm
-lib/Trait/XPathObject.pm
-lib/Trait/XPathObjectList.pm
-lib/Trait/XPathValue.pm
+lib/Rabbit/Trait/XPathObject.pm
+lib/Rabbit/Trait/XPathObjectList.pm
+lib/Rabbit/Trait/XPathValue.pm
 Makefile.PL
 MANIFEST
 META.yml

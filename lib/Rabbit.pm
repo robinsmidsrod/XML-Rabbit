@@ -1,6 +1,6 @@
 package Rabbit;
 
-use 5.0008;
+use 5.008;
 
 use warnings;
 use strict;
@@ -18,6 +18,7 @@ Version 0.01
 =cut
 
 our $VERSION = '0.01';
+
 
 =head1 SYNOPSIS
 
