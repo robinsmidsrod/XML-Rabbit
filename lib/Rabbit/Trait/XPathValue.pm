@@ -44,3 +44,88 @@ package Moose::Meta::Attribute::Custom::Trait::XPathValue;
 sub register_implementation { 'Rabbit::Trait::XPathValue' }
 
 1;
+
+=head1 NAME
+
+Rabbit::Trait::XPathValue - Moose-based XML loader - single value xpath extractor trait
+
+
+=head1 SYNOPSIS
+
+    package MyXMLSyntaxNode;
+    use Moose;
+    extends 'Rabbit::Node';
+
+    has title => (
+        is          => 'ro',
+        isa         => 'Str',
+        traits      => [qw(XPathValue)],
+        xpath_query => './@title',
+    );
+
+    no Moose;
+    __PACKAGE__->meta->make_immutable();
+
+    1;
+
+=head1 DESCRIPTION
+
+This module provides the extraction of primitive values from an XML node based on an XPath query.
+
+See L<Rabbit> for a more complete example.
+
+
+=head1 ATTRIBUTES
+
+
+=over 12
+
+
+=item C<xpath_query>
+
+A string or a coderef that generates a string that is the XPath query to use to find the wanted value. Read Only.
+
+
+=item C<lazy>
+
+Indicates that the parent attribute will be lazy-loaded on first use. Read Only.
+
+
+=item C<default>
+
+Returns a coderef that is run to build the default value of the parent attribute. Read Only.
+
+
+=item C<meta>
+
+Moose meta object.
+
+
+=back
+
+
+=head1 BUGS
+
+See L<Rabbit/BUGS>.
+
+
+=head1 SUPPORT
+
+See L<Rabbit/SUPPORT>.
+
+
+=head1 AUTHOR
+
+See L<Rabbit/AUTHOR>.
+
+
+=head1 COPYRIGHT
+
+See L<Rabbit/COPYRIGHT>.
+
+=head1 LICENSE
+
+See L<Rabbit/LICENSE>.
+
+
+=cut
