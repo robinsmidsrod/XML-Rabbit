@@ -7,6 +7,12 @@ has 'xpath_query' => (
     required => 1,
 );
 
+has '+is' => (
+    is      => 'ro',
+    isa     => 'Str',
+    default => 'ro',
+);
+
 has '+lazy' => (
     default => 1,
 );

@@ -33,14 +33,12 @@ BEGIN {
     );
 
     has 'title' => (
-        is          => 'ro',
         isa         => 'Str',
         traits      => [qw(XPathValue)],
         xpath_query => '/xhtml:html/xhtml:head/xhtml:title',
     );
 
     has 'body' => (
-        is          => 'ro',
         isa         => 'W3C::XHTML::Body',
         traits      => [qw(XPathObject)],
         xpath_query => '/xhtml:html/xhtml:body',
@@ -54,7 +52,6 @@ BEGIN {
     extends 'Rabbit::Node';
 
     has 'images' => (
-        is          => 'ro',
         isa         => 'ArrayRef[W3C::XHTML::Image]',
         traits      => [qw(XPathObjectList)],
         xpath_query => './/xhtml:img',
@@ -68,21 +65,18 @@ BEGIN {
     extends 'Rabbit::Node';
 
     has 'src' => (
-        is          => 'ro',
         isa         => 'Str',
         traits      => [qw(XPathValue)],
         xpath_query => './@src',
     );
 
     has 'alt' => (
-        is          => 'ro',
         isa         => 'Str',
         traits      => [qw(XPathValue)],
         xpath_query => './@alt',
     );
 
     has 'title' => (
-        is          => 'ro',
         isa         => 'Str',
         traits      => [qw(XPathValue)],
         xpath_query => './@title',
