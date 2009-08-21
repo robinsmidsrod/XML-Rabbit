@@ -56,7 +56,6 @@ Rabbit::RootNode - Moose-based XML loader - root node base class
     extends 'Rabbit::RootNode';
 
     has title => (
-        is          => 'ro',
         isa         => 'Str',
         traits      => [qw(XPathValue)],
         xpath_query => '/root/title',

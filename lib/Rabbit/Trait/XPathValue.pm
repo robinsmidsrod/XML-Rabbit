@@ -63,7 +63,6 @@ Rabbit::Trait::XPathValue - Moose-based XML loader - single value xpath extracto
     extends 'Rabbit::Node';
 
     has title => (
-        is          => 'ro',
         isa         => 'Str',
         traits      => [qw(XPathValue)],
         xpath_query => './@title',

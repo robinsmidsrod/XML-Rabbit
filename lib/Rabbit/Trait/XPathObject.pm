@@ -82,7 +82,6 @@ Rabbit::Trait::XPathObject - Moose-based XML loader - XML DOM object xpath extra
     extends 'Rabbit::Node';
 
     has 'first_person' => (
-        is          => 'ro',
         isa         => 'MyXMLSyntax::Person',
         traits      => [qw(XPathObject)],
         xpath_query => './person[1]',

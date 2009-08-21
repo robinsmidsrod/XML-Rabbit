@@ -40,7 +40,6 @@ Rabbit::Node - Moose-based XML loader - node base class
     extends 'Rabbit::Node';
 
     has title => (
-        is          => 'ro',
         isa         => 'Str',
         traits      => [qw(XPathValue)],
         xpath_query => './@title',
