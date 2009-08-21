@@ -7,12 +7,6 @@ has 'xpath_query' => (
     required => 1,
 );
 
-has '+is' => (
-    is      => 'ro',
-    isa     => 'Str',
-    default => 'ro',
-);
-
 has '+isa' => (
     required => 1,
 );
@@ -64,6 +58,12 @@ has '+default' => (
         };
     }
 );
+
+around '_process_options' => sub {
+    my ($orig, $self, $name, $options, @rest) = @_;
+    $options->{'is'} = 'ro' unless exists $options->{'is'};
+    $self->$orig($name, $options, @rest);
+};
 
 package Moose::Meta::Attribute::Custom::Trait::XPathObject;
 sub register_implementation { 'Rabbit::Trait::XPathObject' }
