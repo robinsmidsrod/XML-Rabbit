@@ -20,42 +20,50 @@ Version 0.01
 
 =head1 SYNOPSIS
 
-    package MyXHTMLParser;
+    package W3C::XHTML;
     use Moose;
     extends 'Rabbit::RootNode';
+
+    has 'namespace_map' => (
+        is      => 'ro',
+        isa     => 'HashRef[Str]',
+        default => sub {
+            return { "xhtml" => "http://www.w3.org/1999/xhtml" };
+        },
+    );
 
     has 'title' => (
         is          => 'ro',
         isa         => 'Str',
         traits      => [qw(XPathValue)],
-        xpath_query => '/html/head/title',
+        xpath_query => '/xhtml:html/xhtml:head/xhtml:title',
     );
 
     has 'body' => (
         is          => 'ro',
-        isa         => 'MyXHTMLParser::Body',
+        isa         => 'W3C::XHTML::Body',
         traits      => [qw(XPathObject)],
-        xpath_query => '/html/body',
+        xpath_query => '/xhtml:html/xhtml:body',
     );
 
     no Moose;
     __PACKAGE__->meta->make_immutable();
 
-    package MyXHTMLParser::Body;
+    package W3C::XHTML::Body;
     use Moose;
     extends 'Rabbit::Node';
 
     has 'images' => (
         is          => 'ro',
-        isa         => 'ArrayRef[MyXHTMLParser::Image]',
+        isa         => 'ArrayRef[W3C::XHTML::Image]',
         traits      => [qw(XPathObjectList)],
-        xpath_query => './/img',
+        xpath_query => './/xhtml:img',
     );
 
     no Moose;
     __PACKAGE__->meta->make_immutable();
 
-    package MyXHTMLParser::Image;
+    package W3C::XHTML::Image;
     use Moose;
     extends 'Rabbit::Node';
 
