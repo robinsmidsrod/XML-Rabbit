@@ -15,6 +15,7 @@ lib/Rabbit/Document.pm
 lib/Rabbit/Node.pm
 lib/Rabbit/Parser.pm
 lib/Rabbit/RootNode.pm
+lib/Rabbit/Trait/XPath.pm
 lib/Rabbit/Trait/XPathObject.pm
 lib/Rabbit/Trait/XPathObjectList.pm
 lib/Rabbit/Trait/XPathValue.pm

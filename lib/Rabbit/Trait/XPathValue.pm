@@ -1,15 +1,7 @@
 package Rabbit::Trait::XPathValue;
 use Moose::Role;
 
-has 'xpath_query' => (
-    is       => 'ro',
-    isa      => 'Str|CodeRef',
-    required => 1,
-);
-
-has '+lazy' => (
-    default => 1,
-);
+with 'Rabbit::Trait::XPath';
 
 has '+default' => (
     default => sub {
@@ -39,12 +31,6 @@ has '+default' => (
         };
     }
 );
-
-around '_process_options' => sub {
-    my ($orig, $self, $name, $options, @rest) = @_;
-    $options->{'is'} = 'ro' unless exists $options->{'is'};
-    $self->$orig($name, $options, @rest);
-};
 
 package Moose::Meta::Attribute::Custom::Trait::XPathValue;
 sub register_implementation { 'Rabbit::Trait::XPathValue' }
@@ -88,12 +74,12 @@ See L<Rabbit> for a more complete example.
 
 =item C<xpath_query>
 
-A string or a coderef that generates a string that is the XPath query to use to find the wanted value. Read Only.
+Inherited from L<Rabbit::Trait::XPath>.
 
 
 =item C<lazy>
 
-Indicates that the parent attribute will be lazy-loaded on first use. Read Only.
+Inherited from L<Rabbit::Trait::XPath>.
 
 
 =item C<default>
