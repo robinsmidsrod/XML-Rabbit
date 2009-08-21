@@ -20,6 +20,12 @@ Version 0.01
 
 =head1 SYNOPSIS
 
+    my $xhtml = W3C::XHTML->new( file => 'index.xhtml' );
+    print "Title: " . $xhtml->title . "\n";
+    print "First image source: " . $xhtml->body->images->[0]->src . "\n";
+
+    exit;
+
     package W3C::XHTML;
     use Moose;
     extends 'Rabbit::RootNode';
