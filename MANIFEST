@@ -26,7 +26,11 @@ META.yml
 README
 t/00-load.t
 t/10_parse_xhtml.t
+t/10_parse_xhtml_file.t
 t/boilerplate.t
 t/data/10_parse_xhtml.xhtml
+t/lib/W3C/XHTML.pm
+t/lib/W3C/XHTML/Body.pm
+t/lib/W3C/XHTML/Image.pm
 t/pod-coverage.t
 t/pod.t
