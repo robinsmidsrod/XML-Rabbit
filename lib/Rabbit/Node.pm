@@ -3,11 +3,15 @@ use Moose::Role;
 
 with 'Rabbit::Role::Node';
 
-has '+_node' => (
+has 'node' => (
+    is       => 'ro',
+    isa      => 'XML::LibXML::Node',
     required => 1,
 );
 
-has '+_xpc' => (
+has 'xpc' => (
+    is       => 'ro',
+    isa      => 'XML::LibXML::XPathContext',
     required => 1,
 );
 

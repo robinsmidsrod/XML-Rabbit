@@ -3,20 +3,6 @@ use Moose::Role;
 
 use Encode ();
 
-has '_xpc' => (
-    is       => 'ro',
-    isa      => 'XML::LibXML::XPathContext',
-    reader   => 'xpc',
-    init_arg => 'xpc',
-);
-
-has '_node' => (
-    is       => 'ro',
-    isa      => 'XML::LibXML::Node',
-    reader   => 'node',
-    init_arg => 'node',
-);
-
 sub dump_xml {
     my ($self) = @_;
     return Encode::decode(
@@ -24,8 +10,6 @@ sub dump_xml {
         $self->node->toString(1),
     );
 }
-
-
 
 no Moose::Role;
 
