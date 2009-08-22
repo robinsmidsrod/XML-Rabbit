@@ -1,45 +1,29 @@
 package Rabbit::Trait::XPathObjectList;
 use Moose::Role;
 
-with 'Rabbit::Trait::XPathObject';
+with 'Rabbit::Trait::XPath';
+
+has '+isa' => (
+    required => 1,
+);
 
 has '+default' => (
-    default => sub {
-        my ($attr) = @_;
-        return sub {
-            my ($self) = @_;
-
-            # Make sure the parent class implements required role
-            unless ( $self->does('Rabbit::Role::Node') ) {
-                confess(ref($self) . " doesn't implement Rabbit::Role::Node")
-            }
-
-            # Run code reference if necessary to build xpath query
-            my $xpath_query = (
-                                ref($attr->xpath_query) eq 'CODE'
-                             || (
-                                  blessed($attr->xpath_query)
-                               && $attr->xpath_query->isa('Class::MOP::Method')
-                              )
-                            )
-                            ? $attr->xpath_query->($self)
-                            : $attr->xpath_query;
-
-            # Get class definition
-            my $class = $attr->meta->get_attribute('isa')->get_value($attr);
-            $class =~ s/^ArrayRef\[(.*)\]$/$1/;
-            Class::MOP::load_class($class);
-
-            my @nodes;
-            foreach my $node ( $self->xpc->findnodes( $xpath_query, $self->node ) ) {
-                my $instance = $class->new( node => $node, xpc => $self->xpc );
-                push @nodes, $instance;
-            }
-            return \@nodes;
-
-        };
-    }
+    builder => '_build_default',
 );
+
+sub _build_default {
+    my ($self) = @_;
+    return sub {
+        my ($parent) = @_;
+        my $xpath_query = $self->_resolve_xpath_query( $parent );
+        my $class = $self->_resolve_class();
+        my @nodes;
+        foreach my $node ( $self->_find_nodes($parent, $xpath_query ) ) {
+            push @nodes, $self->_create_instance( $parent, $class, $node );
+        }
+        return \@nodes;
+    };
+}
 
 no Moose::Role;
 

@@ -4,32 +4,20 @@ use Moose::Role;
 with 'Rabbit::Trait::XPath';
 
 has '+default' => (
-    default => sub {
-        my ($attr) = @_;
-        return sub {
-            my ($self) = @_;
-
-            # Make sure the parent class implements required role
-            unless ( $self->does('Rabbit::Role::Node') ) {
-                confess(ref($self) . " doesn't implement Rabbit::Role::Node")
-            }
-
-            # Run code reference if necessary to build xpath query
-            my $xpath_query = (
-                                ref($attr->xpath_query) eq 'CODE'
-                             || (
-                                  blessed($attr->xpath_query)
-                               && $attr->xpath_query->isa('Class::MOP::Method')
-                              )
-                            )
-                            ? $attr->xpath_query->($self)
-                            : $attr->xpath_query;
-
-            my $value = $self->xpc->findvalue( $xpath_query, $self->node );
-            return defined($value) ? $value : "";
-        };
-    }
+    builder => '_build_default',
 );
+
+sub _build_default {
+    my ($self) = @_;
+    return sub {
+        my ($parent) = @_;
+        my $node = $self->_find_node(
+            $parent,
+            $self->_resolve_xpath_query( $parent ),
+        );
+        return blessed($node) ? $node->to_literal . "" : "";
+    };
+}
 
 no Moose::Role;
 
