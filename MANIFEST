@@ -25,7 +25,6 @@ MANIFEST
 META.yml
 README
 t/00-load.t
-t/10_parse_xhtml.t
 t/10_parse_xhtml_fh.t
 t/10_parse_xhtml_file.t
 t/10_parse_xhtml_string.t
