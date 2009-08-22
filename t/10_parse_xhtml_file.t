@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use utf8;
 
-use Test::More tests => 18;
+use Test::More tests => 20;
 
 BEGIN {
     use lib 't/lib';
@@ -18,6 +18,9 @@ isa_ok( $xhtml->xpc, 'XML::LibXML::XPathContext');
 
 can_ok( $xhtml, 'title');
 is($xhtml->title, 'Hei på deg', 'Main title mismatch' );
+
+can_ok( $xhtml, 'style');
+is( $xhtml->style, "", 'Main style mismatch' );
 
 can_ok( $xhtml, 'body');
 my $body = $xhtml->body;

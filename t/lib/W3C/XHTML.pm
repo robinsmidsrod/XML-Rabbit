@@ -14,6 +14,12 @@ has 'title' => (
     xpath_query => '/xhtml:html/xhtml:head/xhtml:title',
 );
 
+has 'style' => (
+    isa         => 'Str',
+    traits      => [qw(XPathValue)],
+    xpath_query => '/xhtml:html/xhtml:head/xhtml:style',
+);
+
 has 'body' => (
     isa         => 'W3C::XHTML::Body',
     traits      => [qw(XPathObject)],
