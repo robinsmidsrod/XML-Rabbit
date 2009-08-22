@@ -30,12 +30,10 @@ Version 0.01
     use Moose;
     extends 'Rabbit::RootNode';
 
-    has 'namespace_map' => (
-        is      => 'ro',
-        isa     => 'HashRef[Str]',
-        default => sub {
-            return { "xhtml" => "http://www.w3.org/1999/xhtml" };
-        },
+    has '+namespace_map' => (
+        default => sub { {
+            "xhtml" => "http://www.w3.org/1999/xhtml"
+        } },
     );
 
     has 'title' => (

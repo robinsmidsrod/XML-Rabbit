@@ -19,6 +19,7 @@ lib/Rabbit/Trait/XPath.pm
 lib/Rabbit/Trait/XPathObject.pm
 lib/Rabbit/Trait/XPathObjectList.pm
 lib/Rabbit/Trait/XPathValue.pm
+lib/Rabbit/Trait/XPathValueList.pm
 Makefile.PL
 MANIFEST
 META.yml

@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use utf8;
 
-use Test::More tests => 14;
+use Test::More tests => 17;
 
 my $xhtml = W3C::XHTML->new( file => 't/data/10_parse_xhtml.xhtml' );
 isa_ok( $xhtml, 'W3C::XHTML' );
@@ -30,6 +30,11 @@ is($img1->src, 'bilde.jpg', 'First image src mismatch');
 is($img1->alt, 'Bilde av forfatter', 'First image alt mismatch');
 is($img1->title, 'Se på mitt bilde', 'First image title mismatch');
 
+can_ok( $xhtml, 'all_sources' );
+my $sources = $xhtml->all_sources;
+is( @$sources, 1, 'All_sources list count mismatch');
+is( $sources->[0], 'bilde.jpg', 'First src mismatch');
+
 exit;
 
 BEGIN {
@@ -38,12 +43,10 @@ BEGIN {
     use Moose;
     extends 'Rabbit::RootNode';
 
-    has 'namespace_map' => (
-        is      => 'ro',
-        isa     => 'HashRef[Str]',
-        default => sub {
-            return { "xhtml" => "http://www.w3.org/1999/xhtml" };
-        },
+    has '+namespace_map' => (
+        default => sub { {
+            "xhtml" => "http://www.w3.org/1999/xhtml"
+        } },
     );
 
     has 'title' => (
@@ -58,6 +61,12 @@ BEGIN {
         xpath_query => '/xhtml:html/xhtml:body',
     );
 
+    has 'all_sources' => (
+        isa         => 'ArrayRef[Str]',
+        traits      => [qw(XPathValueList)],
+        xpath_query => '//@src',
+    );
+    
     no Moose;
     __PACKAGE__->meta->make_immutable();
 

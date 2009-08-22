@@ -6,8 +6,21 @@ with 'Rabbit::Role::Node';
 
 # Preload XPath attribute traits
 use Rabbit::Trait::XPathValue;
+use Rabbit::Trait::XPathValueList;
 use Rabbit::Trait::XPathObject;
 use Rabbit::Trait::XPathObjectList;
+
+has 'namespace_map' => (
+    is      => 'ro',
+    isa     => 'HashRef[Str]',
+    lazy    => 1,
+    default => sub { {} },
+);
+
+has '+_node' => (
+    lazy    => 1,
+    default => sub { shift->_document->documentElement(); },
+);
 
 has '+_xpc' => (
     lazy    => 1,
@@ -18,22 +31,10 @@ sub _build__xpc {
     my ($self) = @_;
     # XML::LibXML loads this class, see Rabbit::Document
     my $xpc = XML::LibXML::XPathContext->new( $self->_document );
-    if ( $self->can('namespace_map') ) {
-        foreach my $prefix ( keys %{ $self->namespace_map } ) {
-            $xpc->registerNs($prefix, $self->namespace_map->{$prefix});
-        }
+    foreach my $prefix ( keys %{ $self->namespace_map } ) {
+        $xpc->registerNs($prefix, $self->namespace_map->{$prefix});
     }
     return $xpc;
-}
-
-has '+_node' => (
-    lazy    => 1,
-    builder => '_build__node',
-);
-
-sub _build__node {
-    my ($self) = @_;
-    return $self->_document->documentElement();
 }
 
 no Moose;
@@ -79,6 +80,19 @@ See L<Rabbit> for a more complete example.
 =item C<new>
 
 Standard Moose constructor.
+
+
+=item C<namespace_map>
+
+A HashRef of strings that defines the prefix/namespace XML mappings for the
+XPath parser. Usually overriden in a subclass like this:
+
+    has '+namespace_map' => (
+        default => sub { {
+            myprefix      => "http://my.example.com",
+            myotherprefix => "http://other.example2.org",
+        } },
+    );
 
 
 =item C<node>
