@@ -1,5 +1,5 @@
 package Rabbit::Node;
-use Moose;
+use Moose::Role;
 
 with 'Rabbit::Role::Node';
 
@@ -11,8 +11,7 @@ has '+_xpc' => (
     required => 1,
 );
 
-no Moose;
-__PACKAGE__->meta->make_immutable();
+no Moose::Role;
 
 1;
 
@@ -25,7 +24,7 @@ Rabbit::Node - Moose-based XML loader - node base class
 
     package MyXMLSyntaxNode;
     use Moose;
-    extends 'Rabbit::Node';
+    with 'Rabbit::Node';
 
     has title => (
         isa         => 'Str',

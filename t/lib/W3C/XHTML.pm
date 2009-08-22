@@ -1,6 +1,6 @@
 package W3C::XHTML;
 use Moose;
-extends 'Rabbit::RootNode';
+with 'Rabbit::RootNode';
 
 has '+namespace_map' => (
     default => sub { {

@@ -35,7 +35,7 @@ Rabbit::Trait::XPathValue - Moose-based XML loader - single value xpath extracto
 
     package MyXMLSyntaxNode;
     use Moose;
-    extends 'Rabbit::Node';
+    with 'Rabbit::Node';
 
     has title => (
         isa         => 'Str',
