@@ -5,10 +5,24 @@ use XML::LibXML 1.69 ();
 use Encode ();
 
 has '_file' => (
-    is       => 'ro',
-    isa      => 'Str',
-    required => 1,
-    init_arg => 'file',
+    is        => 'ro',
+    isa       => 'Str',
+    init_arg  => 'file',
+    predicate => '_has_file',
+);
+
+has '_fh' => (
+    is        => 'ro',
+    isa       => 'GlobRef',
+    init_arg  => 'fh',
+    predicate => '_has_fh',
+);
+
+has '_xml' => (
+    is        => 'ro',
+    isa       => 'Str',
+    init_arg  => 'xml',
+    predicate => '_has_xml',
 );
 
 has '_parser' => (
@@ -19,16 +33,22 @@ has '_parser' => (
 );
 
 has '_document' => (
-    is         => 'ro',
-    isa        => 'XML::LibXML::Document',
-    lazy_build => 1,
-    reader     => '_document',
+    is       => 'ro',
+    isa      => 'XML::LibXML::Document',
+    lazy     => 1,
+    builder  => '_build__document',
+    reader   => '_document',
+    init_arg => 'dom',
 );
 
 sub _build__document {
     my ( $self ) = @_;
-    my $doc = $self->_parser->parse_file( $self->_file );
-    confess("No input file specified.\n") unless $doc;
+    my $doc;
+    # Priority source order is: file, fh, xml (string) if multiple defined
+    $doc = $self->_parser->parse_file(   $self->_file ) if $self->_has_file;
+    $doc = $self->_parser->parse_fh(     $self->_fh   ) if $self->_has_fh and not defined($doc);
+    $doc = $self->_parser->parse_string( $self->_xml  ) if $self->_has_xml and not defined($doc);
+    confess("No input specified. Please specify argument file, fh or xml.\n") unless $doc;
     return $doc;
 }
 
