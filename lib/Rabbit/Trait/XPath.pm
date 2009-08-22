@@ -1,6 +1,10 @@
 package Rabbit::Trait::XPath;
 use Moose::Role;
 
+# This should really be:
+# has '+is' => ( is => 'ro', default => 'ro' );
+# but for some unknown reason Moose doesn't allow that
+
 around '_process_options' => sub {
     my ($orig, $self, $name, $options, @rest) = @_;
     $options->{'is'} = 'ro' unless exists $options->{'is'};
@@ -16,7 +20,6 @@ has 'xpath_query' => (
 has '+lazy' => (
     default => 1,
 );
-
 
 1;
 
