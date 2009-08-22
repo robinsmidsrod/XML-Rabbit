@@ -1,7 +1,7 @@
 package Rabbit::Document;
 use Moose;
-extends 'Rabbit::Parser';
 
+use XML::LibXML ();
 use Encode ();
 
 has 'file' => (
@@ -9,6 +9,17 @@ has 'file' => (
     isa      => 'Str',
     required => 1,
 );
+
+has '_parser' => (
+    is         => 'ro',
+    isa        => 'XML::LibXML',
+    lazy_build => 1,
+);
+
+sub _build__parser {
+    my ($self) = @_;
+    return XML::LibXML->new();
+}
 
 has '_document' => (
     is         => 'ro',
@@ -19,7 +30,7 @@ has '_document' => (
 
 sub _build__document {
     my ( $self ) = @_;
-    my $doc = $self->parser->parse_file( $self->file );
+    my $doc = $self->_parser->parse_file( $self->file );
     confess("No input file specified.\n") unless $doc;
     return $doc;
 }
