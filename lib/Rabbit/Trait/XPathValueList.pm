@@ -12,11 +12,10 @@ has '+default' => (
         my ($attr) = @_;
         return sub {
             my ($self) = @_;
-            unless ( $self->can('node') ) {
-                confess(ref($self) . " has no method 'node'")
-            }
-            unless ( $self->can('xpc') ) {
-                confess(ref($self) . " has no method 'xpc'");
+
+            # Make sure the parent class implements required role
+            unless ( $self->does('Rabbit::Role::Node') ) {
+                confess(ref($self) . " doesn't implement Rabbit::Role::Node")
             }
 
             # Run code reference if necessary to build xpath query
