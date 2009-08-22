@@ -1,7 +1,7 @@
 package Rabbit::Document;
 use Moose;
 
-use XML::LibXML ();
+use XML::LibXML 1.69 ();
 use Encode ();
 
 has '_file' => (
