@@ -4,17 +4,31 @@ use strict;
 use warnings;
 use utf8;
 
-use Test::More tests => 7;
+use Test::More tests => 14;
 
 my $xhtml = W3C::XHTML->new( file => 't/data/10_parse_xhtml.xhtml' );
 isa_ok( $xhtml, 'W3C::XHTML' );
-isa_ok( $xhtml->body, 'W3C::XHTML::Body' );
-isa_ok( $xhtml->body->images->[0], 'W3C::XHTML::Image' );
+can_ok( $xhtml, 'xpc' ); # XPathContext should be available
+isa_ok( $xhtml->xpc, 'XML::LibXML::XPathContext');
 
+can_ok( $xhtml, 'title');
 is($xhtml->title, 'Hei på deg', 'Main title mismatch' );
-is($xhtml->body->images->[0]->src, 'bilde.jpg', 'First image src mismatch');
-is($xhtml->body->images->[0]->alt, 'Bilde av forfatter', 'First image alt mismatch');
-is($xhtml->body->images->[0]->title, 'Se på mitt bilde', 'First image title mismatch');
+
+can_ok( $xhtml, 'body');
+my $body = $xhtml->body;
+isa_ok( $body, 'W3C::XHTML::Body' );
+
+can_ok( $body, 'images' );
+my $images = $body->images;
+ok(ref($images) eq 'ARRAY', 'images array is not an array');
+
+is( @$images, 1, 'Image list count mismatch');
+my $img1 = $images->[0];
+isa_ok( $img1, 'W3C::XHTML::Image' );
+
+is($img1->src, 'bilde.jpg', 'First image src mismatch');
+is($img1->alt, 'Bilde av forfatter', 'First image alt mismatch');
+is($img1->title, 'Se på mitt bilde', 'First image title mismatch');
 
 exit;
 

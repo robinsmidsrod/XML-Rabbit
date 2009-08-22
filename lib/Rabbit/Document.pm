@@ -4,42 +4,39 @@ use Moose;
 use XML::LibXML ();
 use Encode ();
 
-has 'file' => (
+has '_file' => (
     is       => 'ro',
     isa      => 'Str',
     required => 1,
+    init_arg => 'file',
 );
 
 has '_parser' => (
-    is         => 'ro',
-    isa        => 'XML::LibXML',
-    lazy_build => 1,
+    is      => 'ro',
+    isa     => 'XML::LibXML',
+    lazy    => 1,
+    default => sub { XML::LibXML->new(), },
 );
-
-sub _build__parser {
-    my ($self) = @_;
-    return XML::LibXML->new();
-}
 
 has '_document' => (
     is         => 'ro',
     isa        => 'XML::LibXML::Document',
     lazy_build => 1,
-    reader     => 'document',
+    reader     => '_document',
 );
 
 sub _build__document {
     my ( $self ) = @_;
-    my $doc = $self->_parser->parse_file( $self->file );
+    my $doc = $self->_parser->parse_file( $self->_file );
     confess("No input file specified.\n") unless $doc;
     return $doc;
 }
 
-sub dump {
+sub dump_document_xml {
     my ( $self ) = @_;
     return Encode::decode(
-        $self->document->actualEncoding,
-        $self->document->toString(1),
+        $self->_document->actualEncoding,
+        $self->_document->toString(1),
     );
 }
 
@@ -60,7 +57,7 @@ Rabbit::Document - Moose-based XML loader - document base class
     extends 'Rabbit::Document';
 
     sub root_node {
-        return shift->document->documentElement();
+        return shift->_document->documentElement();
     }
 
 
@@ -87,12 +84,12 @@ Standard Moose constructor.
 A string representing the path to the file that contains the XML document data. Required.
 
 
-=item C<document>
+=item C<_document>
 
 An instance of a L<XML::LibXML::Document> class. Read Only.
 
 
-=item C<dump>
+=item C<dump_document_xml>
 
 Dumps the XML of the entire document as a native perl string.
 

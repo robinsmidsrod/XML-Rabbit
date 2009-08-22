@@ -43,6 +43,8 @@ has '+default' => (
     }
 );
 
+no Moose::Role;
+
 package Moose::Meta::Attribute::Custom::Trait::XPathObjectList;
 sub register_implementation { 'Rabbit::Trait::XPathObjectList' }
 

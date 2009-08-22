@@ -32,6 +32,8 @@ has '+default' => (
     }
 );
 
+no Moose::Role;
+
 package Moose::Meta::Attribute::Custom::Trait::XPathValue;
 sub register_implementation { 'Rabbit::Trait::XPathValue' }
 

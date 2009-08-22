@@ -2,23 +2,22 @@ package Rabbit::RootNode;
 use Moose;
 extends 'Rabbit::Document';
 
-use XML::LibXML::XPathContext ();
+with 'Rabbit::Role::Node';
 
 # Preload XPath attribute traits
 use Rabbit::Trait::XPathValue;
 use Rabbit::Trait::XPathObject;
 use Rabbit::Trait::XPathObjectList;
 
-has '_xpc' => (
-    is         => 'ro',
-    isa        => 'XML::LibXML::XPathContext',
-    lazy_build => 1,
-    reader     => 'xpc',
+has '+_xpc' => (
+    lazy    => 1,
+    builder => '_build__xpc',
 );
 
 sub _build__xpc {
     my ($self) = @_;
-    my $xpc = XML::LibXML::XPathContext->new( $self->document );
+    # XML::LibXML loads this class, see Rabbit::Document
+    my $xpc = XML::LibXML::XPathContext->new( $self->_document );
     if ( $self->can('namespace_map') ) {
         foreach my $prefix ( keys %{ $self->namespace_map } ) {
             $xpc->registerNs($prefix, $self->namespace_map->{$prefix});
@@ -27,16 +26,14 @@ sub _build__xpc {
     return $xpc;
 }
 
-has '_node' => (
-    is         => 'ro',
-    isa        => 'XML::LibXML::Node',
-    lazy_build => 1,
-    reader     => 'node',
+has '+_node' => (
+    lazy    => 1,
+    builder => '_build__node',
 );
 
 sub _build__node {
     my ($self) = @_;
-    return $self->document->documentElement();
+    return $self->_document->documentElement();
 }
 
 no Moose;
@@ -86,12 +83,20 @@ Standard Moose constructor.
 
 =item C<node>
 
-An instance of a L<XML::LibXML::Node> class representing the root node of an XML document. Read Only.
+An instance of a L<XML::LibXML::Node> class representing the root node of an
+XML document. Read Only.
 
+It is lazily loaded from the C<document> attribute, which is inherited from
+L<Rabbit::Document>.
 
 =item C<xpc>
 
-An instance of a L<XML::LibXML::XPathContext> class initialized with the C<node> attribute. Read Only.
+An instance of a L<XML::LibXML::XPathContext> class initialized with the
+C<node> attribute. Read Only.
+
+If a subclass has an attribute named C<namespace_map> which is a HashRef it
+is used to initialize namespaces using the C<registerNs> method. This is
+required on XML files that use namespaces, like XHTML.
 
 
 =item C<meta>

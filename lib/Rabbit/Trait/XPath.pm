@@ -21,6 +21,8 @@ has '+lazy' => (
     default => 1,
 );
 
+no Moose::Role;
+
 1;
 
 =head1 NAME

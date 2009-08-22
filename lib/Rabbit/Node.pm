@@ -1,27 +1,15 @@
 package Rabbit::Node;
 use Moose;
 
-use Encode ();
+with 'Rabbit::Role::Node';
 
-has 'node' => (
-    is       => 'ro',
-    isa      => 'XML::LibXML::Node',
+has '+_node' => (
     required => 1,
 );
 
-has 'xpc' => (
-    is       => 'ro',
-    isa      => 'XML::LibXML::XPathContext',
+has '+_xpc' => (
     required => 1,
 );
-
-sub dump {
-    my ($self) = @_;
-    return Encode::decode(
-        $self->node->ownerDocument->actualEncoding,
-        $self->node->toString(1),
-    );
-}
 
 no Moose;
 __PACKAGE__->meta->make_immutable();
@@ -76,11 +64,6 @@ An instance of a L<XML::LibXML::Node> class representing a node in an XML docume
 =item C<xpc>
 
 An instance of a L<XML::LibXML::XPathContext> class initialized with the C<node> attribute. Read Only.
-
-
-=item C<dump>
-
-Dumps the XML of the current node as a native perl string.
 
 
 =item C<meta>
