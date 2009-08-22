@@ -112,6 +112,16 @@ is used to initialize namespaces using the C<registerNs> method. This is
 required on XML files that use namespaces, like XHTML.
 
 
+=item C<dump_xml>
+
+Inherited from L<Rabbit::Role::Node>.
+
+
+=item C<dump_document_xml>
+
+Inherited from L<Rabbit::Document>.
+
+
 =item C<meta>
 
 Moose meta object.

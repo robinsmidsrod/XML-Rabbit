@@ -65,6 +65,11 @@ An instance of a L<XML::LibXML::Node> class representing a node in an XML docume
 An instance of a L<XML::LibXML::XPathContext> class initialized with the C<node> attribute. Read Only.
 
 
+=item C<dump_xml>
+
+Inherited from L<Rabbit::Role::Node>.
+
+
 =item C<meta>
 
 Moose meta object.
