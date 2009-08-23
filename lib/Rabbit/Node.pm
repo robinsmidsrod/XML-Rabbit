@@ -1,15 +1,10 @@
 package Rabbit::Node;
 use Moose;
 
-with 'Rabbit::Role::Node';
-
-has '+_node' => (
-    required => 1,
-);
-
-has '+_xpc' => (
-    required => 1,
-);
+with 'Rabbit::Role::Node' => {
+    'node' => { required => 1 },
+    'xpc'  => { required => 1 },
+};
 
 no Moose;
 __PACKAGE__->meta->make_immutable();
