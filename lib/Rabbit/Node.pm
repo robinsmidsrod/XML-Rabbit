@@ -2,8 +2,12 @@ package Rabbit::Node;
 use Moose;
 
 with 'Rabbit::Role::Node' => {
-    'node' => { required => 1 },
-    'xpc'  => { required => 1 },
+    'node' => {
+        required => 1,
+    },
+    'xpc'  => {
+        required => 1,
+    },
 };
 
 no Moose;

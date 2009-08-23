@@ -7,8 +7,7 @@ parameter 'xpc'  => ( isa => 'HashRef', default => sub { +{} } );
 parameter 'node' => ( isa => 'HashRef', default => sub { +{} } );
 
 role {
-
-    my $p = shift;
+    my ($p) = @_;
 
     has '_xpc' => (
         is       => 'ro',
@@ -35,8 +34,6 @@ sub dump_xml {
         $self->node->toString(1),
     );
 }
-
-
 
 no Moose::Role;
 

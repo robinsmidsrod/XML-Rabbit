@@ -2,17 +2,6 @@ package Rabbit::RootNode;
 use Moose;
 extends 'Rabbit::Document';
 
-with 'Rabbit::Role::Node' => {
-    'node' => {
-        lazy    => 1,
-        default => sub { shift->_document->documentElement(); },
-    },
-    'xpc' => {
-        lazy    => 1,
-        builder => '_build__xpc',
-    }
-};
-
 # Preload XPath attribute traits
 use Rabbit::Trait::XPathValue;
 use Rabbit::Trait::XPathValueList;
@@ -25,6 +14,17 @@ has 'namespace_map' => (
     lazy    => 1,
     default => sub { {} },
 );
+
+with 'Rabbit::Role::Node' => {
+    'node' => {
+        lazy    => 1,
+        default => sub { shift->_document->documentElement(); },
+    },
+    'xpc' => {
+        lazy    => 1,
+        builder => '_build__xpc',
+    }
+};
 
 sub _build__xpc {
     my ($self) = @_;
