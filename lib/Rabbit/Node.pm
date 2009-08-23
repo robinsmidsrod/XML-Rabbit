@@ -1,19 +1,14 @@
 package Rabbit::Node;
 use Moose::Role;
 
-with 'Rabbit::Role::Node';
-
-has 'node' => (
-    is       => 'ro',
-    isa      => 'XML::LibXML::Node',
-    required => 1,
-);
-
-has 'xpc' => (
-    is       => 'ro',
-    isa      => 'XML::LibXML::XPathContext',
-    required => 1,
-);
+with 'Rabbit::Role::Node' => {
+    'node' => {
+        required => 1,
+    },
+    'xpc'  => {
+        required => 1,
+    },
+};
 
 no Moose::Role;
 

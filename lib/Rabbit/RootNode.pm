@@ -2,7 +2,6 @@ package Rabbit::RootNode;
 use Moose::Role;
 
 with 'Rabbit::Document';
-with 'Rabbit::Role::Node';
 
 # Preload XPath attribute traits
 use Rabbit::Trait::XPathValue;
@@ -17,21 +16,18 @@ has 'namespace_map' => (
     default => sub { {} },
 );
 
-has 'node' => (
-    is       => 'ro',
-    isa      => 'XML::LibXML::Node',
-    lazy    => 1,
-    default => sub { shift->_document->documentElement(); },
-);
+with 'Rabbit::Role::Node' => {
+    'node' => {
+        lazy    => 1,
+        default => sub { shift->_document->documentElement(); },
+    },
+    'xpc' => {
+        lazy    => 1,
+        builder => '_build__xpc',
+    }
+};
 
-has 'xpc' => (
-    is       => 'ro',
-    isa      => 'XML::LibXML::XPathContext',
-    lazy    => 1,
-    builder => '_build_xpc',
-);
-
-sub _build_xpc {
+sub _build__xpc {
     my ($self) = @_;
     # XML::LibXML loads this class, see Rabbit::Document
     my $xpc = XML::LibXML::XPathContext->new( $self->_document );

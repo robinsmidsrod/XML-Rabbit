@@ -1,7 +1,31 @@
 package Rabbit::Role::Node;
-use Moose::Role;
+use MooseX::Role::Parameterized;
 
 use Encode ();
+
+parameter 'xpc'  => ( isa => 'HashRef', default => sub { +{} } );
+parameter 'node' => ( isa => 'HashRef', default => sub { +{} } );
+
+role {
+    my ($p) = @_;
+
+    has '_xpc' => (
+        is       => 'ro',
+        isa      => 'XML::LibXML::XPathContext',
+        reader   => 'xpc',
+        init_arg => 'xpc',
+        %{ $p->xpc }
+    );
+
+    has '_node' => (
+        is       => 'ro',
+        isa      => 'XML::LibXML::Node',
+        reader   => 'node',
+        init_arg => 'node',
+        %{ $p->node }
+    );
+
+};
 
 sub dump_xml {
     my ($self) = @_;
@@ -11,7 +35,7 @@ sub dump_xml {
     );
 }
 
-no Moose::Role;
+no MooseX::Role::Parameterized;
 
 1;
 
