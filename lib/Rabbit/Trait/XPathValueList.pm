@@ -40,7 +40,7 @@ Rabbit::Trait::XPathValueList - Moose-based XML loader - multiple value xpath ex
 
     package MyXMLSyntaxNode;
     use Moose;
-    extends 'Rabbit::RootNode';
+    with 'Rabbit::RootNode';
 
     has all_references => (
         isa         => 'ArrayRef[Str]',

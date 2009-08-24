@@ -27,7 +27,7 @@ Version 0.01
 
     package W3C::XHTML;
     use Moose;
-    extends 'Rabbit::RootNode';
+    with 'Rabbit::RootNode';
 
     has '+namespace_map' => (
         default => sub { {
@@ -52,7 +52,7 @@ Version 0.01
 
     package W3C::XHTML::Body;
     use Moose;
-    extends 'Rabbit::Node';
+    with 'Rabbit::Node';
 
     has 'images' => (
         isa         => 'ArrayRef[W3C::XHTML::Image]',
@@ -65,7 +65,7 @@ Version 0.01
 
     package W3C::XHTML::Image;
     use Moose;
-    extends 'Rabbit::Node';
+    with 'Rabbit::Node';
 
     has 'src' => (
         isa         => 'Str',

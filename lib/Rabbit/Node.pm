@@ -1,5 +1,5 @@
 package Rabbit::Node;
-use Moose;
+use Moose::Role;
 
 with 'Rabbit::Role::Node' => {
     'node' => {
@@ -10,8 +10,7 @@ with 'Rabbit::Role::Node' => {
     },
 };
 
-no Moose;
-__PACKAGE__->meta->make_immutable();
+no Moose::Role;
 
 1;
 
@@ -24,7 +23,7 @@ Rabbit::Node - Moose-based XML loader - node base class
 
     package MyXMLSyntaxNode;
     use Moose;
-    extends 'Rabbit::Node';
+    with 'Rabbit::Node';
 
     has title => (
         isa         => 'Str',
@@ -50,11 +49,6 @@ See L<Rabbit> for a more complete example.
 =over 12
 
 
-=item C<new>
-
-Standard Moose constructor.
-
-
 =item C<node>
 
 An instance of a L<XML::LibXML::Node> class representing a node in an XML document tree. Read Only.
@@ -68,6 +62,11 @@ An instance of a L<XML::LibXML::XPathContext> class initialized with the C<node>
 =item C<meta>
 
 Moose meta object.
+
+
+=item C<dump_xml>
+
+Inherited from L<Rabbit::Role::Node>.
 
 
 =back

@@ -41,7 +41,7 @@ Rabbit::Trait::XPathObjectList - Moose-based XML loader - multiple XML DOM objec
 
     package MyXMLSyntaxNode;
     use Moose;
-    extends 'Rabbit::Node';
+    with 'Rabbit::Node';
 
     has 'persons' => (
         isa         => 'ArrayRef[MyXMLSyntax::Person]',

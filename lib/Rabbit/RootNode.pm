@@ -1,6 +1,6 @@
 package Rabbit::RootNode;
-use Moose;
-extends 'Rabbit::Document';
+use Moose::Role;
+with 'Rabbit::Document';
 
 # Preload XPath attribute traits
 use Rabbit::Trait::XPathValue;
@@ -36,8 +36,7 @@ sub _build__xpc {
     return $xpc;
 }
 
-no Moose;
-__PACKAGE__->meta->make_immutable();
+no Moose::Role;
 
 1;
 
@@ -50,7 +49,7 @@ Rabbit::RootNode - Moose-based XML loader - root node base class
 
     package MyXMLSyntax;
     use Moose;
-    extends 'Rabbit::RootNode';
+    with 'Rabbit::RootNode';
 
     has title => (
         isa         => 'Str',
@@ -74,11 +73,6 @@ See L<Rabbit> for a more complete example.
 
 
 =over 12
-
-
-=item C<new>
-
-Standard Moose constructor.
 
 
 =item C<namespace_map>
@@ -115,6 +109,16 @@ required on XML files that use namespaces, like XHTML.
 =item C<meta>
 
 Moose meta object.
+
+
+=item C<dump_xml>
+
+Inherited from L<Rabbit::Role::Node>.
+
+
+=item C<dump_document_xml>
+
+Inherited from L<Rabbit::Document>.
 
 
 =back

@@ -1,5 +1,5 @@
 package Rabbit::Document;
-use Moose;
+use Moose::Role;
 
 use XML::LibXML 1.69 ();
 use Encode ();
@@ -60,8 +60,7 @@ sub dump_document_xml {
     );
 }
 
-no Moose;
-__PACKAGE__->meta->make_immutable();
+no Moose::Role;
 
 1;
 
@@ -74,7 +73,7 @@ Rabbit::Document - Moose-based XML loader - document base class
 
     package MyXMLSyntax;
     use Moose;
-    extends 'Rabbit::Document';
+    with 'Rabbit::Document';
 
     sub root_node {
         return shift->_document->documentElement();
@@ -92,11 +91,6 @@ See L<Rabbit> for a more complete example.
 
 
 =over 12
-
-
-=item C<new>
-
-Standard Moose constructor.
 
 
 =item C<file>
