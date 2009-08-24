@@ -1,6 +1,5 @@
 package Rabbit::RootNode;
 use Moose::Role;
-
 with 'Rabbit::Document';
 
 # Preload XPath attribute traits
@@ -76,11 +75,6 @@ See L<Rabbit> for a more complete example.
 =over 12
 
 
-=item C<new>
-
-Standard Moose constructor.
-
-
 =item C<namespace_map>
 
 A HashRef of strings that defines the prefix/namespace XML mappings for the
@@ -125,6 +119,16 @@ Inherited from L<Rabbit::Document>.
 =item C<meta>
 
 Moose meta object.
+
+
+=item C<dump_xml>
+
+Inherited from L<Rabbit::Role::Node>.
+
+
+=item C<dump_document_xml>
+
+Inherited from L<Rabbit::Document>.
 
 
 =back

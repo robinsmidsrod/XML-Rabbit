@@ -93,11 +93,6 @@ See L<Rabbit> for a more complete example.
 =over 12
 
 
-=item C<new>
-
-Standard Moose constructor.
-
-
 =item C<file>
 
 A string representing the path to the file that contains the XML document data. Required.

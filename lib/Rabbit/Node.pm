@@ -49,11 +49,6 @@ See L<Rabbit> for a more complete example.
 =over 12
 
 
-=item C<new>
-
-Standard Moose constructor.
-
-
 =item C<node>
 
 An instance of a L<XML::LibXML::Node> class representing a node in an XML document tree. Read Only.
@@ -72,6 +67,11 @@ Inherited from L<Rabbit::Role::Node>.
 =item C<meta>
 
 Moose meta object.
+
+
+=item C<dump_xml>
+
+Inherited from L<Rabbit::Role::Node>.
 
 
 =back
