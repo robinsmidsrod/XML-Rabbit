@@ -1,4 +1,4 @@
-package Rabbit::Document;
+package Rabbit::Role::Document;
 use Moose::Role;
 
 use XML::LibXML 1.69 ();
@@ -66,14 +66,14 @@ no Moose::Role;
 
 =head1 NAME
 
-Rabbit::Document - Moose-based XML loader - document base class
+Rabbit::Role::Document - Moose-based XML loader - document base class
 
 
 =head1 SYNOPSIS
 
     package MyXMLSyntax;
     use Moose;
-    with 'Rabbit::Document';
+    with 'Rabbit::Role::Document';
 
     sub root_node {
         return shift->_document->documentElement();

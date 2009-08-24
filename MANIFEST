@@ -11,8 +11,8 @@ inc/Module/Install/Metadata.pm
 inc/Module/Install/Win32.pm
 inc/Module/Install/WriteAll.pm
 lib/Rabbit.pm
-lib/Rabbit/Document.pm
 lib/Rabbit/Node.pm
+lib/Rabbit/Role/Document.pm
 lib/Rabbit/Role/Node.pm
 lib/Rabbit/RootNode.pm
 lib/Rabbit/Trait/XPath.pm

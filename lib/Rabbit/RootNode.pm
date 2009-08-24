@@ -1,6 +1,6 @@
 package Rabbit::RootNode;
 use Moose::Role;
-with 'Rabbit::Document';
+with 'Rabbit::Role::Document';
 
 # Preload XPath attribute traits
 use Rabbit::Trait::XPathValue;
@@ -28,7 +28,7 @@ with 'Rabbit::Role::Node' => {
 
 sub _build__xpc {
     my ($self) = @_;
-    # XML::LibXML loads this class, see Rabbit::Document
+    # XML::LibXML loads this class, see Rabbit::Role::Document
     my $xpc = XML::LibXML::XPathContext->new( $self->_document );
     foreach my $prefix ( keys %{ $self->namespace_map } ) {
         $xpc->registerNs($prefix, $self->namespace_map->{$prefix});
@@ -94,7 +94,7 @@ An instance of a L<XML::LibXML::Node> class representing the root node of an
 XML document. Read Only.
 
 It is lazily loaded from the C<document> attribute, which is inherited from
-L<Rabbit::Document>.
+L<Rabbit::Role::Document>.
 
 =item C<xpc>
 
@@ -104,16 +104,6 @@ C<node> attribute. Read Only.
 If a subclass has an attribute named C<namespace_map> which is a HashRef it
 is used to initialize namespaces using the C<registerNs> method. This is
 required on XML files that use namespaces, like XHTML.
-
-
-=item C<dump_xml>
-
-Inherited from L<Rabbit::Role::Node>.
-
-
-=item C<dump_document_xml>
-
-Inherited from L<Rabbit::Document>.
 
 
 =item C<meta>
@@ -128,7 +118,7 @@ Inherited from L<Rabbit::Role::Node>.
 
 =item C<dump_document_xml>
 
-Inherited from L<Rabbit::Document>.
+Inherited from L<Rabbit::Role::Document>.
 
 
 =back
