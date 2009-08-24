@@ -35,7 +35,7 @@ sub dump_xml {
     );
 }
 
-no Moose::Role;
+no MooseX::Role::Parameterized;
 
 1;
 

@@ -1,6 +1,6 @@
 package W3C::XHTML::Body;
 use Moose;
-extends 'Rabbit::Node';
+with 'Rabbit::Node';
 
 has 'images' => (
     isa         => 'ArrayRef[W3C::XHTML::Image]',

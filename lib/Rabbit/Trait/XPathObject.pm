@@ -40,7 +40,7 @@ Rabbit::Trait::XPathObject - Moose-based XML loader - XML DOM object xpath extra
 
     package MyXMLSyntaxNode;
     use Moose;
-    extends 'Rabbit::Node';
+    with 'Rabbit::Node';
 
     has 'first_person' => (
         isa         => 'MyXMLSyntax::Person',
