@@ -22,8 +22,10 @@ no_index:
 requires:
   Encode: 2.26
   Moose: 0.88
+  MooseX::Role::Parameterized: 0.12
   XML::LibXML: 1.69
   perl: 5.8.0
 resources:
   license: http://dev.perl.org/licenses/
+  repository: git://github.com/robinsmidsrod/Rabbit.git
 version: 0.01

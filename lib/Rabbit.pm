@@ -98,6 +98,14 @@ XPath-based XML extractors. Each attribute in your class is linked to an
 XPath query that is executed on your XML document when you request the
 value.
 
+=head1 CAVEATS
+
+Be aware of the syntax of XPath when used with namespaces. You should almost
+always define C<namespace_map> when dealing with XML that use namespaces.
+Namespaces explicitly declared in the XML are usable with the prefix
+specified in the XML. See L<XML::LibXML::Node/findnodes> for more
+information.
+
 
 =head1 BUGS
 
@@ -106,6 +114,12 @@ or through the web interface at
 L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Rabbit>.  I will be
 notified, and then you'll automatically be notified of progress on your bug
 as I make changes.
+
+
+=head1 AVAILABILITY
+
+The latest version of this module can be downloaded from
+http://github.com/robinsmidsrod/Rabbit/
 
 
 =head1 SUPPORT
@@ -138,6 +152,18 @@ L<http://search.cpan.org/dist/Rabbit/>
 =back
 
 
+=head1 ACKNOWLEDGEMENTS
+
+The following people have helped to review or otherwise encourage
+me to work on this module.
+
+Chris Prather (perigrin)
+
+Matt S. Trout (mst)
+
+Stevan Little (stevan)
+
+
 =head1 AUTHOR
 
 Robin Smidsrød, C<< <robin at smidsrod.no> >>
@@ -152,6 +178,11 @@ Copyright 2009 Robin Smidsrød.
 
 This program is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.
+
+
+=head1 SEE ALSO
+
+L<XML::Toolkit>, L<Moose>, L<XML::LibXML>
 
 
 =cut

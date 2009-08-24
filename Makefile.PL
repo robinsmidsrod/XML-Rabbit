@@ -13,8 +13,8 @@ requires 'Encode'                      => '2.26';
 test_requires   'utf8'          => '1.06';
 test_requires   'Test::More'    => '0.88';
 
-#install_script 'xpath_extract';
+install_script 'xpath_extract';
 
-auto_install;
+repository 'git://github.com/robinsmidsrod/Rabbit.git';
 
 WriteAll;
