@@ -1,0 +1,72 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+
+binmode(STDOUT, ':utf8');
+
+my $xpath = shift;
+die("No XPath query specified!\n") unless $xpath;
+{
+    my $old_sep = $/;
+    local $/; # Enable slurp mode
+    while( <> ) {
+        local $/ = $old_sep; # Restore normal mode
+        print_matches($_,$xpath);
+        #print_xml($_,$xpath);
+    }
+}
+
+sub print_matches {
+    my ($xml, $query) = @_;
+    my $doc = Rabbit::XPathExtract->new( xml => $xml, xpath => $query );
+    foreach my $value ( @{ $doc->values } ) {
+        print $value, "\n" if defined($value) and length($value) > 0;
+    }
+    return 1;
+}
+
+sub print_xml {
+    my ($xml, $query) = @_;
+    my $doc = Rabbit::XPathExtract->new( xml => $xml, xpath => $query );
+    foreach my $object ( @{ $doc->objects } ) {
+        print STDOUT $object->dump_xml, "\n";
+    }
+    return 1;
+}
+
+BEGIN {
+    package Rabbit::XPathExtract;
+    use Moose;
+    with 'Rabbit::RootNode';
+
+    has 'xpath' => (
+        is       => 'ro',
+        isa      => 'Str',
+        required => 1,
+    );
+
+    has 'values' => (
+        isa         => 'ArrayRef[Str]',
+        traits      => [qw(XPathValueList)],
+        xpath_query => sub { shift->xpath },
+    );
+
+    has 'objects' => (
+        isa         => 'ArrayRef[XPathObject]',
+        traits      => [qw(XPathObjectList)],
+        xpath_query => sub { shift->xpath },
+    );
+
+    no Moose;
+    __PACKAGE__->meta->make_immutable();
+
+    package XPathObject;
+    use Moose;
+    with 'Rabbit::Node';
+
+    no Moose;
+    __PACKAGE__->meta->make_immutable();
+}
+
+1;
