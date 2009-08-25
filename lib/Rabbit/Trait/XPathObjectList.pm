@@ -7,6 +7,11 @@ has '+isa' => (
     required => 1,
 );
 
+has 'node_map' => (
+    is      => 'ro',
+    default => sub { +{} },
+);
+
 has '+default' => (
     builder => '_build_default',
 );

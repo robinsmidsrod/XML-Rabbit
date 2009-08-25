@@ -1,13 +1,27 @@
 package Rabbit::Trait::XPath;
 use Moose::Role;
-
-# This should really be:
-# has '+is' => ( is => 'ro', default => 'ro' );
-# but for some unknown reason Moose doesn't allow that
+use Moose::Util::TypeConstraints;
 
 around '_process_options' => sub {
     my ($orig, $self, $name, $options, @rest) = @_;
+
+    # This should really be:
+    # has '+is' => ( is => 'ro', default => 'ro' );
+    # but for some unknown reason Moose doesn't allow that
     $options->{'is'} = 'ro' unless exists $options->{'is'};
+
+    # Specifying node_map builds 'isa' for you
+    unless ( exists $options->{'isa'} ) {
+        if ( $options->{'node_map'} ) {
+            my @classes;
+            foreach my $value ( values %{ $options->{'node_map'} } ) {
+                class_type($value);
+                push @classes, $value,
+            }
+            $options->{'isa'} = 'ArrayRef[' . join('|',@classes) . ']';
+        }
+    }
+
     $self->$orig($name, $options, @rest);
 };
 
@@ -61,6 +75,16 @@ sub _resolve_class {
     # Get ArrayRef[*] - this is probably not the proper way to do this
     $class =~ s/^ArrayRef\[(.*)\]$/$1/;
 
+    # If $class is a union, return a class map instead
+    if ( $class =~ /\|/ ) {
+        my $class_map = {};
+        foreach my $class_name ( split(/\|/, $class) ) {
+            $class_map->{$class_name} = 1;
+            Class::MOP::load_class($class_name);
+        }
+        return $class_map;
+    }
+
     # Runtime load it
     Class::MOP::load_class($class);
 
@@ -69,6 +93,15 @@ sub _resolve_class {
 
 sub _create_instance {
     my ($self, $parent, $class, $node) = @_;
+    if ( ref($class) eq 'HASH' ) {
+        #my $ns_uri = $node->namespaceURI();
+        #my $prefix = $node->lookupNamespacePrefix( $ns_uri );
+        #warn "prefix: $prefix\n";
+        #warn "namespaces: " . join(",", $node->getNamespaces) . "\n";
+        my $node_name = ( $node->prefix ? $node->prefix . ':' : "" ) . $node->localname;
+        $class = $self->node_map->{ $node_name };
+    }
+    confess("Unable to resolve class for node " . $node->nodeName) unless $class;
     my $instance = $class->new( xpc => $parent->xpc, node => $node );
     return $instance;
 }
@@ -93,6 +126,7 @@ sub _find_nodes {
 }
 
 no Moose::Role;
+no Moose::Util::TypeConstraints;
 
 1;
 

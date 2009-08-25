@@ -179,6 +179,8 @@ Copyright 2009 Robin Smidsrød.
 This program is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.
 
+See http://dev.perl.org/licenses/ for more information.
+
 
 =head1 SEE ALSO
 

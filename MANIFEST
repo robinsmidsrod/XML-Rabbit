@@ -19,7 +19,7 @@ lib/Rabbit/Trait/XPathObjectList.pm
 lib/Rabbit/Trait/XPathValue.pm
 lib/Rabbit/Trait/XPathValueList.pm
 Makefile.PL
-MANIFEST
+MANIFEST			This list of files
 META.yml
 README
 script/xpath_extract
