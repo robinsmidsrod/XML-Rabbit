@@ -106,6 +106,12 @@ sub _convert_isa_map {
         # Skip nodes that have no prefix specified
         next unless $key =~ /:/;
 
+        # _convert_isa_map should never be run twice on the same isa_map
+        if ( substr($key,0,1) eq '[' ) {
+            #last;
+            confess("isa_map already processed!");
+        }
+
         # Find namespace URI in main mapping
         my ($prefix, $node_name) = split(/:/, $key);
         my $ns_uri = $parent->namespace_map->{ $prefix };
