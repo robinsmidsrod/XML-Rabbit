@@ -2,12 +2,9 @@ package Rabbit::Node;
 use Moose::Role;
 
 with 'Rabbit::Role::Node' => {
-    'node' => {
-        required => 1,
-    },
-    'xpc'  => {
-        required => 1,
-    },
+    'node'          => { required => 1 },
+    'xpc'           => { required => 1 },
+    'namespace_map' => { required => 1 },
 };
 
 no Moose::Role;

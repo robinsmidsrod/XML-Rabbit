@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use utf8;
 
-use Test::More tests => 20;
+use Test::More tests => 24;
 
 BEGIN {
     use lib 't/lib';
@@ -44,6 +44,11 @@ can_ok( $xhtml, 'all_sources' );
 my $sources = $xhtml->all_sources;
 is( @$sources, 1, 'All_sources list count mismatch');
 is( $sources->[0], 'bilde.jpg', 'First src mismatch');
+
+can_ok( $xhtml, 'body_and_all_images' );
+is( scalar @{ $xhtml->body_and_all_images }, 2, 'body_and_all_images count mismatch');
+isa_ok($xhtml->body_and_all_images->[0], 'W3C::XHTML::Body');
+isa_ok($xhtml->body_and_all_images->[1], 'W3C::XHTML::Image');
 
 close($fh);
 

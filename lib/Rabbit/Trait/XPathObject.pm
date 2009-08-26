@@ -7,6 +7,12 @@ has '+isa' => (
     required => 1,
 );
 
+has 'isa_map' => (
+    is      => 'ro',
+    isa     => 'HashRef[Str]',
+    default => sub { +{} },
+);
+
 has '+default' => (
     builder => '_build_default',
 );
@@ -19,6 +25,7 @@ sub _build_default {
             $parent,
             $self->_resolve_xpath_query( $parent ),
         );
+        $self->_convert_isa_map( $parent );
         my $class = $self->_resolve_class();
         return $self->_create_instance( $parent, $class, $node );
     };

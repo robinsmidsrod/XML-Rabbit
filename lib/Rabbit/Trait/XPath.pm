@@ -1,6 +1,7 @@
 package Rabbit::Trait::XPath;
 use Moose::Role;
 use Moose::Util::TypeConstraints;
+use Perl6::Junction ();
 
 around '_process_options' => sub {
     my ($orig, $self, $name, $options, @rest) = @_;
@@ -10,15 +11,19 @@ around '_process_options' => sub {
     # but for some unknown reason Moose doesn't allow that
     $options->{'is'} = 'ro' unless exists $options->{'is'};
 
-    # Specifying node_map builds 'isa' for you
+    # Specifying isa_map builds 'isa' for you
     unless ( exists $options->{'isa'} ) {
-        if ( $options->{'node_map'} ) {
+        if ( $options->{'isa_map'} ) {
             my @classes;
-            foreach my $value ( values %{ $options->{'node_map'} } ) {
+            foreach my $value ( values %{ $options->{'isa_map'} } ) {
                 class_type($value);
                 push @classes, $value,
             }
-            $options->{'isa'} = 'ArrayRef[' . join('|',@classes) . ']';
+            # If traits indicate XPathObjectList, assume an ArrayRef
+            $options->{'isa'} =
+                Perl6::Junction::any( @{ $options->{'traits'} } ) == qr/^Rabbit::Trait::XPathObjectList$/
+              ? 'ArrayRef[' . join('|',@classes) . ']'
+              : join('|',@classes);
         }
     }
 
@@ -75,14 +80,14 @@ sub _resolve_class {
     # Get ArrayRef[*] - this is probably not the proper way to do this
     $class =~ s/^ArrayRef\[(.*)\]$/$1/;
 
-    # If $class is a union, return a class map instead
+    # If $class is a union, return 0 to indicate failure to resolve
     if ( $class =~ /\|/ ) {
-        my $class_map = {};
         foreach my $class_name ( split(/\|/, $class) ) {
-            $class_map->{$class_name} = 1;
             Class::MOP::load_class($class_name);
         }
-        return $class_map;
+        # We use this to indicate that no usable single class was found,
+        # _create_instance() must use $self->isa_map instead.
+        return 0;
     }
 
     # Runtime load it
@@ -91,18 +96,43 @@ sub _resolve_class {
     return $class;
 }
 
+sub _convert_isa_map {
+    my ($self, $parent) = @_;
+
+    # isa_map is optional
+    return unless $self->can('isa_map');
+
+    foreach my $key ( keys %{ $self->isa_map } ) {
+        # Skip nodes that have no prefix specified
+        next unless $key =~ /:/;
+
+        # Find namespace URI in main mapping
+        my ($prefix, $node_name) = split(/:/, $key);
+        my $ns_uri = $parent->namespace_map->{ $prefix };
+
+        # Stop if namespaceURI was not found, to continue would create unstable behaviour
+        confess("Prefix '$prefix' not defined in namespace_map") unless $ns_uri;
+
+        # Replace prefix key with namespaceURI key used by _create_instance()
+        my $new_key = '[' . $ns_uri . ']' . $node_name;
+        $self->isa_map->{ $new_key } = $self->isa_map->{$key};
+        delete $self->isa_map->{$key};
+    }
+
+}
+
 sub _create_instance {
     my ($self, $parent, $class, $node) = @_;
-    if ( ref($class) eq 'HASH' ) {
-        #my $ns_uri = $node->namespaceURI();
-        #my $prefix = $node->lookupNamespacePrefix( $ns_uri );
-        #warn "prefix: $prefix\n";
-        #warn "namespaces: " . join(",", $node->getNamespaces) . "\n";
-        my $node_name = ( $node->prefix ? $node->prefix . ':' : "" ) . $node->localname;
-        $class = $self->node_map->{ $node_name };
+    unless( $class ) {
+        my $node_name = ( $node->namespaceURI ? '[' . $node->namespaceURI . ']' : "" ) . $node->localname;
+        $class = $self->isa_map->{ $node_name };
     }
     confess("Unable to resolve class for node " . $node->nodeName) unless $class;
-    my $instance = $class->new( xpc => $parent->xpc, node => $node );
+    my $instance = $class->new(
+        xpc           => $parent->xpc,
+        node          => $node,
+        namespace_map => $parent->namespace_map,
+    );
     return $instance;
 }
 

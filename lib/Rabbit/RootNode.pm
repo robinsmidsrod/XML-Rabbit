@@ -8,28 +8,24 @@ use Rabbit::Trait::XPathValueList;
 use Rabbit::Trait::XPathObject;
 use Rabbit::Trait::XPathObjectList;
 
-has 'namespace_map' => (
-    is      => 'ro',
-    isa     => 'HashRef[Str]',
-    lazy    => 1,
-    default => sub { {} },
-);
-
 with 'Rabbit::Role::Node' => {
-    'node' => {
-        lazy    => 1,
-        default => sub { shift->_document->documentElement(); },
-    },
-    'xpc' => {
-        lazy    => 1,
-        builder => '_build__xpc',
-    }
+    'node' => { lazy => 1, builder => '_build__node' },
+    'xpc'  => { lazy => 1, builder => '_build__xpc'  },
 };
+
+sub _build__node {
+    shift->_document->documentElement();
+}
 
 sub _build__xpc {
     my ($self) = @_;
     # XML::LibXML loads this class, see Rabbit::Role::Document
     my $xpc = XML::LibXML::XPathContext->new( $self->_document );
+
+    # Make sure namespace_map is inherited from Rabbit::Role::Node
+    confess("Required role 'Rabbit::Role::Node' not composed") unless $self->does('Rabbit::Role::Node');
+
+    # Register all prefixes specified in namespace_map for use in xpath queries
     foreach my $prefix ( keys %{ $self->namespace_map } ) {
         $xpc->registerNs($prefix, $self->namespace_map->{$prefix});
     }

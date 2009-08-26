@@ -35,12 +35,9 @@ has 'all_sources' => (
 has 'body_and_all_images' => (
     traits      => ['XPathObjectList'],
     xpath_query => '//xhtml:body|//xhtml:img',
-    node_map    => {
-        # FIXME!
-        #'xhtml:body' => 'W3C::XHTML::Body',
-        #'xhtml:img'  => 'W3C::XHTML::Image',
-        'body' => 'W3C::XHTML::Body',
-        'img'  => 'W3C::XHTML::Image',
+    isa_map     => {
+        'xhtml:body' => 'W3C::XHTML::Body',
+        'xhtml:img'  => 'W3C::XHTML::Image',
     },
 );
 

@@ -47,6 +47,15 @@ Version 0.01
         xpath_query => '/xhtml:html/xhtml:body',
     );
 
+    has 'all_anchors_and_images' => (
+        traits      => ['XPathObjectList'],
+        xpath_query => '//xhtml:a|//xhtml:img',
+        isa_map     => {
+            'xhtml:a'   => 'W3C::XHTML::Anchor',
+            'xhtml:img' => 'W3C::XHTML::Image',
+        },
+    );
+
     no Moose;
     __PACKAGE__->meta->make_immutable();
 
@@ -88,6 +97,25 @@ Version 0.01
     no Moose;
     __PACKAGE__->meta->make_immutable();
 
+    package W3C::XHTML::Anchor;
+    use Moose;
+    with 'Rabbit::Node';
+
+    has 'href' => (
+        isa         => 'Str',
+        traits      => [qw(XPathValue)],
+        xpath_query => './@src',
+    );
+
+    has 'title' => (
+        isa         => 'Str',
+        traits      => [qw(XPathValue)],
+        xpath_query => './@title',
+    );
+
+    no Moose;
+    __PACKAGE__->meta->make_immutable();
+
     1;
 
 
@@ -98,13 +126,26 @@ XPath-based XML extractors. Each attribute in your class is linked to an
 XPath query that is executed on your XML document when you request the
 value.
 
+Also notice that if you specify an xpath_query that can return multiple
+types, you need to specify C<isa_map> instead of just specifying the types
+as a union type constraint in C<isa>. If you specify C<isa_map> you should
+not specify C<isa> aswell, as it will be overridden by the trait. The trait
+will wrap the type constraint union in an ArrayRef if the trait name is
+XPathObjectList. As all the traits that end with List return array
+references, their C<isa> must be an ArrayRef.
+
+The namespace prefix used in C<isa_map> MUST be specified in the
+C<namespace_map>. If a prefix is used in C<isa_map> without a corresponding
+entry in C<namespace_map> an exception will be thrown.
+
+
 =head1 CAVEATS
 
 Be aware of the syntax of XPath when used with namespaces. You should almost
 always define C<namespace_map> when dealing with XML that use namespaces.
 Namespaces explicitly declared in the XML are usable with the prefix
-specified in the XML. See L<XML::LibXML::Node/findnodes> for more
-information.
+specified in the XML (except if you use C<isa_map>). See
+L<XML::LibXML::Node/findnodes> for more information.
 
 
 =head1 BUGS

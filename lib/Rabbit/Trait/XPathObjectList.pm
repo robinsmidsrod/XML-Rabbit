@@ -7,8 +7,9 @@ has '+isa' => (
     required => 1,
 );
 
-has 'node_map' => (
+has 'isa_map' => (
     is      => 'ro',
+    isa     => 'HashRef[Str]',
     default => sub { +{} },
 );
 
@@ -21,6 +22,7 @@ sub _build_default {
     return sub {
         my ($parent) = @_;
         my $xpath_query = $self->_resolve_xpath_query( $parent );
+        $self->_convert_isa_map( $parent );
         my $class = $self->_resolve_class();
         my @nodes;
         foreach my $node ( $self->_find_nodes($parent, $xpath_query ) ) {

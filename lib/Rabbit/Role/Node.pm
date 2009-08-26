@@ -3,8 +3,9 @@ use MooseX::Role::Parameterized;
 
 use Encode ();
 
-parameter 'xpc'  => ( isa => 'HashRef', default => sub { +{} } );
-parameter 'node' => ( isa => 'HashRef', default => sub { +{} } );
+parameter 'xpc'           => ( isa => 'HashRef', default => sub { +{} } );
+parameter 'node'          => ( isa => 'HashRef', default => sub { +{} } );
+parameter 'namespace_map' => ( isa => 'HashRef', default => sub { +{} } );
 
 role {
     my ($p) = @_;
@@ -23,6 +24,14 @@ role {
         reader   => 'node',
         init_arg => 'node',
         %{ $p->node }
+    );
+
+    has 'namespace_map' => (
+        is       => 'ro',
+        isa      => 'HashRef[Str]',
+        lazy     => 1,
+        default  => sub { +{} },
+        %{ $p->namespace_map },
     );
 
 };
