@@ -10,6 +10,7 @@ has '+isa' => (
 has 'isa_map' => (
     is      => 'ro',
     isa     => 'HashRef[Str]',
+    lazy    => 1,
     default => sub { +{} },
 );
 

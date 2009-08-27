@@ -40,6 +40,12 @@ has '+lazy' => (
     default => 1,
 );
 
+has '_isa_map_converted' => (
+    is      => 'rw',
+    isa     => 'Bool',
+    default => 0,
+);
+
 sub _verify_parent_role {
     my ($self, $parent) = @_;
 
@@ -102,6 +108,9 @@ sub _convert_isa_map {
     # isa_map is optional
     return unless $self->can('isa_map');
 
+    # Don't let it run more than once per trait meta-instance
+    return if $self->_isa_map_converted;
+
     foreach my $key ( keys %{ $self->isa_map } ) {
         # Skip nodes that have no prefix specified
         next unless $key =~ /:/;
@@ -118,6 +127,8 @@ sub _convert_isa_map {
         $self->isa_map->{ $new_key } = $self->isa_map->{$key};
         delete $self->isa_map->{$key};
     }
+
+    $self->_isa_map_converted(1);
 
 }
 
