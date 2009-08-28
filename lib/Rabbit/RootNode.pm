@@ -5,8 +5,10 @@ with 'Rabbit::Role::Document';
 # Preload XPath attribute traits
 use Rabbit::Trait::XPathValue;
 use Rabbit::Trait::XPathValueList;
+use Rabbit::Trait::XPathValueMap;
 use Rabbit::Trait::XPathObject;
 use Rabbit::Trait::XPathObjectList;
+use Rabbit::Trait::XPathObjectMap;
 
 with 'Rabbit::Role::Node' => {
     'node' => { lazy => 1, builder => '_build__node' },

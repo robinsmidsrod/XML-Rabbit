@@ -19,11 +19,17 @@ around '_process_options' => sub {
                 class_type($value);
                 push @classes, $value,
             }
+            # Build union isa
+            my $isa = join('|',@classes);
             # If traits indicate XPathObjectList, assume an ArrayRef
-            $options->{'isa'} =
-                Perl6::Junction::any( @{ $options->{'traits'} } ) == qr/^Rabbit::Trait::XPathObjectList$/
-              ? 'ArrayRef[' . join('|',@classes) . ']'
-              : join('|',@classes);
+            if ( Perl6::Junction::any( @{ $options->{'traits'} } ) == qr/^Rabbit::Trait::XPathObjectList$/ ) {
+                $isa = "ArrayRef[$isa]";
+            }
+            # If traits indicate XPathObjectMap, assume a HashRef
+            if ( Perl6::Junction::any( @{ $options->{'traits'} } ) == qr/^Rabbit::Trait::XPathObjectMap$/ ) {
+                $isa = "HashRef[$isa]";
+            }
+            $options->{'isa'} = $isa;
         }
     }
 
@@ -84,7 +90,7 @@ sub _resolve_class {
     my $class = $self->meta->get_attribute('isa')->get_value($self);
 
     # Get ArrayRef[*] - this is probably not the proper way to do this
-    $class =~ s/^ArrayRef\[(.*)\]$/$1/;
+    $class =~ s/^(?:Array|Hash)Ref\[(.*)\]$/$1/;
 
     # If $class is a union, return 0 to indicate failure to resolve
     if ( $class =~ /\|/ ) {

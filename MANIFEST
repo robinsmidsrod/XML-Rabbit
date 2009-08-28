@@ -16,8 +16,10 @@ lib/Rabbit/RootNode.pm
 lib/Rabbit/Trait/XPath.pm
 lib/Rabbit/Trait/XPathObject.pm
 lib/Rabbit/Trait/XPathObjectList.pm
+lib/Rabbit/Trait/XPathObjectMap.pm
 lib/Rabbit/Trait/XPathValue.pm
 lib/Rabbit/Trait/XPathValueList.pm
+lib/Rabbit/Trait/XPathValueMap.pm
 Makefile.PL
 MANIFEST			This list of files
 META.yml
@@ -28,6 +30,8 @@ t/10_parse_xhtml_fh.t
 t/10_parse_xhtml_file.t
 t/10_parse_xhtml_string.t
 t/11_parse_imsqti.t
+t/12_xpath_value_map.t
+t/13_xpath_object_map.t
 t/boilerplate.t
 t/data/10_parse_xhtml.xhtml
 t/data/imsqti_v2p1.xsd
