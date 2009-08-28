@@ -27,10 +27,16 @@ t/00-load.t
 t/10_parse_xhtml_fh.t
 t/10_parse_xhtml_file.t
 t/10_parse_xhtml_string.t
+t/11_parse_imsqti.t
 t/boilerplate.t
 t/data/10_parse_xhtml.xhtml
+t/data/imsqti_v2p1.xsd
 t/lib/W3C/XHTML.pm
 t/lib/W3C/XHTML/Body.pm
 t/lib/W3C/XHTML/Image.pm
+t/lib/W3C/XMLSchema.pm
+t/lib/W3C/XMLSchema/Element.pm
+t/lib/W3C/XMLSchema/Group.pm
+t/lib/W3C/XMLSchema/Sequence.pm
 t/pod-coverage.t
 t/pod.t
