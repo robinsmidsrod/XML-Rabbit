@@ -2,6 +2,7 @@ package Rabbit::Trait::XPath;
 use Moose::Role;
 use Moose::Util::TypeConstraints;
 use Perl6::Junction ();
+use Data::Visitor::Callback ();
 
 around '_process_options' => sub {
     my ($orig, $self, $name, $options, @rest) = @_;
@@ -89,30 +90,12 @@ sub _resolve_class {
     # Figure out classes mentioned in type constraint (isa)
     my @classes;
     if ( $self->has_type_constraint ) {
-        if ( $self->type_constraint->isa('Moose::Meta::TypeConstraint::Class') ) {
-            push @classes, $self->type_constraint->class;
-        }
-        elsif ( $self->type_constraint->isa('Moose::Meta::TypeConstraint::Parameterized') ) {
-            if ( $self->type_constraint->type_parameter->isa('Moose::Meta::TypeConstraint::Class') ) {
-                push @classes, $self->type_constraint->type_parameter->class;
-            }
-            elsif ( $self->type_constraint->type_parameter->isa('Moose::Meta::TypeConstraint::Union') )  {
-                foreach my $tc ( @{ $self->type_constraint->type_parameter->type_constraints } ) {
-                    if ( $tc->isa('Moose::Meta::TypeConstraint::Class') ) {
-                        push @classes, $tc->class;
-                    }
-                    else {
-                        confess("Unsupported Type Constraint (parameterized/union): " . ref($tc) . "\n");
-                    }
-                }
-            }
-            else {
-                confess("Unsupported Type Constraint (parameterized): " . ref($self->type_constraint->type_parameter) . "\n");
-            }
-        }
-        else {
-            confess("Unsupported Type Constraint: " . ref($self->type_constraint) . "\n");
-        }
+        Data::Visitor::Callback->new({
+            object => 'visit_ref',
+            'Moose::Meta::TypeConstraint::Union'         => sub { return $_[1]->type_constraints; },
+            'Moose::Meta::TypeConstraint::Class'         => sub { push @classes, $_[1]->class; return $_[1]; },
+            'Moose::Meta::TypeConstraint::Parameterized' => sub { return $_[1]->type_parameter; },
+        })->visit($self->type_constraint);
     }
 
     # Runtime load each class
