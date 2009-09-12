@@ -86,26 +86,44 @@ sub _resolve_xpath_query {
 sub _resolve_class {
     my ($self) = @_;
 
-    # Get class definition
-    my $class = $self->meta->get_attribute('isa')->get_value($self);
-
-    # Get ArrayRef[*] - this is probably not the proper way to do this
-    $class =~ s/^(?:Array|Hash)Ref\[(.*)\]$/$1/;
-
-    # If $class is a union, return 0 to indicate failure to resolve
-    if ( $class =~ /\|/ ) {
-        foreach my $class_name ( split(/\|/, $class) ) {
-            Class::MOP::load_class($class_name);
+    # Figure out classes mentioned in type constraint (isa)
+    my @classes;
+    if ( $self->has_type_constraint ) {
+        if ( $self->type_constraint->isa('Moose::Meta::TypeConstraint::Class') ) {
+            push @classes, $self->type_constraint->class;
         }
-        # We use this to indicate that no usable single class was found,
-        # _create_instance() must use $self->isa_map instead.
-        return 0;
+        elsif ( $self->type_constraint->isa('Moose::Meta::TypeConstraint::Parameterized') ) {
+            if ( $self->type_constraint->type_parameter->isa('Moose::Meta::TypeConstraint::Class') ) {
+                push @classes, $self->type_constraint->type_parameter->class;
+            }
+            elsif ( $self->type_constraint->type_parameter->isa('Moose::Meta::TypeConstraint::Union') )  {
+                foreach my $tc ( @{ $self->type_constraint->type_parameter->type_constraints } ) {
+                    if ( $tc->isa('Moose::Meta::TypeConstraint::Class') ) {
+                        push @classes, $tc->class;
+                    }
+                    else {
+                        confess("Unsupported Type Constraint (parameterized/union): " . ref($tc) . "\n");
+                    }
+                }
+            }
+            else {
+                confess("Unsupported Type Constraint (parameterized): " . ref($self->type_constraint->type_parameter) . "\n");
+            }
+        }
+        else {
+            confess("Unsupported Type Constraint: " . ref($self->type_constraint) . "\n");
+        }
     }
 
-    # Runtime load it
-    Class::MOP::load_class($class);
+    # Runtime load each class
+    foreach my $class ( @classes ) {
+        Class::MOP::load_class($class);
+    }
 
-    return $class;
+    # Return 0 if multiple classes found,
+    # _create_instance() must use $self->isa_map to resolve class name
+    return scalar @classes > 1 ? 0 : $classes[0];
+
 }
 
 sub _convert_isa_map {
@@ -157,8 +175,9 @@ sub _find_node {
     my ($self, $parent, $xpath_query) = @_;
     $self->_verify_parent_role( $parent );
     my $node = $parent->xpc->find( $xpath_query, $parent->node );
-    $node = XML::LibXML::Element->new() unless blessed($node);
+    $node = XML::LibXML::Element->new("") unless blessed($node); # In case no node found
     $node = $node->shift if $node->isa('XML::LibXML::NodeList'); # Get first item if multiple results
+    $node = XML::LibXML::Element->new("") unless blessed($node); # In case no node found
     return $node;
 }
 

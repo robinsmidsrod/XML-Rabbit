@@ -38,6 +38,7 @@ t/data/imsqti_v2p1.xsd
 t/lib/W3C/XHTML.pm
 t/lib/W3C/XHTML/Body.pm
 t/lib/W3C/XHTML/Image.pm
+t/lib/W3C/XHTML/Style.pm
 t/lib/W3C/XMLSchema.pm
 t/lib/W3C/XMLSchema/Element.pm
 t/lib/W3C/XMLSchema/Group.pm
