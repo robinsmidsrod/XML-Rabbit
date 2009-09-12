@@ -141,6 +141,12 @@ sub _convert_isa_map {
 
 sub _create_instance {
     my ($self, $parent, $class, $node) = @_;
+
+    # Just return undef if no node passed
+    # TypeConstraint must be Maybe[XXX] though
+    # Used for optional elements
+    return unless $node;
+
     unless( $class ) {
         my $node_name = ( $node->namespaceURI ? '[' . $node->namespaceURI . ']' : "" ) . $node->localname;
         $class = $self->isa_map->{ $node_name };
@@ -158,9 +164,8 @@ sub _find_node {
     my ($self, $parent, $xpath_query) = @_;
     $self->_verify_parent_role( $parent );
     my $node = $parent->xpc->find( $xpath_query, $parent->node );
-    $node = XML::LibXML::Element->new("") unless blessed($node); # In case no node found
+    return unless blessed($node); # No node found, just return undef (optional elements)
     $node = $node->shift if $node->isa('XML::LibXML::NodeList'); # Get first item if multiple results
-    $node = XML::LibXML::Element->new("") unless blessed($node); # In case no node found
     return $node;
 }
 

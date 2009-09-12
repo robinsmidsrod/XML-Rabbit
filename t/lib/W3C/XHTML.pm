@@ -15,7 +15,7 @@ has 'title' => (
 );
 
 has 'style' => (
-    isa         => 'W3C::XHTML::Style',
+    isa         => 'Maybe[W3C::XHTML::Style]',
     traits      => [qw(XPathObject)],
     xpath_query => '/xhtml:html/xhtml:head/xhtml:style',
 );

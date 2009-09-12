@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use utf8;
 
-use Test::More tests => 26;
+use Test::More tests => 24;
 
 BEGIN {
     use lib 't/lib';
@@ -20,9 +20,7 @@ can_ok( $xhtml, 'title');
 is($xhtml->title, 'Hei på deg', 'Main title mismatch' );
 
 can_ok( $xhtml, 'style');
-isa_ok( $xhtml->style, "W3C::XHTML::Style" );
-can_ok( $xhtml->style, 'type' );
-is( $xhtml->style->type, "", 'First style tag type mismatch' );
+is( $xhtml->style, undef, 'Style tag mismatch' );
 
 can_ok( $xhtml, 'body');
 my $body = $xhtml->body;
