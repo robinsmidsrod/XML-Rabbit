@@ -56,7 +56,7 @@ Rabbit::Trait::XPathObjectList - Moose-based XML loader - multiple XML DOM objec
 
     has 'persons' => (
         isa         => 'ArrayRef[MyXMLSyntax::Person]',
-        traits      => [qw(XPathObject)],
+        traits      => [qw(XPathObjectList)],
         xpath_query => './persons/*',
     );
 
