@@ -8,6 +8,8 @@ use utf8;
 
 our $VERSION = '0.01';
 
+=encoding utf8
+
 =head1 NAME
 
 Rabbit - Moose-based XML loader
