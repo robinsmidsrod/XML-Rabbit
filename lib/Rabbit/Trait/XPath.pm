@@ -207,7 +207,23 @@ Rabbit::Trait::XPath - Moose-based XML loader - base role for other xpath traits
 
     package Rabbit::Trait::XPathSomething;
     use Moose::Role;
+
     with 'Rabbit::Trait::XPath';
+
+    sub _build_default {
+        my ($self) = @_;
+        return sub {
+            my ($parent) = @_;
+
+            ...
+
+        };
+    }
+
+    no Moose::Role;
+
+    package Moose::Meta::Attribute::Custom::Trait::XPathSomething;
+    sub register_implementation { 'Rabbit::Trait::XPathSomething' }
 
     1;
 
@@ -226,7 +242,8 @@ See L<Rabbit> for a more complete example.
 
 =item C<xpath_query>
 
-A string or a coderef that generates a string that is the XPath query to use to find the wanted value. Read Only.
+A string or a coderef that generates a string that is the XPath query to use
+to find the wanted value. Read Only.
 
 
 =item C<meta>
