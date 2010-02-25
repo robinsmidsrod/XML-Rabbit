@@ -3,10 +3,6 @@ use Moose::Role;
 
 with 'Rabbit::Trait::XPath';
 
-has '+default' => (
-    builder => '_build_default',
-);
-
 sub _build_default {
     my ($self) = @_;
     return sub {

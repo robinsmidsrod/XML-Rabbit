@@ -3,9 +3,16 @@ use Moose::Role;
 
 with 'Rabbit::Trait::XPath';
 
-has '+isa' => (
-    required => 1,
-);
+around '_process_options' => sub {
+    my ($orig, $self, $name, $options, @rest) = @_;
+
+    $self->$orig($name, $options, @rest);
+
+    # This should really be:
+    # has '+isa' => ( required => 1 );
+    # but for some unknown reason Moose doesn't allow that
+    confess("isa attribute is required") unless defined( $options->{'isa'} );
+};
 
 has 'xpath_key' => (
     is       => 'ro',
@@ -17,10 +24,6 @@ has 'xpath_value' => (
     is       => 'ro',
     isa      => 'Str',
     required => 1,
-);
-
-has '+default' => (
-    builder => '_build_default',
 );
 
 sub _build_default {

@@ -7,10 +7,18 @@ use Data::Visitor::Callback ();
 around '_process_options' => sub {
     my ($orig, $self, $name, $options, @rest) = @_;
 
-    # This should really be:
-    # has '+is' => ( is => 'ro', default => 'ro' );
-    # but for some unknown reason Moose doesn't allow that
-    $options->{'is'} = 'ro' unless exists $options->{'is'};
+    # XPath-derived attributes should always be
+    # set using the builder, this is just a way to enforce
+    # that behaviour.
+    $options->{'is'} = 'ro';
+    $options->{'init_arg'} = undef;
+    $options->{'lazy'} = 1;
+    $options->{'default'} = sub { 'FAIL_IF_YOU_SEE_THIS' };
+
+    # TODO: Maybe throw raging exceptions instead?
+    delete $options->{'builder'};
+    delete $options->{'lazy_build'};
+    delete $options->{'required'};
 
     # Specifying isa_map builds 'isa' for you
     unless ( exists $options->{'isa'} ) {
@@ -37,14 +45,20 @@ around '_process_options' => sub {
     $self->$orig($name, $options, @rest);
 };
 
+# Will call _build_default which should be composited in
+# from another role. _build_default should return a coderef that is
+# executed in the context of the parent (the class with the attribute defined).
+sub default {
+    my ($self, $parent) = @_;
+    my $actual_builder = $self->_build_default();
+    return $actual_builder unless ref($actual_builder) eq 'CODE';
+    return &$actual_builder( $parent );
+}
+
 has 'xpath_query' => (
     is       => 'ro',
     isa      => 'Str|CodeRef',
     required => 1,
-);
-
-has '+lazy' => (
-    default => 1,
 );
 
 has '_isa_map_converted' => (
@@ -215,14 +229,41 @@ See L<Rabbit> for a more complete example.
 A string or a coderef that generates a string that is the XPath query to use to find the wanted value. Read Only.
 
 
-=item C<lazy>
-
-Indicates that the parent attribute will be lazy-loaded on first use. Read Only.
-
-
 =item C<meta>
 
 Moose meta object.
+
+
+=back
+
+
+=head1 METHODS
+
+
+=over 12
+
+
+=item C<default>
+
+Each trait that composes this trait will need to define a method name
+C<_build_default>. The _build_default method is called as a method on the
+generated attribute class. It should return a code reference that will be
+run in the content of the parent class (i.e. the class that defined the
+attribute).
+
+Below you can see an example from the XPathValue trait:
+
+    sub _build_default {
+        my ($self) = @_;
+        return sub {
+            my ($parent) = @_;
+            my $node = $self->_find_node(
+                $parent,
+                $self->_resolve_xpath_query( $parent ),
+            );
+            return blessed($node) ? $node->to_literal . "" : "";
+        };
+    }
 
 
 =back

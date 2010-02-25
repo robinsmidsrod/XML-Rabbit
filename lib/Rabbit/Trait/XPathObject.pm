@@ -3,19 +3,22 @@ use Moose::Role;
 
 with 'Rabbit::Trait::XPath';
 
-has '+isa' => (
-    required => 1,
-);
+around '_process_options' => sub {
+    my ($orig, $self, $name, $options, @rest) = @_;
+
+    $self->$orig($name, $options, @rest);
+
+    # This should really be:
+    # has '+isa' => ( required => 1 );
+    # but for some unknown reason Moose doesn't allow that
+    confess("isa attribute is required") unless defined( $options->{'isa'} );
+};
 
 has 'isa_map' => (
     is      => 'ro',
     isa     => 'HashRef[Str]',
     lazy    => 1,
     default => sub { +{} },
-);
-
-has '+default' => (
-    builder => '_build_default',
 );
 
 sub _build_default {
