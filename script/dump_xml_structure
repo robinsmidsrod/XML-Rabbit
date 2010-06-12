@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 
-use XML::LibXML;
+use XML::LibXML 1.70;
 use Scalar::Util qw(blessed);
 
 binmode STDOUT, ':utf8';
