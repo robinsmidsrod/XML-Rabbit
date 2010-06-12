@@ -1,7 +1,12 @@
+use strict;
+use warnings;
+
 package XML::Rabbit::Trait::XPathObject;
-use Moose::Role;
+use Moose::Role 1.05;
 
 with 'XML::Rabbit::Trait::XPath';
+
+# ABSTRACT: XML DOM object xpath extractor trait
 
 around '_process_options' => sub {
     my ($orig, $self, $name, $options, @rest) = @_;
@@ -14,12 +19,25 @@ around '_process_options' => sub {
     confess("isa attribute is required") unless defined( $options->{'isa'} );
 };
 
+=attr isa_map
+
+Specifies the prefix:tag to class name mapping used with union xpath
+queries. See L<XML::Rabbit> for more detailed information.
+
+=cut
+
 has 'isa_map' => (
     is      => 'ro',
     isa     => 'HashRef[Str]',
     lazy    => 1,
     default => sub { +{} },
 );
+
+=method _build_default
+
+Returns a coderef that is run to build the default value of the parent attribute. Read Only.
+
+=cut
 
 sub _build_default {
     my ($self) = @_;
@@ -38,14 +56,9 @@ sub _build_default {
 no Moose::Role;
 
 package Moose::Meta::Attribute::Custom::Trait::XPathObject;
-sub register_implementation { 'XML::Rabbit::Trait::XPathObject' }
+sub register_implementation { return 'XML::Rabbit::Trait::XPathObject' }
 
 1;
-
-=head1 NAME
-
-XML::Rabbit::Trait::XPathObject - Moose-based XML loader - XML DOM object xpath extractor trait
-
 
 =head1 SYNOPSIS
 
@@ -71,64 +84,3 @@ node based on an XPath query. The subtree is used as input for the
 constructor of the class specified in the isa attribute.
 
 See L<XML::Rabbit> for a more complete example.
-
-
-=head1 ATTRIBUTES
-
-
-=over 12
-
-
-=item C<xpath_query>
-
-Inherited from L<XML::Rabbit::Trait::XPath>.
-
-
-=item C<lazy>
-
-Inherited from L<XML::Rabbit::Trait::XPath>.
-
-
-=item C<isa>
-
-Indicates that the parent attribute must have its class specified. Read Only.
-
-
-=item C<default>
-
-Returns a coderef that is run to build the default value of the parent attribute. Read Only.
-
-
-=item C<meta>
-
-Moose meta object.
-
-
-=back
-
-
-=head1 BUGS
-
-See L<XML::Rabbit/BUGS>.
-
-
-=head1 SUPPORT
-
-See L<XML::Rabbit/SUPPORT>.
-
-
-=head1 AUTHOR
-
-See L<XML::Rabbit/AUTHOR>.
-
-
-=head1 COPYRIGHT
-
-See L<XML::Rabbit/COPYRIGHT>.
-
-=head1 LICENSE
-
-See L<XML::Rabbit/LICENSE>.
-
-
-=cut

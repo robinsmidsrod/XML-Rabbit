@@ -42,10 +42,11 @@ sub dump_node {
     foreach my $child_node ( $node->childNodes() ) {
         dump_node( $child_node, $map );
     }
+    return 1;
 }
 
 sub trim_node_path {
     my ($node_path) = @_;
-    $node_path =~ s/\[\d+\]//g; # Strip explicit count number
+    $node_path =~ s/\[\d+\]//xmsg; # Strip explicit count number
     return $node_path;
 }

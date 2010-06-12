@@ -1,8 +1,19 @@
+use strict;
+use warnings;
+
 package XML::Rabbit::Role::Document;
-use Moose::Role;
+use Moose::Role 1.05;
 
 use XML::LibXML 1.69 ();
-use Encode ();
+use Encode 2.26 ();
+
+# ABSTRACT: XML Document base class
+
+=attr file
+
+A string representing the path to the file that contains the XML document data. Required.
+
+=cut
 
 has '_file' => (
     is        => 'ro',
@@ -32,6 +43,12 @@ has '_parser' => (
     default => sub { XML::LibXML->new(), },
 );
 
+=attr _document
+
+An instance of a L<XML::LibXML::Document> class. Read Only.
+
+=cut
+
 has '_document' => (
     is       => 'ro',
     isa      => 'XML::LibXML::Document',
@@ -52,6 +69,12 @@ sub _build__document {
     return $doc;
 }
 
+=method dump_document_xml
+
+Dumps the XML of the entire document as a native perl string.
+
+=cut
+
 sub dump_document_xml {
     my ( $self ) = @_;
     return Encode::decode(
@@ -63,11 +86,6 @@ sub dump_document_xml {
 no Moose::Role;
 
 1;
-
-=head1 NAME
-
-XML::Rabbit::Role::Document - Moose-based XML loader - document base class
-
 
 =head1 SYNOPSIS
 
@@ -85,59 +103,3 @@ XML::Rabbit::Role::Document - Moose-based XML loader - document base class
 This module provides the base document attribute used to hold the parsed XML content.
 
 See L<XML::Rabbit> for a more complete example.
-
-
-=head1 ATTRIBUTES
-
-
-=over 12
-
-
-=item C<file>
-
-A string representing the path to the file that contains the XML document data. Required.
-
-
-=item C<_document>
-
-An instance of a L<XML::LibXML::Document> class. Read Only.
-
-
-=item C<dump_document_xml>
-
-Dumps the XML of the entire document as a native perl string.
-
-
-=item C<meta>
-
-Moose meta object.
-
-
-=back
-
-
-=head1 BUGS
-
-See L<XML::Rabbit/BUGS>.
-
-
-=head1 SUPPORT
-
-See L<XML::Rabbit/SUPPORT>.
-
-
-=head1 AUTHOR
-
-See L<XML::Rabbit/AUTHOR>.
-
-
-=head1 COPYRIGHT
-
-See L<XML::Rabbit/COPYRIGHT>.
-
-=head1 LICENSE
-
-See L<XML::Rabbit/LICENSE>.
-
-
-=cut

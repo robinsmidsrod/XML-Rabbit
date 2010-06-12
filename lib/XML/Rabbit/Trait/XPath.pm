@@ -1,8 +1,13 @@
+use strict;
+use warnings;
+
 package XML::Rabbit::Trait::XPath;
-use Moose::Role;
+use Moose::Role 1.05;
 use Moose::Util::TypeConstraints;
-use Perl6::Junction ();
+use Perl6::Junction 1.40000 ();
 use Data::Visitor::Callback ();
+
+# ABSTRACT: Base role for other xpath traits
 
 around '_process_options' => sub {
     my ($orig, $self, $name, $options, @rest) = @_;
@@ -31,11 +36,11 @@ around '_process_options' => sub {
             # Build union isa
             my $isa = join('|',@classes);
             # If traits indicate XPathObjectList, assume an ArrayRef
-            if ( Perl6::Junction::any( @{ $options->{'traits'} } ) == qr/^XML::Rabbit::Trait::XPathObjectList$/ ) {
+            if ( Perl6::Junction::any( @{ $options->{'traits'} } ) == qr/^XML::Rabbit::Trait::XPathObjectList$/x ) {
                 $isa = "ArrayRef[$isa]";
             }
             # If traits indicate XPathObjectMap, assume a HashRef
-            if ( Perl6::Junction::any( @{ $options->{'traits'} } ) == qr/^XML::Rabbit::Trait::XPathObjectMap$/ ) {
+            if ( Perl6::Junction::any( @{ $options->{'traits'} } ) == qr/^XML::Rabbit::Trait::XPathObjectMap$/x ) {
                 $isa = "HashRef[$isa]";
             }
             $options->{'isa'} = $isa;
@@ -44,6 +49,30 @@ around '_process_options' => sub {
 
     $self->$orig($name, $options, @rest);
 };
+
+=method default
+
+Each trait that composes this trait will need to define a method name
+C<_build_default>. The _build_default method is called as a method on the
+generated attribute class. It should return a code reference that will be
+run in the content of the parent class (i.e. the class that defined the
+attribute).
+
+Below you can see an example from the XPathValue trait:
+
+    sub _build_default {
+        my ($self) = @_;
+        return sub {
+            my ($parent) = @_;
+            my $node = $self->_find_node(
+                $parent,
+                $self->_resolve_xpath_query( $parent ),
+            );
+            return blessed($node) ? $node->to_literal . "" : "";
+        };
+    }
+
+=cut
 
 # Will call _build_default which should be composited in
 # from another role. _build_default should return a coderef that is
@@ -54,6 +83,13 @@ sub default {
     return $actual_builder unless ref($actual_builder) eq 'CODE';
     return &$actual_builder( $parent );
 }
+
+=attr xpath_query
+
+A string or a coderef that generates a string that is the XPath query used
+to find the wanted value. Read Only.
+
+=cut
 
 has 'xpath_query' => (
     is       => 'ro',
@@ -134,10 +170,10 @@ sub _convert_isa_map {
 
     foreach my $key ( keys %{ $self->isa_map } ) {
         # Skip nodes that have no prefix specified
-        next unless $key =~ /:/;
+        next unless $key =~ /:/x;
 
         # Find namespace URI in main mapping
-        my ($prefix, $node_name) = split(/:/, $key);
+        my ($prefix, $node_name) = split(/:/x, $key);
         my $ns_uri = $parent->namespace_map->{ $prefix };
 
         # Stop if namespaceURI was not found, to continue would create unstable behaviour
@@ -151,6 +187,7 @@ sub _convert_isa_map {
 
     $self->_isa_map_converted(1);
 
+    return 1;
 }
 
 sub _create_instance {
@@ -198,11 +235,6 @@ no Moose::Util::TypeConstraints;
 
 1;
 
-=head1 NAME
-
-XML::Rabbit::Trait::XPath - Moose-based XML loader - base role for other xpath traits
-
-
 =head1 SYNOPSIS
 
     package XML::Rabbit::Trait::XPathSomething;
@@ -232,82 +264,3 @@ XML::Rabbit::Trait::XPath - Moose-based XML loader - base role for other xpath t
 This module provides base methods for other xpath traits.
 
 See L<XML::Rabbit> for a more complete example.
-
-
-=head1 ATTRIBUTES
-
-
-=over 12
-
-
-=item C<xpath_query>
-
-A string or a coderef that generates a string that is the XPath query to use
-to find the wanted value. Read Only.
-
-
-=item C<meta>
-
-Moose meta object.
-
-
-=back
-
-
-=head1 METHODS
-
-
-=over 12
-
-
-=item C<default>
-
-Each trait that composes this trait will need to define a method name
-C<_build_default>. The _build_default method is called as a method on the
-generated attribute class. It should return a code reference that will be
-run in the content of the parent class (i.e. the class that defined the
-attribute).
-
-Below you can see an example from the XPathValue trait:
-
-    sub _build_default {
-        my ($self) = @_;
-        return sub {
-            my ($parent) = @_;
-            my $node = $self->_find_node(
-                $parent,
-                $self->_resolve_xpath_query( $parent ),
-            );
-            return blessed($node) ? $node->to_literal . "" : "";
-        };
-    }
-
-
-=back
-
-
-=head1 BUGS
-
-See L<XML::Rabbit/BUGS>.
-
-
-=head1 SUPPORT
-
-See L<XML::Rabbit/SUPPORT>.
-
-
-=head1 AUTHOR
-
-See L<XML::Rabbit/AUTHOR>.
-
-
-=head1 COPYRIGHT
-
-See L<XML::Rabbit/COPYRIGHT>.
-
-=head1 LICENSE
-
-See L<XML::Rabbit/LICENSE>.
-
-
-=cut

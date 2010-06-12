@@ -1,10 +1,43 @@
-package XML::Rabbit::Role::Node;
-use MooseX::Role::Parameterized;
+use strict;
+use warnings;
 
-use Encode ();
+package XML::Rabbit::Role::Node;
+use MooseX::Role::Parameterized 0.12;
+
+use Encode 2.26 ();
+
+# ABSTRACT: Base role for all nodes
+
+=attr node
+
+An instance of a L<XML::LibXML::Node> class representing the a node in an XML document. Read Only.
+
+=cut
+
+parameter 'node'          => ( isa => 'HashRef', default => sub { +{} } );
+
+=attr xpc
+
+An instance of a L<XML::LibXML::XPathContext> class initialized with the C<node> attribute. Read Only.
+
+=cut
 
 parameter 'xpc'           => ( isa => 'HashRef', default => sub { +{} } );
-parameter 'node'          => ( isa => 'HashRef', default => sub { +{} } );
+
+=attr namespace_map
+
+A HashRef of strings that defines the prefix/namespace XML mappings for the
+XPath parser. Usually overriden in a subclass like this:
+
+    has '+namespace_map' => (
+        default => sub { {
+            myprefix      => "http://my.example.com",
+            myotherprefix => "http://other.example2.org",
+        } },
+    );
+
+=cut
+
 parameter 'namespace_map' => ( isa => 'HashRef', default => sub { +{} } );
 
 role {
@@ -36,6 +69,12 @@ role {
 
 };
 
+=method dump_xml
+
+Dumps the XML of the current node as a native perl string.
+
+=cut
+
 sub dump_xml {
     my ($self) = @_;
     return Encode::decode(
@@ -48,74 +87,12 @@ no MooseX::Role::Parameterized;
 
 1;
 
-=head1 NAME
-
-XML::Rabbit::Role::Node - Moose-based XML loader - base role for all nodes
-
-
 =head1 SYNOPSIS
 
 See L<XML::Rabbit::RootNode> or L<XML::Rabbit::Node> for examples.
-
 
 =head1 DESCRIPTION
 
 This module provides attributes and methods common to all nodes.
 
 See L<XML::Rabbit> for a more complete example.
-
-
-=head1 ATTRIBUTES
-
-
-=over 12
-
-
-=item C<node>
-
-An instance of a L<XML::LibXML::Node> class representing the a node in an XML document. Read Only.
-
-
-=item C<xpc>
-
-An instance of a L<XML::LibXML::XPathContext> class initialized with the C<node> attribute. Read Only.
-
-
-=item C<dump_xml>
-
-Dumps the XML of the current node as a native perl string.
-
-
-=item C<meta>
-
-Moose meta object.
-
-
-=back
-
-
-=head1 BUGS
-
-See L<XML::Rabbit/BUGS>.
-
-
-=head1 SUPPORT
-
-See L<XML::Rabbit/SUPPORT>.
-
-
-=head1 AUTHOR
-
-See L<XML::Rabbit/AUTHOR>.
-
-
-=head1 COPYRIGHT
-
-See L<XML::Rabbit/COPYRIGHT>.
-
-=head1 LICENSE
-
-See L<XML::Rabbit/LICENSE>.
-
-
-=cut

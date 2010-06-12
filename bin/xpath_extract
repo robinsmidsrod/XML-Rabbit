@@ -9,7 +9,7 @@ my $xpath = shift;
 die("No XPath query specified!\n") unless $xpath;
 {
     my $old_sep = $/;
-    local $/; # Enable slurp mode
+    local $/ = undef; # Enable slurp mode
     while( <> ) {
         local $/ = $old_sep; # Restore normal mode
         print_matches($_,$xpath);

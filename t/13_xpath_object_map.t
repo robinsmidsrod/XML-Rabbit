@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 
-use Test::More tests => 8;
+use Test::More 0.88 tests => 8;
 
 my $qti = MyXSD->new( file => 't/data/imsqti_v2p1.xsd' );
 

@@ -1,23 +1,13 @@
-package XML::Rabbit;
-
-use 5.008;
-
-use warnings;
 use strict;
+use warnings;
+
+package XML::Rabbit;
+use 5.008;
 use utf8;
 
-our $VERSION = '0.0.1';
+# ABSTRACT: Consume XML with Moose and xpath queries
 
-=encoding utf8
-
-=head1 NAME
-
-XML::Rabbit - Moose-based XML loader
-
-=head1 VERSION
-
-Version 0.01
-
+1;
 
 =head1 SYNOPSIS
 
@@ -150,49 +140,9 @@ specified in the XML (except if you use C<isa_map>). See
 L<XML::LibXML::Node/findnodes> for more information.
 
 
-=head1 BUGS
+=head1 SEMANTIC VERSIONING
 
-Please report any bugs or feature requests to C<bug-xml-rabbit at rt.cpan.org>,
-or through the web interface at
-L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=XML-Rabbit>.  I will be
-notified, and then you'll automatically be notified of progress on your bug
-as I make changes.
-
-
-=head1 AVAILABILITY
-
-The latest version of this module can be downloaded from
-http://github.com/robinsmidsrod/XML-Rabbit/
-
-
-=head1 SUPPORT
-
-You can find documentation for this module with the perldoc command.
-
-    perldoc XML::Rabbit
-
-
-You can also look for information at:
-
-=over 4
-
-=item * RT: CPAN's request tracker
-
-L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=XML-Rabbit>
-
-=item * AnnoCPAN: Annotated CPAN documentation
-
-L<http://annocpan.org/dist/XML-Rabbit>
-
-=item * CPAN Ratings
-
-L<http://cpanratings.perl.org/d/XML-Rabbit>
-
-=item * Search CPAN
-
-L<http://search.cpan.org/dist/XML-Rabbit/>
-
-=back
+This module uses semantic versioning concepts from L<http://semver.org/>.
 
 
 =head1 ACKNOWLEDGEMENTS
@@ -207,29 +157,9 @@ Matt S. Trout (mst)
 Stevan Little (stevan)
 
 
-=head1 AUTHOR
-
-Robin Smidsrød, C<< <robin at smidsrod.no> >>
-
-
-=head1 COPYRIGHT
-
-Copyright 2009 Robin Smidsrød.
-
-
-=head1 LICENSE
-
-This program is free software; you can redistribute it and/or modify it
-under the same terms as Perl itself.
-
-See http://dev.perl.org/licenses/ for more information.
-
-
 =head1 SEE ALSO
 
-L<XML::Toolkit>, L<Moose>, L<XML::LibXML>
-
-
-=cut
-
-1; # End of XML::Rabbit
+=for :list
+* L<XML::Toolkit>
+* L<Moose>
+* L<XML::LibXML>

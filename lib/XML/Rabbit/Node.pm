@@ -1,5 +1,20 @@
+use strict;
+use warnings;
+
 package XML::Rabbit::Node;
-use Moose::Role;
+use Moose::Role 1.05;
+
+# ABSTRACT: Node base class
+
+=attr node
+
+An instance of a L<XML::LibXML::Node> class representing a node in an XML document tree. Read Only.
+
+=attr xpc
+
+An instance of a L<XML::LibXML::XPathContext> class initialized with the C<node> attribute. Read Only.
+
+=cut
 
 with 'XML::Rabbit::Role::Node' => {
     'node'          => { required => 1 },
@@ -10,11 +25,6 @@ with 'XML::Rabbit::Role::Node' => {
 no Moose::Role;
 
 1;
-
-=head1 NAME
-
-XML::Rabbit::Node - Moose-based XML loader - node base class
-
 
 =head1 SYNOPSIS
 
@@ -38,64 +48,3 @@ XML::Rabbit::Node - Moose-based XML loader - node base class
 This module provides the base node attribute used to hold a specific node in the XML docuent tree.
 
 See L<XML::Rabbit> for a more complete example.
-
-
-=head1 ATTRIBUTES
-
-
-=over 12
-
-
-=item C<node>
-
-An instance of a L<XML::LibXML::Node> class representing a node in an XML document tree. Read Only.
-
-
-=item C<xpc>
-
-An instance of a L<XML::LibXML::XPathContext> class initialized with the C<node> attribute. Read Only.
-
-
-=item C<dump_xml>
-
-Inherited from L<XML::Rabbit::Role::Node>.
-
-
-=item C<meta>
-
-Moose meta object.
-
-
-=item C<dump_xml>
-
-Inherited from L<XML::Rabbit::Role::Node>.
-
-
-=back
-
-
-=head1 BUGS
-
-See L<XML::Rabbit/BUGS>.
-
-
-=head1 SUPPORT
-
-See L<XML::Rabbit/SUPPORT>.
-
-
-=head1 AUTHOR
-
-See L<XML::Rabbit/AUTHOR>.
-
-
-=head1 COPYRIGHT
-
-See L<XML::Rabbit/COPYRIGHT>.
-
-=head1 LICENSE
-
-See L<XML::Rabbit/LICENSE>.
-
-
-=cut
