@@ -19,7 +19,7 @@ die("No XPath query specified!\n") unless $xpath;
 
 sub print_matches {
     my ($xml, $query) = @_;
-    my $doc = Rabbit::XPathExtract->new( xml => $xml, xpath => $query );
+    my $doc = XML::Rabbit::XPathExtract->new( xml => $xml, xpath => $query );
     foreach my $value ( @{ $doc->values } ) {
         print $value, "\n" if defined($value) and length($value) > 0;
     }
@@ -28,7 +28,7 @@ sub print_matches {
 
 sub print_xml {
     my ($xml, $query) = @_;
-    my $doc = Rabbit::XPathExtract->new( xml => $xml, xpath => $query );
+    my $doc = XML::Rabbit::XPathExtract->new( xml => $xml, xpath => $query );
     foreach my $object ( @{ $doc->objects } ) {
         print STDOUT $object->dump_xml, "\n";
     }
@@ -36,9 +36,9 @@ sub print_xml {
 }
 
 BEGIN {
-    package Rabbit::XPathExtract;
+    package XML::Rabbit::XPathExtract;
     use Moose;
-    with 'Rabbit::RootNode';
+    with 'XML::Rabbit::RootNode';
 
     has 'xpath' => (
         is       => 'ro',
@@ -63,7 +63,7 @@ BEGIN {
 
     package XPathObject;
     use Moose;
-    with 'Rabbit::Node';
+    with 'XML::Rabbit::Node';
 
     no Moose;
     __PACKAGE__->meta->make_immutable();

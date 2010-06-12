@@ -1,7 +1,7 @@
-package Rabbit::Trait::XPathValue;
+package XML::Rabbit::Trait::XPathValue;
 use Moose::Role;
 
-with 'Rabbit::Trait::XPath';
+with 'XML::Rabbit::Trait::XPath';
 
 sub _build_default {
     my ($self) = @_;
@@ -18,20 +18,20 @@ sub _build_default {
 no Moose::Role;
 
 package Moose::Meta::Attribute::Custom::Trait::XPathValue;
-sub register_implementation { 'Rabbit::Trait::XPathValue' }
+sub register_implementation { 'XML::Rabbit::Trait::XPathValue' }
 
 1;
 
 =head1 NAME
 
-Rabbit::Trait::XPathValue - Moose-based XML loader - single value xpath extractor trait
+XML::Rabbit::Trait::XPathValue - Moose-based XML loader - single value xpath extractor trait
 
 
 =head1 SYNOPSIS
 
     package MyXMLSyntaxNode;
     use Moose;
-    with 'Rabbit::Node';
+    with 'XML::Rabbit::Node';
 
     has title => (
         isa         => 'Str',
@@ -48,7 +48,7 @@ Rabbit::Trait::XPathValue - Moose-based XML loader - single value xpath extracto
 
 This module provides the extraction of primitive values from an XML node based on an XPath query.
 
-See L<Rabbit> for a more complete example.
+See L<XML::Rabbit> for a more complete example.
 
 
 =head1 ATTRIBUTES
@@ -59,12 +59,12 @@ See L<Rabbit> for a more complete example.
 
 =item C<xpath_query>
 
-Inherited from L<Rabbit::Trait::XPath>.
+Inherited from L<XML::Rabbit::Trait::XPath>.
 
 
 =item C<lazy>
 
-Inherited from L<Rabbit::Trait::XPath>.
+Inherited from L<XML::Rabbit::Trait::XPath>.
 
 
 =item C<default>
@@ -82,26 +82,26 @@ Moose meta object.
 
 =head1 BUGS
 
-See L<Rabbit/BUGS>.
+See L<XML::Rabbit/BUGS>.
 
 
 =head1 SUPPORT
 
-See L<Rabbit/SUPPORT>.
+See L<XML::Rabbit/SUPPORT>.
 
 
 =head1 AUTHOR
 
-See L<Rabbit/AUTHOR>.
+See L<XML::Rabbit/AUTHOR>.
 
 
 =head1 COPYRIGHT
 
-See L<Rabbit/COPYRIGHT>.
+See L<XML::Rabbit/COPYRIGHT>.
 
 =head1 LICENSE
 
-See L<Rabbit/LICENSE>.
+See L<XML::Rabbit/LICENSE>.
 
 
 =cut

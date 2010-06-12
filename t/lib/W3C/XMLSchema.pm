@@ -1,6 +1,6 @@
 package W3C::XMLSchema;
 use Moose;
-with 'Rabbit::RootNode';
+with 'XML::Rabbit::RootNode';
 
 has '+namespace_map' => (
     default => sub { {

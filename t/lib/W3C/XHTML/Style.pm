@@ -1,6 +1,6 @@
 package W3C::XHTML::Style;
 use Moose;
-with 'Rabbit::Node';
+with 'XML::Rabbit::Node';
 
 has 'type' => (
     isa         => 'Str',

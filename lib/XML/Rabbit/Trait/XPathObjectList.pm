@@ -1,7 +1,7 @@
-package Rabbit::Trait::XPathObjectList;
+package XML::Rabbit::Trait::XPathObjectList;
 use Moose::Role;
 
-with 'Rabbit::Trait::XPath';
+with 'XML::Rabbit::Trait::XPath';
 
 around '_process_options' => sub {
     my ($orig, $self, $name, $options, @rest) = @_;
@@ -39,20 +39,20 @@ sub _build_default {
 no Moose::Role;
 
 package Moose::Meta::Attribute::Custom::Trait::XPathObjectList;
-sub register_implementation { 'Rabbit::Trait::XPathObjectList' }
+sub register_implementation { 'XML::Rabbit::Trait::XPathObjectList' }
 
 1;
 
 =head1 NAME
 
-Rabbit::Trait::XPathObjectList - Moose-based XML loader - multiple XML DOM object xpath extractor trait
+XML::Rabbit::Trait::XPathObjectList - Moose-based XML loader - multiple XML DOM object xpath extractor trait
 
 
 =head1 SYNOPSIS
 
     package MyXMLSyntaxNode;
     use Moose;
-    with 'Rabbit::Node';
+    with 'XML::Rabbit::Node';
 
     has 'persons' => (
         isa         => 'ArrayRef[MyXMLSyntax::Person]',
@@ -73,7 +73,7 @@ the constructor of the class specified in the isa attribute. All of the
 extracted objects are then put into an arrayref which is accessible via the
 parent attribute.
 
-See L<Rabbit> for a more complete example.
+See L<XML::Rabbit> for a more complete example.
 
 
 =head1 ATTRIBUTES
@@ -84,17 +84,17 @@ See L<Rabbit> for a more complete example.
 
 =item C<xpath_query>
 
-Inherited from L<Rabbit::Trait::XPath>.
+Inherited from L<XML::Rabbit::Trait::XPath>.
 
 
 =item C<lazy>
 
-Inherited from L<Rabbit::Trait::XPath>.
+Inherited from L<XML::Rabbit::Trait::XPath>.
 
 
 =item C<isa>
 
-Inherited from L<Rabbit::Trait::XPathObject>.
+Inherited from L<XML::Rabbit::Trait::XPathObject>.
 
 
 =item C<default>
@@ -112,26 +112,26 @@ Moose meta object.
 
 =head1 BUGS
 
-See L<Rabbit/BUGS>.
+See L<XML::Rabbit/BUGS>.
 
 
 =head1 SUPPORT
 
-See L<Rabbit/SUPPORT>.
+See L<XML::Rabbit/SUPPORT>.
 
 
 =head1 AUTHOR
 
-See L<Rabbit/AUTHOR>.
+See L<XML::Rabbit/AUTHOR>.
 
 
 =head1 COPYRIGHT
 
-See L<Rabbit/COPYRIGHT>.
+See L<XML::Rabbit/COPYRIGHT>.
 
 =head1 LICENSE
 
-See L<Rabbit/LICENSE>.
+See L<XML::Rabbit/LICENSE>.
 
 
 =cut

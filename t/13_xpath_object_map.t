@@ -22,7 +22,7 @@ isa_ok( $element_and_group_map->{'a.ContentGroup'}, 'MyXSD::Group');
 BEGIN {
     package MyXSD;
     use Moose;
-    with 'Rabbit::RootNode';
+    with 'XML::Rabbit::RootNode';
 
     has '+namespace_map' => (
         default => sub { {
@@ -52,7 +52,7 @@ BEGIN {
 
     package MyXSD::Element;
     use Moose;
-    with 'Rabbit::Node';
+    with 'XML::Rabbit::Node';
 
     has 'type' => (
         traits      => ['XPathValue'],
@@ -64,7 +64,7 @@ BEGIN {
 
     package MyXSD::Group;
     use Moose;
-    with 'Rabbit::Node';
+    with 'XML::Rabbit::Node';
 
     has 'type' => (
         traits      => ['XPathValue'],

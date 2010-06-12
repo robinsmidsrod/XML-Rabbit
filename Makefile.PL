@@ -1,9 +1,9 @@
 use inc::Module::Install 0.99;
 
-name     'Rabbit';
+name     'XML-Rabbit';
 author   'Robin Smidsrød <robin@smidsrod.no>';
 license  'perl';
-all_from 'lib/Rabbit.pm';
+all_from 'lib/XML/Rabbit.pm';
 
 requires 'Moose'                       => '0.88';
 requires 'XML::LibXML'                 => '1.70';
@@ -18,6 +18,6 @@ test_requires   'Test::More'    => '0.88';
 install_script 'xpath_extract';
 install_script 'dump_xml_structure';
 
-repository 'git://github.com/robinsmidsrod/Rabbit.git';
+repository 'git://github.com/robinsmidsrod/XML-Rabbit.git';
 
 WriteAll;

@@ -1,6 +1,6 @@
 package W3C::XMLSchema::Group;
 use Moose;
-with 'Rabbit::Node';
+with 'XML::Rabbit::Node';
 
 has 'ref' => (
     traits      => ['XPathValue'],

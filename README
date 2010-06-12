@@ -1,6 +1,6 @@
-Rabbit
+XML-Rabbit
 
-Rabbit is a simple Moose-based base class you can use to make simple
+XML::Rabbit is a simple Moose-based base class you can use to make simple
 XPath-based XML extractors. Each attribute in your class is linked to an
 XPath query that is executed on your XML document when you request the
 value.
@@ -19,21 +19,21 @@ SUPPORT AND DOCUMENTATION
 After installing, you can find documentation for this module with the
 perldoc command.
 
-    perldoc Rabbit
+    perldoc XML::Rabbit
 
 You can also look for information at:
 
     RT, CPAN's request tracker
-        http://rt.cpan.org/NoAuth/Bugs.html?Dist=Rabbit
+        http://rt.cpan.org/NoAuth/Bugs.html?Dist=XML-Rabbit
 
     AnnoCPAN, Annotated CPAN documentation
-        http://annocpan.org/dist/Rabbit
+        http://annocpan.org/dist/XML-Rabbit
 
     CPAN Ratings
-        http://cpanratings.perl.org/d/Rabbit
+        http://cpanratings.perl.org/d/XML-Rabbit
 
     Search CPAN
-        http://search.cpan.org/dist/Rabbit/
+        http://search.cpan.org/dist/XML-Rabbit/
 
 
 COPYRIGHT AND LICENCE

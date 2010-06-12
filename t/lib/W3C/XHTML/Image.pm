@@ -1,6 +1,6 @@
 package W3C::XHTML::Image;
 use Moose;
-with 'Rabbit::Node';
+with 'XML::Rabbit::Node';
 
 has 'src' => (
     isa         => 'Str',

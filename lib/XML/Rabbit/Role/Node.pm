@@ -1,4 +1,4 @@
-package Rabbit::Role::Node;
+package XML::Rabbit::Role::Node;
 use MooseX::Role::Parameterized;
 
 use Encode ();
@@ -50,19 +50,19 @@ no MooseX::Role::Parameterized;
 
 =head1 NAME
 
-Rabbit::Role::Node - Moose-based XML loader - base role for all nodes
+XML::Rabbit::Role::Node - Moose-based XML loader - base role for all nodes
 
 
 =head1 SYNOPSIS
 
-See L<Rabbit::RootNode> or L<Rabbit::Node> for examples.
+See L<XML::Rabbit::RootNode> or L<XML::Rabbit::Node> for examples.
 
 
 =head1 DESCRIPTION
 
 This module provides attributes and methods common to all nodes.
 
-See L<Rabbit> for a more complete example.
+See L<XML::Rabbit> for a more complete example.
 
 
 =head1 ATTRIBUTES
@@ -96,26 +96,26 @@ Moose meta object.
 
 =head1 BUGS
 
-See L<Rabbit/BUGS>.
+See L<XML::Rabbit/BUGS>.
 
 
 =head1 SUPPORT
 
-See L<Rabbit/SUPPORT>.
+See L<XML::Rabbit/SUPPORT>.
 
 
 =head1 AUTHOR
 
-See L<Rabbit/AUTHOR>.
+See L<XML::Rabbit/AUTHOR>.
 
 
 =head1 COPYRIGHT
 
-See L<Rabbit/COPYRIGHT>.
+See L<XML::Rabbit/COPYRIGHT>.
 
 =head1 LICENSE
 
-See L<Rabbit/LICENSE>.
+See L<XML::Rabbit/LICENSE>.
 
 
 =cut

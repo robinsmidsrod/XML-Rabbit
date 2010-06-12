@@ -1,4 +1,4 @@
-package Rabbit;
+package XML::Rabbit;
 
 use 5.008;
 
@@ -12,7 +12,7 @@ our $VERSION = '0.01';
 
 =head1 NAME
 
-Rabbit - Moose-based XML loader
+XML::Rabbit - Moose-based XML loader
 
 =head1 VERSION
 
@@ -29,7 +29,7 @@ Version 0.01
 
     package W3C::XHTML;
     use Moose;
-    with 'Rabbit::RootNode';
+    with 'XML::Rabbit::RootNode';
 
     has '+namespace_map' => (
         default => sub { {
@@ -63,7 +63,7 @@ Version 0.01
 
     package W3C::XHTML::Body;
     use Moose;
-    with 'Rabbit::Node';
+    with 'XML::Rabbit::Node';
 
     has 'images' => (
         isa         => 'ArrayRef[W3C::XHTML::Image]',
@@ -76,7 +76,7 @@ Version 0.01
 
     package W3C::XHTML::Image;
     use Moose;
-    with 'Rabbit::Node';
+    with 'XML::Rabbit::Node';
 
     has 'src' => (
         isa         => 'Str',
@@ -101,7 +101,7 @@ Version 0.01
 
     package W3C::XHTML::Anchor;
     use Moose;
-    with 'Rabbit::Node';
+    with 'XML::Rabbit::Node';
 
     has 'href' => (
         isa         => 'Str',
@@ -123,7 +123,7 @@ Version 0.01
 
 =head1 DESCRIPTION
 
-Rabbit is a simple Moose-based base class you can use to make simple
+XML::Rabbit is a simple Moose-based base class you can use to make simple
 XPath-based XML extractors. Each attribute in your class is linked to an
 XPath query that is executed on your XML document when you request the
 value.
@@ -152,9 +152,9 @@ L<XML::LibXML::Node/findnodes> for more information.
 
 =head1 BUGS
 
-Please report any bugs or feature requests to C<bug-rabbit at rt.cpan.org>,
+Please report any bugs or feature requests to C<bug-xml-rabbit at rt.cpan.org>,
 or through the web interface at
-L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Rabbit>.  I will be
+L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=XML-Rabbit>.  I will be
 notified, and then you'll automatically be notified of progress on your bug
 as I make changes.
 
@@ -162,14 +162,14 @@ as I make changes.
 =head1 AVAILABILITY
 
 The latest version of this module can be downloaded from
-http://github.com/robinsmidsrod/Rabbit/
+http://github.com/robinsmidsrod/XML-Rabbit/
 
 
 =head1 SUPPORT
 
 You can find documentation for this module with the perldoc command.
 
-    perldoc Rabbit
+    perldoc XML::Rabbit
 
 
 You can also look for information at:
@@ -178,19 +178,19 @@ You can also look for information at:
 
 =item * RT: CPAN's request tracker
 
-L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=Rabbit>
+L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=XML-Rabbit>
 
 =item * AnnoCPAN: Annotated CPAN documentation
 
-L<http://annocpan.org/dist/Rabbit>
+L<http://annocpan.org/dist/XML-Rabbit>
 
 =item * CPAN Ratings
 
-L<http://cpanratings.perl.org/d/Rabbit>
+L<http://cpanratings.perl.org/d/XML-Rabbit>
 
 =item * Search CPAN
 
-L<http://search.cpan.org/dist/Rabbit/>
+L<http://search.cpan.org/dist/XML-Rabbit/>
 
 =back
 
@@ -232,4 +232,4 @@ L<XML::Toolkit>, L<Moose>, L<XML::LibXML>
 
 =cut
 
-1; # End of Rabbit
+1; # End of XML::Rabbit

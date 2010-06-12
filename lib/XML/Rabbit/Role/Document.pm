@@ -1,4 +1,4 @@
-package Rabbit::Role::Document;
+package XML::Rabbit::Role::Document;
 use Moose::Role;
 
 use XML::LibXML 1.69 ();
@@ -66,14 +66,14 @@ no Moose::Role;
 
 =head1 NAME
 
-Rabbit::Role::Document - Moose-based XML loader - document base class
+XML::Rabbit::Role::Document - Moose-based XML loader - document base class
 
 
 =head1 SYNOPSIS
 
     package MyXMLSyntax;
     use Moose;
-    with 'Rabbit::Role::Document';
+    with 'XML::Rabbit::Role::Document';
 
     sub root_node {
         return shift->_document->documentElement();
@@ -84,7 +84,7 @@ Rabbit::Role::Document - Moose-based XML loader - document base class
 
 This module provides the base document attribute used to hold the parsed XML content.
 
-See L<Rabbit> for a more complete example.
+See L<XML::Rabbit> for a more complete example.
 
 
 =head1 ATTRIBUTES
@@ -118,26 +118,26 @@ Moose meta object.
 
 =head1 BUGS
 
-See L<Rabbit/BUGS>.
+See L<XML::Rabbit/BUGS>.
 
 
 =head1 SUPPORT
 
-See L<Rabbit/SUPPORT>.
+See L<XML::Rabbit/SUPPORT>.
 
 
 =head1 AUTHOR
 
-See L<Rabbit/AUTHOR>.
+See L<XML::Rabbit/AUTHOR>.
 
 
 =head1 COPYRIGHT
 
-See L<Rabbit/COPYRIGHT>.
+See L<XML::Rabbit/COPYRIGHT>.
 
 =head1 LICENSE
 
-See L<Rabbit/LICENSE>.
+See L<XML::Rabbit/LICENSE>.
 
 
 =cut

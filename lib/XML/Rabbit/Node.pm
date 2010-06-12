@@ -1,7 +1,7 @@
-package Rabbit::Node;
+package XML::Rabbit::Node;
 use Moose::Role;
 
-with 'Rabbit::Role::Node' => {
+with 'XML::Rabbit::Role::Node' => {
     'node'          => { required => 1 },
     'xpc'           => { required => 1 },
     'namespace_map' => { required => 1 },
@@ -13,14 +13,14 @@ no Moose::Role;
 
 =head1 NAME
 
-Rabbit::Node - Moose-based XML loader - node base class
+XML::Rabbit::Node - Moose-based XML loader - node base class
 
 
 =head1 SYNOPSIS
 
     package MyXMLSyntaxNode;
     use Moose;
-    with 'Rabbit::Node';
+    with 'XML::Rabbit::Node';
 
     has title => (
         isa         => 'Str',
@@ -37,7 +37,7 @@ Rabbit::Node - Moose-based XML loader - node base class
 
 This module provides the base node attribute used to hold a specific node in the XML docuent tree.
 
-See L<Rabbit> for a more complete example.
+See L<XML::Rabbit> for a more complete example.
 
 
 =head1 ATTRIBUTES
@@ -58,7 +58,7 @@ An instance of a L<XML::LibXML::XPathContext> class initialized with the C<node>
 
 =item C<dump_xml>
 
-Inherited from L<Rabbit::Role::Node>.
+Inherited from L<XML::Rabbit::Role::Node>.
 
 
 =item C<meta>
@@ -68,7 +68,7 @@ Moose meta object.
 
 =item C<dump_xml>
 
-Inherited from L<Rabbit::Role::Node>.
+Inherited from L<XML::Rabbit::Role::Node>.
 
 
 =back
@@ -76,26 +76,26 @@ Inherited from L<Rabbit::Role::Node>.
 
 =head1 BUGS
 
-See L<Rabbit/BUGS>.
+See L<XML::Rabbit/BUGS>.
 
 
 =head1 SUPPORT
 
-See L<Rabbit/SUPPORT>.
+See L<XML::Rabbit/SUPPORT>.
 
 
 =head1 AUTHOR
 
-See L<Rabbit/AUTHOR>.
+See L<XML::Rabbit/AUTHOR>.
 
 
 =head1 COPYRIGHT
 
-See L<Rabbit/COPYRIGHT>.
+See L<XML::Rabbit/COPYRIGHT>.
 
 =head1 LICENSE
 
-See L<Rabbit/LICENSE>.
+See L<XML::Rabbit/LICENSE>.
 
 
 =cut

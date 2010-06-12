@@ -1,6 +1,6 @@
 package W3C::XMLSchema::Sequence;
 use Moose;
-with 'Rabbit::Node';
+with 'XML::Rabbit::Node';
 
 has 'items' => (
     traits      => ['XPathObjectList'],

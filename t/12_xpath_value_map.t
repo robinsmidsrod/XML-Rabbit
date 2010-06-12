@@ -14,7 +14,7 @@ is( $element_map->{'a'}, 'a.Type', 'element_map{a} type mismatch');
 BEGIN {
     package MyXSD;
     use Moose;
-    with 'Rabbit::RootNode';
+    with 'XML::Rabbit::RootNode';
 
     has '+namespace_map' => (
         default => sub { {

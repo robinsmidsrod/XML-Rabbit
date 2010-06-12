@@ -1,16 +1,16 @@
-package Rabbit::RootNode;
+package XML::Rabbit::RootNode;
 use Moose::Role;
-with 'Rabbit::Role::Document';
+with 'XML::Rabbit::Role::Document';
 
 # Preload XPath attribute traits
-use Rabbit::Trait::XPathValue;
-use Rabbit::Trait::XPathValueList;
-use Rabbit::Trait::XPathValueMap;
-use Rabbit::Trait::XPathObject;
-use Rabbit::Trait::XPathObjectList;
-use Rabbit::Trait::XPathObjectMap;
+use XML::Rabbit::Trait::XPathValue;
+use XML::Rabbit::Trait::XPathValueList;
+use XML::Rabbit::Trait::XPathValueMap;
+use XML::Rabbit::Trait::XPathObject;
+use XML::Rabbit::Trait::XPathObjectList;
+use XML::Rabbit::Trait::XPathObjectMap;
 
-with 'Rabbit::Role::Node' => {
+with 'XML::Rabbit::Role::Node' => {
     'node' => { lazy => 1, builder => '_build__node' },
     'xpc'  => { lazy => 1, builder => '_build__xpc'  },
 };
@@ -21,11 +21,11 @@ sub _build__node {
 
 sub _build__xpc {
     my ($self) = @_;
-    # XML::LibXML loads this class, see Rabbit::Role::Document
+    # XML::LibXML loads this class, see XML::Rabbit::Role::Document
     my $xpc = XML::LibXML::XPathContext->new( $self->_document );
 
-    # Make sure namespace_map is inherited from Rabbit::Role::Node
-    confess("Required role 'Rabbit::Role::Node' not composed") unless $self->does('Rabbit::Role::Node');
+    # Make sure namespace_map is inherited from XML::Rabbit::Role::Node
+    confess("Required role 'XML::Rabbit::Role::Node' not composed") unless $self->does('XML::Rabbit::Role::Node');
 
     # Register all prefixes specified in namespace_map for use in xpath queries
     foreach my $prefix ( keys %{ $self->namespace_map } ) {
@@ -40,14 +40,14 @@ no Moose::Role;
 
 =head1 NAME
 
-Rabbit::RootNode - Moose-based XML loader - root node base class
+XML::Rabbit::RootNode - Moose-based XML loader - root node base class
 
 
 =head1 SYNOPSIS
 
     package MyXMLSyntax;
     use Moose;
-    with 'Rabbit::RootNode';
+    with 'XML::Rabbit::RootNode';
 
     has title => (
         isa         => 'Str',
@@ -64,7 +64,7 @@ Rabbit::RootNode - Moose-based XML loader - root node base class
 
 This module provides the base node attribute used to hold the root of the XML document.
 
-See L<Rabbit> for a more complete example.
+See L<XML::Rabbit> for a more complete example.
 
 
 =head1 ATTRIBUTES
@@ -92,7 +92,7 @@ An instance of a L<XML::LibXML::Node> class representing the root node of an
 XML document. Read Only.
 
 It is lazily loaded from the C<document> attribute, which is inherited from
-L<Rabbit::Role::Document>.
+L<XML::Rabbit::Role::Document>.
 
 =item C<xpc>
 
@@ -111,12 +111,12 @@ Moose meta object.
 
 =item C<dump_xml>
 
-Inherited from L<Rabbit::Role::Node>.
+Inherited from L<XML::Rabbit::Role::Node>.
 
 
 =item C<dump_document_xml>
 
-Inherited from L<Rabbit::Role::Document>.
+Inherited from L<XML::Rabbit::Role::Document>.
 
 
 =back
@@ -124,26 +124,26 @@ Inherited from L<Rabbit::Role::Document>.
 
 =head1 BUGS
 
-See L<Rabbit/BUGS>.
+See L<XML::Rabbit/BUGS>.
 
 
 =head1 SUPPORT
 
-See L<Rabbit/SUPPORT>.
+See L<XML::Rabbit/SUPPORT>.
 
 
 =head1 AUTHOR
 
-See L<Rabbit/AUTHOR>.
+See L<XML::Rabbit/AUTHOR>.
 
 
 =head1 COPYRIGHT
 
-See L<Rabbit/COPYRIGHT>.
+See L<XML::Rabbit/COPYRIGHT>.
 
 =head1 LICENSE
 
-See L<Rabbit/LICENSE>.
+See L<XML::Rabbit/LICENSE>.
 
 
 =cut

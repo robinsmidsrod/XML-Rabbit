@@ -3,13 +3,13 @@
 use Test::More tests => 7;
 
 BEGIN {
-	use_ok( 'Rabbit' );
-    use_ok( 'Rabbit::RootNode' );
-    use_ok( 'Rabbit::Node' );
-    use_ok( 'Rabbit::Trait::XPathValue' );
-    use_ok( 'Rabbit::Trait::XPathValueList' );
-    use_ok( 'Rabbit::Trait::XPathObject' );
-    use_ok( 'Rabbit::Trait::XPathObjectList' );
+	use_ok( 'XML::Rabbit' );
+    use_ok( 'XML::Rabbit::RootNode' );
+    use_ok( 'XML::Rabbit::Node' );
+    use_ok( 'XML::Rabbit::Trait::XPathValue' );
+    use_ok( 'XML::Rabbit::Trait::XPathValueList' );
+    use_ok( 'XML::Rabbit::Trait::XPathObject' );
+    use_ok( 'XML::Rabbit::Trait::XPathObjectList' );
 }
 
-diag( "Testing Rabbit $Rabbit::VERSION, Perl $], $^X" );
+diag( "Testing XML::Rabbit $XML::Rabbit::VERSION, Perl $], $^X" );

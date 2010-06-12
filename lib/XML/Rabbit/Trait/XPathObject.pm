@@ -1,7 +1,7 @@
-package Rabbit::Trait::XPathObject;
+package XML::Rabbit::Trait::XPathObject;
 use Moose::Role;
 
-with 'Rabbit::Trait::XPath';
+with 'XML::Rabbit::Trait::XPath';
 
 around '_process_options' => sub {
     my ($orig, $self, $name, $options, @rest) = @_;
@@ -38,20 +38,20 @@ sub _build_default {
 no Moose::Role;
 
 package Moose::Meta::Attribute::Custom::Trait::XPathObject;
-sub register_implementation { 'Rabbit::Trait::XPathObject' }
+sub register_implementation { 'XML::Rabbit::Trait::XPathObject' }
 
 1;
 
 =head1 NAME
 
-Rabbit::Trait::XPathObject - Moose-based XML loader - XML DOM object xpath extractor trait
+XML::Rabbit::Trait::XPathObject - Moose-based XML loader - XML DOM object xpath extractor trait
 
 
 =head1 SYNOPSIS
 
     package MyXMLSyntaxNode;
     use Moose;
-    with 'Rabbit::Node';
+    with 'XML::Rabbit::Node';
 
     has 'first_person' => (
         isa         => 'MyXMLSyntax::Person',
@@ -70,7 +70,7 @@ This module provides the extraction of complex values (subtrees) from an XML
 node based on an XPath query. The subtree is used as input for the
 constructor of the class specified in the isa attribute.
 
-See L<Rabbit> for a more complete example.
+See L<XML::Rabbit> for a more complete example.
 
 
 =head1 ATTRIBUTES
@@ -81,12 +81,12 @@ See L<Rabbit> for a more complete example.
 
 =item C<xpath_query>
 
-Inherited from L<Rabbit::Trait::XPath>.
+Inherited from L<XML::Rabbit::Trait::XPath>.
 
 
 =item C<lazy>
 
-Inherited from L<Rabbit::Trait::XPath>.
+Inherited from L<XML::Rabbit::Trait::XPath>.
 
 
 =item C<isa>
@@ -109,26 +109,26 @@ Moose meta object.
 
 =head1 BUGS
 
-See L<Rabbit/BUGS>.
+See L<XML::Rabbit/BUGS>.
 
 
 =head1 SUPPORT
 
-See L<Rabbit/SUPPORT>.
+See L<XML::Rabbit/SUPPORT>.
 
 
 =head1 AUTHOR
 
-See L<Rabbit/AUTHOR>.
+See L<XML::Rabbit/AUTHOR>.
 
 
 =head1 COPYRIGHT
 
-See L<Rabbit/COPYRIGHT>.
+See L<XML::Rabbit/COPYRIGHT>.
 
 =head1 LICENSE
 
-See L<Rabbit/LICENSE>.
+See L<XML::Rabbit/LICENSE>.
 
 
 =cut

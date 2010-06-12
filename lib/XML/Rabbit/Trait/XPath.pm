@@ -1,4 +1,4 @@
-package Rabbit::Trait::XPath;
+package XML::Rabbit::Trait::XPath;
 use Moose::Role;
 use Moose::Util::TypeConstraints;
 use Perl6::Junction ();
@@ -31,11 +31,11 @@ around '_process_options' => sub {
             # Build union isa
             my $isa = join('|',@classes);
             # If traits indicate XPathObjectList, assume an ArrayRef
-            if ( Perl6::Junction::any( @{ $options->{'traits'} } ) == qr/^Rabbit::Trait::XPathObjectList$/ ) {
+            if ( Perl6::Junction::any( @{ $options->{'traits'} } ) == qr/^XML::Rabbit::Trait::XPathObjectList$/ ) {
                 $isa = "ArrayRef[$isa]";
             }
             # If traits indicate XPathObjectMap, assume a HashRef
-            if ( Perl6::Junction::any( @{ $options->{'traits'} } ) == qr/^Rabbit::Trait::XPathObjectMap$/ ) {
+            if ( Perl6::Junction::any( @{ $options->{'traits'} } ) == qr/^XML::Rabbit::Trait::XPathObjectMap$/ ) {
                 $isa = "HashRef[$isa]";
             }
             $options->{'isa'} = $isa;
@@ -71,8 +71,8 @@ sub _verify_parent_role {
     my ($self, $parent) = @_;
 
     # Make sure the parent class implements required role
-    unless ( $parent->does('Rabbit::Role::Node') ) {
-        confess( ref($parent) . " doesn't implement Rabbit::Role::Node");
+    unless ( $parent->does('XML::Rabbit::Role::Node') ) {
+        confess( ref($parent) . " doesn't implement XML::Rabbit::Role::Node");
     }
 
     return 1;
@@ -200,15 +200,15 @@ no Moose::Util::TypeConstraints;
 
 =head1 NAME
 
-Rabbit::Trait::XPath - Moose-based XML loader - base role for other xpath traits
+XML::Rabbit::Trait::XPath - Moose-based XML loader - base role for other xpath traits
 
 
 =head1 SYNOPSIS
 
-    package Rabbit::Trait::XPathSomething;
+    package XML::Rabbit::Trait::XPathSomething;
     use Moose::Role;
 
-    with 'Rabbit::Trait::XPath';
+    with 'XML::Rabbit::Trait::XPath';
 
     sub _build_default {
         my ($self) = @_;
@@ -223,7 +223,7 @@ Rabbit::Trait::XPath - Moose-based XML loader - base role for other xpath traits
     no Moose::Role;
 
     package Moose::Meta::Attribute::Custom::Trait::XPathSomething;
-    sub register_implementation { 'Rabbit::Trait::XPathSomething' }
+    sub register_implementation { 'XML::Rabbit::Trait::XPathSomething' }
 
     1;
 
@@ -231,7 +231,7 @@ Rabbit::Trait::XPath - Moose-based XML loader - base role for other xpath traits
 
 This module provides base methods for other xpath traits.
 
-See L<Rabbit> for a more complete example.
+See L<XML::Rabbit> for a more complete example.
 
 
 =head1 ATTRIBUTES
@@ -288,26 +288,26 @@ Below you can see an example from the XPathValue trait:
 
 =head1 BUGS
 
-See L<Rabbit/BUGS>.
+See L<XML::Rabbit/BUGS>.
 
 
 =head1 SUPPORT
 
-See L<Rabbit/SUPPORT>.
+See L<XML::Rabbit/SUPPORT>.
 
 
 =head1 AUTHOR
 
-See L<Rabbit/AUTHOR>.
+See L<XML::Rabbit/AUTHOR>.
 
 
 =head1 COPYRIGHT
 
-See L<Rabbit/COPYRIGHT>.
+See L<XML::Rabbit/COPYRIGHT>.
 
 =head1 LICENSE
 
-See L<Rabbit/LICENSE>.
+See L<XML::Rabbit/LICENSE>.
 
 
 =cut
