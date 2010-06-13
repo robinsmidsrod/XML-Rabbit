@@ -2,7 +2,7 @@ use strict;
 use warnings;
 
 package XML::Rabbit::Trait::XPathObject;
-use Moose::Role 1.05;
+use Moose::Role;
 
 with 'XML::Rabbit::Trait::XPath';
 
@@ -55,6 +55,7 @@ sub _build_default {
 
 no Moose::Role;
 
+## no critic qw(Modules::ProhibitMultiplePackages)
 package Moose::Meta::Attribute::Custom::Trait::XPathObject;
 sub register_implementation { return 'XML::Rabbit::Trait::XPathObject' }
 

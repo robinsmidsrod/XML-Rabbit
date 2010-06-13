@@ -2,9 +2,9 @@ use strict;
 use warnings;
 
 package XML::Rabbit::Trait::XPath;
-use Moose::Role 1.05;
+use Moose::Role;
 use Moose::Util::TypeConstraints;
-use Perl6::Junction 1.40000 ();
+use Perl6::Junction ();
 use Data::Visitor::Callback ();
 
 # ABSTRACT: Base role for other xpath traits
@@ -77,6 +77,8 @@ Below you can see an example from the XPathValue trait:
 # Will call _build_default which should be composited in
 # from another role. _build_default should return a coderef that is
 # executed in the context of the parent (the class with the attribute defined).
+
+## no critic qw(Subroutines::ProhibitBuiltinHomonyms)
 sub default {
     my ($self, $parent) = @_;
     my $actual_builder = $self->_build_default();

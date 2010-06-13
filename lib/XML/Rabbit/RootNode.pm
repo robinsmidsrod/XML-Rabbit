@@ -2,7 +2,7 @@ use strict;
 use warnings;
 
 package XML::Rabbit::RootNode;
-use Moose::Role 1.05;
+use Moose::Role;
 with 'XML::Rabbit::Role::Document';
 
 # ABSTRACT: Root node base class

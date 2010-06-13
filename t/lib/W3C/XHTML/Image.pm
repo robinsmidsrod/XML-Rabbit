@@ -1,3 +1,6 @@
+use strict;
+use warnings;
+
 package W3C::XHTML::Image;
 use Moose;
 with 'XML::Rabbit::Node';

@@ -2,9 +2,9 @@ use strict;
 use warnings;
 
 package XML::Rabbit::Role::Node;
-use MooseX::Role::Parameterized 0.12;
+use MooseX::Role::Parameterized;
 
-use Encode 2.26 ();
+use Encode ();
 
 # ABSTRACT: Base role for all nodes
 

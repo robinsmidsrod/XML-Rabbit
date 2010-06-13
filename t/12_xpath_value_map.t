@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 
-use Test::More 0.88 tests => 3;
+use Test::More tests => 3;
 
 my $qti = MyXSD->new( file => 't/data/imsqti_v2p1.xsd' );
 can_ok($qti, 'element_map');

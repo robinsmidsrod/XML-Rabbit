@@ -2,10 +2,10 @@ use strict;
 use warnings;
 
 package XML::Rabbit::Role::Document;
-use Moose::Role 1.05;
+use Moose::Role;
 
 use XML::LibXML 1.69 ();
-use Encode 2.26 ();
+use Encode ();
 
 # ABSTRACT: XML Document base class
 

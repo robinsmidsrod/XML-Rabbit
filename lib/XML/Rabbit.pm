@@ -3,7 +3,6 @@ use warnings;
 
 package XML::Rabbit;
 use 5.008;
-use utf8;
 
 # ABSTRACT: Consume XML with Moose and xpath queries
 

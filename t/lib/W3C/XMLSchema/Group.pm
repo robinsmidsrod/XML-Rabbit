@@ -1,3 +1,6 @@
+use strict;
+use warnings;
+
 package W3C::XMLSchema::Group;
 use Moose;
 with 'XML::Rabbit::Node';

@@ -1,3 +1,6 @@
+use strict;
+use warnings;
+
 package W3C::XHTML::Body;
 use Moose;
 with 'XML::Rabbit::Node';

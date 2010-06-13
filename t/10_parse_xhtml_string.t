@@ -2,9 +2,9 @@
 
 use strict;
 use warnings;
-use utf8 1.06;
+use utf8;
 
-use Test::More 0.88 tests => 24;
+use Test::More tests => 24;
 
 BEGIN {
     use lib 't/lib';

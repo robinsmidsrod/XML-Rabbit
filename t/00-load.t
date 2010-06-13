@@ -1,6 +1,6 @@
 #!perl -T
 
-use Test::More 0.88 tests => 7;
+use Test::More tests => 7;
 
 BEGIN {
     use_ok( 'XML::Rabbit' );

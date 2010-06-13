@@ -35,6 +35,10 @@ sub print_xml {
     return 1;
 }
 
+# Stupid Perl::Critic doesn't know how to differentiate between a BEGIN {}
+# and a normal sub. Let's just override it.
+## no critic qw(Subroutines::ProhibitNestedSubs)
+## no critic qw(Modules::ProhibitMultiplePackages)
 BEGIN {
     package XML::Rabbit::XPathExtract;
     use Moose;
