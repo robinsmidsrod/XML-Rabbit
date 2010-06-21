@@ -2,7 +2,7 @@ NAME
     XML::Rabbit - Consume XML with Moose and xpath queries
 
 VERSION
-    version 0.0.1
+    version 0.0.2
 
 SYNOPSIS
         my $xhtml = W3C::XHTML->new( file => 'index.xhtml' );
