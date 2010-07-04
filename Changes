@@ -3,8 +3,6 @@ Revision history for XML-Rabbit
 {{$NEXT}}
 
 0.0.2     2010-07-04 14:08:44 Europe/Oslo
-
-0.0.2     2010-06-21 15:24:18 Europe/Oslo
         libxml 2.6.16 is incompatible (David Cantrell)
 
 0.0.1     2010-06-13 13:28:50 Europe/Oslo
