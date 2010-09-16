@@ -1,6 +1,8 @@
 Revision history for XML-Rabbit
 
 {{$NEXT}}
+	Fixed RT #61367 which caused issue with Class::MOP 1.05+ / Moose
+	1.10+ (Thanks to Jesse Luehrs)
 
 0.0.2     2010-07-04 14:08:44 Europe/Oslo
         libxml 2.6.16 is incompatible (David Cantrell)

@@ -18,7 +18,17 @@ around '_process_options' => sub {
     $options->{'is'} = 'ro';
     $options->{'init_arg'} = undef;
     $options->{'lazy'} = 1;
-    $options->{'default'} = sub { 'FAIL_IF_YOU_SEE_THIS' };
+
+    # Will call _build_default which should be composited in
+    # from another role. _build_default should return a coderef that is
+    # executed in the context of the parent (the class with the attribute defined).
+    $options->{'default'} = sub {
+        my ($parent) = @_;
+        my $self = $parent->meta->find_attribute_by_name($name);
+        my $actual_builder = $self->_build_default();
+        return $actual_builder unless ref($actual_builder) eq 'CODE';
+        return &$actual_builder( $parent );
+    };
 
     # TODO: Maybe throw raging exceptions instead?
     delete $options->{'builder'};
@@ -50,7 +60,7 @@ around '_process_options' => sub {
     $self->$orig($name, $options, @rest);
 };
 
-=method default
+=method _build_default
 
 Each trait that composes this trait will need to define a method name
 C<_build_default>. The _build_default method is called as a method on the
@@ -73,18 +83,6 @@ Below you can see an example from the XPathValue trait:
     }
 
 =cut
-
-# Will call _build_default which should be composited in
-# from another role. _build_default should return a coderef that is
-# executed in the context of the parent (the class with the attribute defined).
-
-## no critic qw(Subroutines::ProhibitBuiltinHomonyms)
-sub default {
-    my ($self, $parent) = @_;
-    my $actual_builder = $self->_build_default();
-    return $actual_builder unless ref($actual_builder) eq 'CODE';
-    return &$actual_builder( $parent );
-}
 
 =attr xpath_query
 
