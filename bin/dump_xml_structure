@@ -3,6 +3,8 @@
 use strict;
 use warnings;
 
+package main;
+
 use XML::LibXML 1.70;
 use Scalar::Util qw(blessed);
 
