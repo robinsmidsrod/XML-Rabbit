@@ -6,6 +6,14 @@ use Moose::Role;
 
 # ABSTRACT: Node base class
 
+# Preload XPath attribute traits
+use XML::Rabbit::Trait::XPathValue;
+use XML::Rabbit::Trait::XPathValueList;
+use XML::Rabbit::Trait::XPathValueMap;
+use XML::Rabbit::Trait::XPathObject;
+use XML::Rabbit::Trait::XPathObjectList;
+use XML::Rabbit::Trait::XPathObjectMap;
+
 =attr node
 
 An instance of a L<XML::LibXML::Node> class representing a node in an XML document tree. Read Only.
