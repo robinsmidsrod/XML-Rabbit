@@ -53,6 +53,6 @@ no Moose::Role;
 
 =head1 DESCRIPTION
 
-This module provides the base node attribute used to hold a specific node in the XML docuent tree.
+This module provides the base node attribute used to hold a specific node in the XML document tree.
 
 See L<XML::Rabbit> for a more complete example.
