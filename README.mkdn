@@ -1,3 +1,11 @@
+# NAME
+
+XML::Rabbit - Consume XML with Moose and xpath queries
+
+# VERSION
+
+version 0.0.4
+
 # SYNOPSIS
 
     my $xhtml = W3C::XHTML->new( file => 'index.xhtml' );
@@ -99,8 +107,6 @@
 
     1;
 
-
-
 # DESCRIPTION
 
 XML::Rabbit is a simple Moose-based base class you can use to make simple
@@ -122,8 +128,6 @@ The namespace prefix used in `isa_map` MUST be specified in the
 `namespace_map`. If a prefix is used in `isa_map` without a corresponding
 entry in `namespace_map` an exception will be thrown.
 
-
-
 # CAVEATS
 
 Be aware of the syntax of XPath when used with namespaces. You should almost
@@ -141,13 +145,9 @@ and I am not aware of any way of doing that without keeping the document in
 memory. Luckily XML::LibXML's DOM implementation is written in C, so it
 should use much less memory than a pure Perl DOM parser.
 
-
-
 # SEMANTIC VERSIONING
 
 This module uses semantic versioning concepts from <http://semver.org/>.
-
-
 
 # ACKNOWLEDGEMENTS
 
@@ -160,6 +160,99 @@ Matt S. Trout (mst)
 
 Stevan Little (stevan)
 
-
-
 # SEE ALSO
+
+- *
+
+[XML::Toolkit](http://search.cpan.org/perldoc?XML::Toolkit)
+
+- *
+
+[Moose](http://search.cpan.org/perldoc?Moose)
+
+- *
+
+[XML::LibXML](http://search.cpan.org/perldoc?XML::LibXML)
+
+# SUPPORT
+
+You can find documentation for this module with the perldoc command.
+
+  perldoc XML::Rabbit
+
+## Websites
+
+- *
+
+Search CPAN
+
+<http://search.cpan.org/dist/XML-Rabbit>
+
+- *
+
+AnnoCPAN: Annotated CPAN documentation
+
+<http://annocpan.org/dist/XML-Rabbit>
+
+- *
+
+CPAN Ratings
+
+<http://cpanratings.perl.org/d/XML-Rabbit>
+
+- *
+
+CPAN Forum
+
+<http://cpanforum.com/dist/XML-Rabbit>
+
+- *
+
+RT: CPAN's Bug Tracker
+
+<http://rt.cpan.org/NoAuth/Bugs.html?Dist=XML-Rabbit>
+
+- *
+
+CPANTS Kwalitee
+
+<http://cpants.perl.org/dist/overview/XML-Rabbit>
+
+- *
+
+CPAN Testers Results
+
+<http://cpantesters.org/distro/X/XML-Rabbit.html>
+
+- *
+
+CPAN Testers Matrix
+
+<http://matrix.cpantesters.org/?dist=XML-Rabbit>
+
+- *
+
+Source Code Repository
+
+The code is open to the world, and available for you to hack on. Please feel free to browse it and play
+with it, or whatever. If you want to contribute patches, please send me a diff or prod me to pull
+from your repository :)
+
+L<git://github.com/robinsmidsrod/XML-Rabbit.git>
+
+## Bugs
+
+Please report any bugs or feature requests to `bug-xml-rabbit at rt.cpan.org`, or through
+the web interface at <http://rt.cpan.org/NoAuth/ReportBug.html?Queue=XML-Rabbit>.  I will be
+notified, and then you'll automatically be notified of progress on your bug as I make changes.
+
+# AUTHOR
+
+Robin Smidsrød <robin@smidsrod.no>
+
+# COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2011 by Robin Smidsrød.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
