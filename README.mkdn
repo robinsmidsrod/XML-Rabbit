@@ -147,7 +147,7 @@ should use much less memory than a pure Perl DOM parser.
 
 # SEMANTIC VERSIONING
 
-This module uses semantic versioning concepts from <http://semver.org/>.
+This module uses semantic versioning concepts from [http://semver.org/](http://semver.org/).
 
 # ACKNOWLEDGEMENTS
 
@@ -162,17 +162,9 @@ Stevan Little (stevan)
 
 # SEE ALSO
 
-- *
-
-[XML::Toolkit](http://search.cpan.org/perldoc?XML::Toolkit)
-
-- *
-
-[Moose](http://search.cpan.org/perldoc?Moose)
-
-- *
-
-[XML::LibXML](http://search.cpan.org/perldoc?XML::LibXML)
+- [XML::Toolkit](http://search.cpan.org/perldoc?XML::Toolkit)
+- [Moose](http://search.cpan.org/perldoc?Moose)
+- [XML::LibXML](http://search.cpan.org/perldoc?XML::LibXML)
 
 # SUPPORT
 
@@ -182,57 +174,39 @@ You can find documentation for this module with the perldoc command.
 
 ## Websites
 
-- *
+- Search CPAN
 
-Search CPAN
+[http://search.cpan.org/dist/XML-Rabbit](http://search.cpan.org/dist/XML-Rabbit)
 
-<http://search.cpan.org/dist/XML-Rabbit>
+- AnnoCPAN: Annotated CPAN documentation
 
-- *
+[http://annocpan.org/dist/XML-Rabbit](http://annocpan.org/dist/XML-Rabbit)
 
-AnnoCPAN: Annotated CPAN documentation
+- CPAN Ratings
 
-<http://annocpan.org/dist/XML-Rabbit>
+[http://cpanratings.perl.org/d/XML-Rabbit](http://cpanratings.perl.org/d/XML-Rabbit)
 
-- *
+- CPAN Forum
 
-CPAN Ratings
+[http://cpanforum.com/dist/XML-Rabbit](http://cpanforum.com/dist/XML-Rabbit)
 
-<http://cpanratings.perl.org/d/XML-Rabbit>
+- RT: CPAN's Bug Tracker
 
-- *
+[http://rt.cpan.org/NoAuth/Bugs.html?Dist=XML-Rabbit](http://rt.cpan.org/NoAuth/Bugs.html?Dist=XML-Rabbit)
 
-CPAN Forum
+- CPANTS Kwalitee
 
-<http://cpanforum.com/dist/XML-Rabbit>
+[http://cpants.perl.org/dist/overview/XML-Rabbit](http://cpants.perl.org/dist/overview/XML-Rabbit)
 
-- *
+- CPAN Testers Results
 
-RT: CPAN's Bug Tracker
+[http://cpantesters.org/distro/X/XML-Rabbit.html](http://cpantesters.org/distro/X/XML-Rabbit.html)
 
-<http://rt.cpan.org/NoAuth/Bugs.html?Dist=XML-Rabbit>
+- CPAN Testers Matrix
 
-- *
+[http://matrix.cpantesters.org/?dist=XML-Rabbit](http://matrix.cpantesters.org/?dist=XML-Rabbit)
 
-CPANTS Kwalitee
-
-<http://cpants.perl.org/dist/overview/XML-Rabbit>
-
-- *
-
-CPAN Testers Results
-
-<http://cpantesters.org/distro/X/XML-Rabbit.html>
-
-- *
-
-CPAN Testers Matrix
-
-<http://matrix.cpantesters.org/?dist=XML-Rabbit>
-
-- *
-
-Source Code Repository
+- Source Code Repository
 
 The code is open to the world, and available for you to hack on. Please feel free to browse it and play
 with it, or whatever. If you want to contribute patches, please send me a diff or prod me to pull
@@ -243,7 +217,7 @@ L<git://github.com/robinsmidsrod/XML-Rabbit.git>
 ## Bugs
 
 Please report any bugs or feature requests to `bug-xml-rabbit at rt.cpan.org`, or through
-the web interface at <http://rt.cpan.org/NoAuth/ReportBug.html?Queue=XML-Rabbit>.  I will be
+the web interface at [http://rt.cpan.org/NoAuth/ReportBug.html?Queue=XML-Rabbit](http://rt.cpan.org/NoAuth/ReportBug.html?Queue=XML-Rabbit).  I will be
 notified, and then you'll automatically be notified of progress on your bug as I make changes.
 
 # AUTHOR
