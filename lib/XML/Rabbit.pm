@@ -6,6 +6,27 @@ use 5.008;
 
 # ABSTRACT: Consume XML with Moose and xpath queries
 
+use XML::Rabbit::Sugar ();
+use Moose::Exporter;
+
+Moose::Exporter->setup_import_methods(
+    also             => 'XML::Rabbit::Sugar',
+    base_class_roles => ['XML::Rabbit::Node'],
+);
+
+# FIXME: https://rt.cpan.org/Ticket/Display.html?id=51561
+# Hopefully fixed by 2.06 (doy)
+sub init_meta {
+    shift;
+    my (%opts) = @_;
+    Moose->init_meta(%opts);
+    Moose::Util::MetaRole::apply_base_class_roles(
+        for   => $opts{for_class},
+        roles => ['XML::Rabbit::Node']
+    );
+    return Class::MOP::class_of($opts{for_class});
+}
+
 1;
 
 =head1 SYNOPSIS
@@ -17,8 +38,7 @@ use 5.008;
     exit;
 
     package W3C::XHTML;
-    use Moose;
-    with 'XML::Rabbit::RootNode';
+    use XML::Rabbit::Root;
 
     has '+namespace_map' => (
         default => sub { {
@@ -26,85 +46,46 @@ use 5.008;
         } },
     );
 
-    has 'title' => (
-        isa         => 'Str',
-        traits      => [qw(XPathValue)],
-        xpath_query => '/xhtml:html/xhtml:head/xhtml:title',
-    );
+    has_xpath_value 'title' => '/xhtml:html/xhtml:head/xhtml:title';
 
-    has 'body' => (
-        isa         => 'W3C::XHTML::Body',
-        traits      => [qw(XPathObject)],
-        xpath_query => '/xhtml:html/xhtml:body',
-    );
+    has_xpath_object 'body',
+        'W3C::XHTML::Body' => '/xhtml:html/xhtml:body',
+    ;
 
-    has 'all_anchors_and_images' => (
-        traits      => ['XPathObjectList'],
-        xpath_query => '//xhtml:a|//xhtml:img',
-        isa_map     => {
+    has_xpath_object_list 'all_anchors_and_images',
+        {
             'xhtml:a'   => 'W3C::XHTML::Anchor',
             'xhtml:img' => 'W3C::XHTML::Image',
         },
-    );
+        '//xhtml:a|//xhtml:img',
+    ;
 
-    no Moose;
     __PACKAGE__->meta->make_immutable();
 
     package W3C::XHTML::Body;
-    use Moose;
-    with 'XML::Rabbit::Node';
+    use XML::Rabbit;
 
-    has 'images' => (
-        isa         => 'ArrayRef[W3C::XHTML::Image]',
-        traits      => [qw(XPathObjectList)],
-        xpath_query => './/xhtml:img',
-    );
+    has_xpath_object_list 'images',
+        'W3C::XHTML::Image' => './/xhtml:img',
+    ;
 
-    no Moose;
     __PACKAGE__->meta->make_immutable();
 
     package W3C::XHTML::Image;
-    use Moose;
-    with 'XML::Rabbit::Node';
+    use XML::Rabbit;
 
-    has 'src' => (
-        isa         => 'Str',
-        traits      => [qw(XPathValue)],
-        xpath_query => './@src',
-    );
+    has_xpath_value 'src'   => './@src';
+    has_xpath_value 'alt'   => './@alt';
+    has_xpath_value 'title' => './@title';
 
-    has 'alt' => (
-        isa         => 'Str',
-        traits      => [qw(XPathValue)],
-        xpath_query => './@alt',
-    );
-
-    has 'title' => (
-        isa         => 'Str',
-        traits      => [qw(XPathValue)],
-        xpath_query => './@title',
-    );
-
-    no Moose;
     __PACKAGE__->meta->make_immutable();
 
     package W3C::XHTML::Anchor;
-    use Moose;
-    with 'XML::Rabbit::Node';
+    use XML::Rabbit;
 
-    has 'href' => (
-        isa         => 'Str',
-        traits      => [qw(XPathValue)],
-        xpath_query => './@src',
-    );
+    has_xpath_value 'href'  => './@src';
+    has_xpath_value 'title' => './@title';
 
-    has 'title' => (
-        isa         => 'Str',
-        traits      => [qw(XPathValue)],
-        xpath_query => './@title',
-    );
-
-    no Moose;
     __PACKAGE__->meta->make_immutable();
 
     1;
