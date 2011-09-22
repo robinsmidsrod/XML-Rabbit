@@ -203,6 +203,7 @@ sub _create_instance {
         $class = $self->isa_map->{ $node_name };
     }
     confess("Unable to resolve class for node " . $node->nodeName) unless $class;
+    Class::MOP::load_class($class); # FIXME: This should be fixed at line 153
     my $instance = $class->new(
         xpc           => $parent->xpc,
         node          => $node,

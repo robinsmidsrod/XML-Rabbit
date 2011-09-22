@@ -33,9 +33,11 @@ Moose::Exporter->setup_import_methods(
 sub has_xpath_value {
     my ($meta, $attr_name, $xpath_query, @moose_params) = @_;
     $meta->add_attribute($attr_name,
+        is          => 'ro',
         isa         => 'Str',
-        traits      => [qw( XPathValue )],
+        traits      => [qw( XPathValue String )],
         xpath_query => $xpath_query,
+        default     => '',
         @moose_params,
     );
 }
@@ -54,8 +56,9 @@ sub has_xpath_value_list {
     my ($meta, $attr_name, $xpath_query, @moose_params) = @_;
     $meta->add_attribute($attr_name,
         isa         => 'ArrayRef[Str]',
-        traits      => [qw( XPathValueList )],
+        traits      => [qw( XPathValueList Array )],
         xpath_query => $xpath_query,
+        default     => sub { [] },
         @moose_params,
     );
 }
@@ -75,10 +78,11 @@ sub has_xpath_value_map {
     my ($meta, $attr_name, $xpath_query, $xpath_key, $xpath_value, @moose_params) = @_;
     $meta->add_attribute($attr_name,
         isa         => 'HashRef[Str]',
-        traits      => [qw( XPathValueMap )],
+        traits      => [qw( XPathValueMap Hash )],
         xpath_query => $xpath_query,
         xpath_key   => $xpath_key,
         xpath_value => $xpath_value,
+        default     => sub { +{} },
         @moose_params,
     );
 }
@@ -153,8 +157,9 @@ sub has_xpath_object_list {
             : ( isa     => 'ArrayRef[' . $isa . ']' )
     ;
     $meta->add_attribute($attr_name, @isa,
-        traits      => [qw( XPathObjectList )],
+        traits      => [qw( XPathObjectList Array )],
         xpath_query => $xpath_query,
+        default     => sub { +[] },
         @moose_params,
     );
 }
@@ -192,9 +197,10 @@ sub has_xpath_object_map {
             : ( isa     => 'HashRef[' . $isa . ']' )
     ;
     $meta->add_attribute($attr_name, @isa,
-        traits      => [qw( XPathObjectMap )],
+        traits      => [qw( XPathObjectMap Hash )],
         xpath_query => $xpath_query,
         xpath_key   => $xpath_key,
+        default     => sub { +{} },
         @moose_params,
     );
 }
