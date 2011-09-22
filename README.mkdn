@@ -168,57 +168,86 @@ Stevan Little (stevan)
 
 # SUPPORT
 
+## Perldoc
+
 You can find documentation for this module with the perldoc command.
 
   perldoc XML::Rabbit
 
 ## Websites
 
+The following websites have more information about this module, and may be of help to you. As always,
+in addition to those websites please use your favorite search engine to discover more resources.
+
 - Search CPAN
+
+The default CPAN search engine, useful to view POD in HTML format.
 
 [http://search.cpan.org/dist/XML-Rabbit](http://search.cpan.org/dist/XML-Rabbit)
 
-- AnnoCPAN: Annotated CPAN documentation
+- RT: CPAN's Bug Tracker
+
+The RT ( Request Tracker ) website is the default bug/issue tracking system for CPAN.
+
+[http://rt.cpan.org/NoAuth/Bugs.html?Dist=XML-Rabbit](http://rt.cpan.org/NoAuth/Bugs.html?Dist=XML-Rabbit)
+
+- AnnoCPAN
+
+The AnnoCPAN is a website that allows community annonations of Perl module documentation.
 
 [http://annocpan.org/dist/XML-Rabbit](http://annocpan.org/dist/XML-Rabbit)
 
 - CPAN Ratings
 
+The CPAN Ratings is a website that allows community ratings and reviews of Perl modules.
+
 [http://cpanratings.perl.org/d/XML-Rabbit](http://cpanratings.perl.org/d/XML-Rabbit)
 
 - CPAN Forum
 
+The CPAN Forum is a web forum for discussing Perl modules.
+
 [http://cpanforum.com/dist/XML-Rabbit](http://cpanforum.com/dist/XML-Rabbit)
 
-- RT: CPAN's Bug Tracker
+- CPANTS
 
-[http://rt.cpan.org/NoAuth/Bugs.html?Dist=XML-Rabbit](http://rt.cpan.org/NoAuth/Bugs.html?Dist=XML-Rabbit)
-
-- CPANTS Kwalitee
+The CPANTS is a website that analyzes the Kwalitee ( code metrics ) of a distribution.
 
 [http://cpants.perl.org/dist/overview/XML-Rabbit](http://cpants.perl.org/dist/overview/XML-Rabbit)
 
-- CPAN Testers Results
+- CPAN Testers
 
-[http://cpantesters.org/distro/X/XML-Rabbit.html](http://cpantesters.org/distro/X/XML-Rabbit.html)
+The CPAN Testers is a network of smokers who run automated tests on uploaded CPAN distributions.
+
+[http://www.cpantesters.org/distro/X/XML-Rabbit](http://www.cpantesters.org/distro/X/XML-Rabbit)
 
 - CPAN Testers Matrix
 
+The CPAN Testers Matrix is a website that provides a visual way to determine what Perls/platforms PASSed for a distribution.
+
 [http://matrix.cpantesters.org/?dist=XML-Rabbit](http://matrix.cpantesters.org/?dist=XML-Rabbit)
 
-- Source Code Repository
+- CPAN Testers Dependencies
+
+The CPAN Testers Dependencies is a website that shows a chart of the test results of all dependencies for a distribution.
+
+[http://deps.cpantesters.org/?module=XML::Rabbit](http://deps.cpantesters.org/?module=XML::Rabbit)
+
+## Bugs / Feature Requests
+
+Please report any bugs or feature requests by email to `bug-xml-rabbit at rt.cpan.org`, or through
+the web interface at [http://rt.cpan.org/NoAuth/ReportBug.html?Queue=XML-Rabbit](http://rt.cpan.org/NoAuth/ReportBug.html?Queue=XML-Rabbit). You will be automatically notified of any
+progress on the request by the system.
+
+## Source Code
 
 The code is open to the world, and available for you to hack on. Please feel free to browse it and play
 with it, or whatever. If you want to contribute patches, please send me a diff or prod me to pull
 from your repository :)
 
-L<git://github.com/robinsmidsrod/XML-Rabbit.git>
+[http://github.com/robinsmidsrod/XML-Rabbit](http://github.com/robinsmidsrod/XML-Rabbit)
 
-## Bugs
-
-Please report any bugs or feature requests to `bug-xml-rabbit at rt.cpan.org`, or through
-the web interface at [http://rt.cpan.org/NoAuth/ReportBug.html?Queue=XML-Rabbit](http://rt.cpan.org/NoAuth/ReportBug.html?Queue=XML-Rabbit).  I will be
-notified, and then you'll automatically be notified of progress on your bug as I make changes.
+  git clone git://github.com/robinsmidsrod/XML-Rabbit.git
 
 # AUTHOR
 
