@@ -94,27 +94,72 @@ sub init_meta {
     finalize_class();
 
 
+=head1 DESCRIPTION
+
+XML::Rabbit is a Moose-based class construction toolkit you can use to make
+XPath-based XML extractors with very little code.  Each attribute in your
+class created with the above helper function is linked to an XPath query
+that is executed on your XML document when you request the value.  Creating
+object hierarchies that mimic the layout of the XML document is almost as
+easy as doing a search and replace on the XML DTD (if you have one).
+
+You can return multiple values from the XML either as arrays or hashes,
+depending on how you need to work with the data from the XML document.
+
+The example in the synopsis shows how to create a class hierarchy that
+enables easy retrival of certain information from an XHTML document.
+
+Also notice that if you specify an xpath query that can return multiple XML
+elements, you need to specify a hash map (xml tag => class name) instead of
+just specifying the class name returned.
+
+All the array and hash-returning attributes are tagged with the Array and
+Hash native traits, so it is quick and easy to specify additional
+delegations.  All the C<has_xpath_value*> helpers expect the value to be of
+a C<Str> type constraint.  Array and hash-returning attributes automatically
+set their isa to C<ArrayRef[Str]> and C<HashRef[Str]> respectively.
+
+All the helper methods and their associated arguments are explained in
+L<XML::Rabbit::Sugar> detail.
+
+Be aware that if your XML document contains a default XML namespace (like
+XHTML does), you MUST specify it with C<add_xpath_namespace()>, or else your
+xpath queries will not match anything.  The XML document is not scanned for
+XML namespaces during initialization.
+
+
+=head1 IMPORTS
+
+When you specify C<use XML::Rabbit::Root> (or C<use XML::Rabbit> in child
+nodes) you do the equivalent of the following code:
+
+    use Moose;
+    with "XML::Rabbit::RootNode"; # if you use XML::Rabbit::Root
+    with "XML::Rabbit::Node";     # if you use XML::Rabbit
+    use namespace::autoclean;
+    use XML::Rabbit::Sugar;
+
+This ensures that you don't have to specify C<no Moose> at the end of your
+code to clean up imported functions you have used in your class.
+
+The C<finalize_class()> call at the end of the file is the same as writing
+the following piece of code:
+
     __PACKAGE__->meta->make_immutable();
 
     1;
 
+This optimizes the class and ensures it always returns a true value, which
+is required to successfully load a Perl script file.
 
-=head1 DESCRIPTION
 
-XML::Rabbit is a simple Moose-based base class you can use to make simple
-XPath-based XML extractors. Each attribute in your class is linked to an
-XPath query that is executed on your XML document when you request the
-value.
+=head1 TECHNICAL DETAILS
 
-Also notice that if you specify an xpath_query that can return multiple
-types, you need to specify C<isa_map> instead of just specifying the types
-as a union type constraint in C<isa>. If you specify C<isa_map> you should
-not specify C<isa> aswell, as it will be overridden by the trait. The trait
-will wrap the type constraint union in an ArrayRef if the trait name is
-XPathObjectList and as a HashRef if the trait name is XPathObjectMap. As all
-the traits that end with List return array references, their C<isa> must be
-an ArrayRef. The same is valid for the *Map traits, just that they return
-HashRef instead of ArrayRef.
+The trait applied to the attribute will wrap the type constraint union in an
+ArrayRef if the trait name is XPathObjectList and as a HashRef if the trait
+name is XPathObjectMap.  As all the traits that end with List return array
+references, their C<isa> must be an ArrayRef.  The same is valid for the
+*Map traits, just that they return HashRef instead of ArrayRef.
 
 The namespace prefix used in C<isa_map> MUST be specified in the
 C<namespace_map>. If a prefix is used in C<isa_map> without a corresponding
