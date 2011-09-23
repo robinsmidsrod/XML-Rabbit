@@ -7,6 +7,7 @@ use Test::More tests => 13;
 
 my $qti = MyXSD->new( file => 't/data/imsqti_v2p1.xsd' );
 ok( $qti->meta->is_immutable, "MyXSD is immutable" );
+ok( ! $qti->can('add_xpath_namespace'), "MyXSD doesn't re-export internal imports" );
 
 can_ok($qti, 'element_map');
 my $element_map = $qti->element_map;
@@ -21,6 +22,7 @@ ok( $element_and_group_map->{'a'}->meta->is_immutable, "MyXSD::Element is immuta
 is( $element_and_group_map->{'a'}->type, 'a.Type', 'element_and_group_map->{a} type mismatch');
 isa_ok( $element_and_group_map->{'a.ContentGroup'}, 'MyXSD::Group');
 ok( $element_and_group_map->{'a.ContentGroup'}->meta->is_immutable, "MyXSD::Group is immutable" );
+ok( ! $element_and_group_map->{'a.ContentGroup'}->can('add_xpath_namespace'), "MyXSD::Group doesn't re-export internal imports" );
 
 BEGIN {
     package MyXSD;
