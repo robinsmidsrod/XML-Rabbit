@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 
-binmode(STDOUT, ':utf8');
+binmode(STDOUT, ':encoding(UTF-8)');
 
 my $xpath = shift;
 die("No XPath query specified!\n") unless $xpath;

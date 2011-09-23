@@ -53,6 +53,7 @@ sub has_xpath_value {
         default     => '',
         @moose_params,
     );
+    return 1;
 }
 
 =func has_xpath_value_list($attr_name, $xpath_query, @moose_params)
@@ -74,6 +75,7 @@ sub has_xpath_value_list {
         default     => sub { [] },
         @moose_params,
     );
+    return 1;
 }
 
 =func has_xpath_value_map($attr_name, $xpath_query, $xpath_key, $xpath_value, @moose_params)
@@ -98,6 +100,7 @@ sub has_xpath_value_map {
         default     => sub { +{} },
         @moose_params,
     );
+    return 1;
 }
 
 =func has_xpath_object($attr_name, $isa, $xpath_query, @moose_params)
@@ -135,6 +138,7 @@ sub has_xpath_object {
         xpath_query => $xpath_query,
         @moose_params,
     );
+    return 1;
 }
 
 =func has_xpath_object_list($attr_name, $isa, $xpath_query, @moose_params)
@@ -175,6 +179,7 @@ sub has_xpath_object_list {
         default     => sub { +[] },
         @moose_params,
     );
+    return 1;
 }
 
 =func has_xpath_object_map($attr_name, $isa, $xpath_query, $xpath_key, @moose_params)
@@ -216,6 +221,7 @@ sub has_xpath_object_map {
         default     => sub { +{} },
         @moose_params,
     );
+    return 1;
 }
 
 no Moose::Exporter;

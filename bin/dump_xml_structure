@@ -8,7 +8,7 @@ package main;
 use XML::LibXML 1.70;
 use Scalar::Util qw(blessed);
 
-binmode STDOUT, ':utf8';
+binmode STDOUT, ':encoding(UTF-8)';
 
 my $dom = XML::LibXML->load_xml(
     location => $ARGV[0],

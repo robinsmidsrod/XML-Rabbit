@@ -17,8 +17,7 @@ Moose::Exporter->setup_import_methods(
 # FIXME: https://rt.cpan.org/Ticket/Display.html?id=51561
 # Hopefully fixed by 2.06 (doy)
 sub init_meta {
-    shift;
-    my (%opts) = @_;
+    my ($dummy, %opts) = @_;
     Moose->init_meta(%opts);
     Moose::Util::MetaRole::apply_base_class_roles(
         for   => $opts{for_class},
