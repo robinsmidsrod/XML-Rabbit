@@ -14,6 +14,4 @@ has_xpath_object_list 'groups',
     'Sugar::W3C::XMLSchema::Group' => './xsd:group',
 ;
 
-__PACKAGE__->meta->make_immutable();
-
-1;
+finalize_class;

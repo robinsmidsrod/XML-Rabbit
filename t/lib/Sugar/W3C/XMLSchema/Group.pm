@@ -10,6 +10,4 @@ has_xpath_object 'sequence',
     'Sugar::W3C::XMLSchema::Sequence' => './xsd:sequence',
 ;
 
-__PACKAGE__->meta->make_immutable();
-
-1;
+finalize_class;

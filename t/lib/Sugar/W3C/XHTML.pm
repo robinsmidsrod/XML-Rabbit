@@ -31,6 +31,4 @@ has_xpath_object_list 'body_and_all_images',
     '//xhtml:body|//xhtml:img',
 ;
 
-__PACKAGE__->meta->make_immutable();
-
-1;
+finalize_class;

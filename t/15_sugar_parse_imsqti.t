@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 
-use Test::More tests => 4;
+use Test::More tests => 5;
 
 BEGIN {
     use lib 't/lib';
@@ -29,8 +29,9 @@ else {
 # actually return the right instance
 
 SKIP: {
-    skip("item->[0] not defined", 2) unless $group6_seq_items->[0];
+    skip("item->[0] not defined", 3) unless $group6_seq_items->[0];
     isa_ok( $group6_seq_items->[0], 'Sugar::W3C::XMLSchema::Element');
+    ok( $group6_seq_items->[0]->meta->is_immutable, "Sugar::W3C::XMLSchema::Element is immutable" );
     is( $group6_seq_items->[0]->ref, 'areaMapEntry', '6th group sequence item 0 ref mismatch');
 }
 

@@ -6,6 +6,4 @@ use XML::Rabbit;
 
 has_xpath_value 'type' => './@type';
 
-__PACKAGE__->meta->make_immutable();
-
-1;
+finalize_class;

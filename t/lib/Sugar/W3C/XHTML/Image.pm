@@ -8,6 +8,4 @@ has_xpath_value 'src'   => './@src';
 has_xpath_value 'alt'   => './@alt';
 has_xpath_value 'title' => './@title';
 
-__PACKAGE__->meta->make_immutable();
-
-1;
+finalize_class;

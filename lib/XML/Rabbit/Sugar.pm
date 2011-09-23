@@ -10,6 +10,7 @@ use Moose::Exporter;
 
 Moose::Exporter->setup_import_methods(
     with_meta => [qw(
+        finalize_class
         has_xpath_value
         has_xpath_value_list
         has_xpath_value_map
@@ -19,6 +20,18 @@ Moose::Exporter->setup_import_methods(
     )],
     also => 'Moose',
 );
+
+=func finalize_class()
+
+Convenience function that calls __PACKAGE__->meta->make_immutable() for you
+
+=cut
+
+sub finalize_class {
+    my ($meta) = @_;
+    $meta->make_immutable();
+    return 1; # so we can avoid the 1; at the end of the file
+}
 
 =func has_xpath_value($attr_name, $xpath_query, @moose_params)
 

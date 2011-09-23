@@ -12,6 +12,4 @@ has_xpath_object_list 'items',
     './*',
 ;
 
-__PACKAGE__->meta->make_immutable();
-
-1;
+finalize_class;

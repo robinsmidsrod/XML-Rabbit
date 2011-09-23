@@ -60,7 +60,7 @@ sub init_meta {
         '//xhtml:a|//xhtml:img',
     ;
 
-    __PACKAGE__->meta->make_immutable();
+    finalize_class();
 
     package W3C::XHTML::Body;
     use XML::Rabbit;
@@ -69,7 +69,7 @@ sub init_meta {
         'W3C::XHTML::Image' => './/xhtml:img',
     ;
 
-    __PACKAGE__->meta->make_immutable();
+    finalize_class();
 
     package W3C::XHTML::Image;
     use XML::Rabbit;
@@ -78,13 +78,16 @@ sub init_meta {
     has_xpath_value 'alt'   => './@alt';
     has_xpath_value 'title' => './@title';
 
-    __PACKAGE__->meta->make_immutable();
+    finalize_class();
 
     package W3C::XHTML::Anchor;
     use XML::Rabbit;
 
     has_xpath_value 'href'  => './@src';
     has_xpath_value 'title' => './@title';
+
+    finalize_class();
+
 
     __PACKAGE__->meta->make_immutable();
 

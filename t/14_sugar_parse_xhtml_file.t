@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use utf8;
 
-use Test::More tests => 24;
+use Test::More tests => 27;
 
 BEGIN {
     use lib 't/lib';
@@ -13,6 +13,7 @@ BEGIN {
 
 my $xhtml = Sugar::W3C::XHTML->new( file => 't/data/10_parse_xhtml.xhtml' );
 isa_ok( $xhtml, 'Sugar::W3C::XHTML' );
+ok( $xhtml->meta->is_immutable, "Sugar::W3C::XHTML is immutable" );
 can_ok( $xhtml, 'xpc' ); # XPathContext should be available
 isa_ok( $xhtml->xpc, 'XML::LibXML::XPathContext');
 
@@ -25,6 +26,7 @@ is( $xhtml->style, undef, 'Style tag mismatch' );
 can_ok( $xhtml, 'body');
 my $body = $xhtml->body;
 isa_ok( $body, 'Sugar::W3C::XHTML::Body' );
+ok( $body->meta->is_immutable, "Sugar::W3C::XHTML::Body is immutable" );
 
 can_ok( $body, 'images' );
 my $images = $body->images;
@@ -33,6 +35,7 @@ ok(ref($images) eq 'ARRAY', 'images array is not an array');
 is( @$images, 1, 'Image list count mismatch');
 my $img1 = $images->[0];
 isa_ok( $img1, 'Sugar::W3C::XHTML::Image' );
+ok( $img1->meta->is_immutable, "Sugar::W3C::XHTML::Image is immutable" );
 
 is($img1->src, 'bilde.jpg', 'First image src mismatch');
 is($img1->alt, 'Bilde av forfatter', 'First image alt mismatch');
