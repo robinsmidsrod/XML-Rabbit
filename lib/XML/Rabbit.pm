@@ -39,11 +39,7 @@ sub init_meta {
     package W3C::XHTML;
     use XML::Rabbit::Root;
 
-    has '+namespace_map' => (
-        default => sub { {
-            "xhtml" => "http://www.w3.org/1999/xhtml"
-        } },
-    );
+    add_xpath_namespace 'xhtml' => 'http://www.w3.org/1999/xhtml';
 
     has_xpath_value 'title' => '/xhtml:html/xhtml:head/xhtml:title';
 

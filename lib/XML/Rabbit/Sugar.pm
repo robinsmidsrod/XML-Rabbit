@@ -11,6 +11,7 @@ use Moose::Exporter;
 Moose::Exporter->setup_import_methods(
     with_meta => [qw(
         finalize_class
+        add_xpath_namespace
         has_xpath_value
         has_xpath_value_list
         has_xpath_value_map
@@ -20,6 +21,23 @@ Moose::Exporter->setup_import_methods(
     )],
     also => 'Moose',
 );
+
+=func add_xpath_namespace($namespace, $url)
+
+Adds the XPath namespace with its associated url to the namespace_map hash
+
+=cut
+
+sub add_xpath_namespace {
+    my ($meta, $namespace, $url) = @_;
+    my $attr = $meta->find_attribute_by_name('namespace_map');
+    confess("namespace_map attribute not present") unless blessed($attr);
+    my $default = $attr->default;
+    my $new_default = sub { my $hash = $default->(@_); $hash->{$namespace} = $url; return $hash; };
+    my $new_attr = $attr->clone_and_inherit_options(default => $new_default);
+    $meta->add_attribute($new_attr);
+    return 1;
+}
 
 =func finalize_class()
 

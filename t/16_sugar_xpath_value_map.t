@@ -16,11 +16,7 @@ BEGIN {
     package MyXSD;
     use XML::Rabbit::Root;
 
-    has '+namespace_map' => (
-        default => sub { {
-            'xsd' => 'http://www.w3.org/2001/XMLSchema',
-        } }
-    );
+    add_xpath_namespace 'xsd' => 'http://www.w3.org/2001/XMLSchema';
 
     has_xpath_value_map 'element_map' => '//xsd:element[@name]',
         './@name' => './@type',
