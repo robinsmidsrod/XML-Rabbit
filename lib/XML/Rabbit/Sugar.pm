@@ -5,7 +5,10 @@ package XML::Rabbit::Sugar;
 
 # ABSTRACT: Sugar functions for easier declaration of xpath attributes
 
-use Moose ();
+use Scalar::Util qw(blessed);
+use Carp qw(confess);
+
+use Moose (); # no magic, just load
 use Moose::Exporter;
 
 Moose::Exporter->setup_import_methods(
