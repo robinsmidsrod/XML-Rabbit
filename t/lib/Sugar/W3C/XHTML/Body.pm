@@ -1,6 +1,3 @@
-use strict;
-use warnings;
-
 package Sugar::W3C::XHTML::Body;
 use XML::Rabbit;
 

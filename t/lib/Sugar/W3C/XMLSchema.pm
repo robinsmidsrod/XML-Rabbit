@@ -1,6 +1,3 @@
-use strict;
-use warnings;
-
 package Sugar::W3C::XMLSchema;
 use XML::Rabbit::Root;
 
