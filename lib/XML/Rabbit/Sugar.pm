@@ -13,7 +13,6 @@ use Moose::Exporter;
 
 Moose::Exporter->setup_import_methods(
     with_meta => [qw(
-        finalize_class
         add_xpath_namespace
         has_xpath_value
         has_xpath_value_list
@@ -21,13 +20,14 @@ Moose::Exporter->setup_import_methods(
         has_xpath_object
         has_xpath_object_list
         has_xpath_object_map
+        finalize_class
     )],
     also => 'Moose',
 );
 
 =func add_xpath_namespace($namespace, $url)
 
-Adds the XPath namespace with its associated url to the namespace_map hash
+Adds the XPath namespace with its associated url to the namespace_map hash.
 
 =cut
 
@@ -42,22 +42,12 @@ sub add_xpath_namespace {
     return 1;
 }
 
-=func finalize_class()
-
-Convenience function that calls __PACKAGE__->meta->make_immutable() for you
-
-=cut
-
-sub finalize_class {
-    my ($meta) = @_;
-    $meta->make_immutable();
-    return 1; # so we can avoid the 1; at the end of the file
-}
-
 =func has_xpath_value($attr_name, $xpath_query, @moose_params)
 
-    # isa automatically set to 'Str'
-    # native trait automatically set to 'String'
+Extracts a single string according to the xpath query specified.  The
+attribute isa parameter is automatically set to C<Str>.  The attribute native
+trait is automatically set to C<String>.
+
     has_xpath_value 'name' => './name',
         ...
     ;
@@ -79,8 +69,10 @@ sub has_xpath_value {
 
 =func has_xpath_value_list($attr_name, $xpath_query, @moose_params)
 
-    # isa automatically set to 'ArrayRef[Str]'
-    # native trait automatically set to 'Array'
+Extracts an array of strings according to the xpath query specified.  The
+attribute isa parameter is automatically set to C<ArrayRef[Str]>.  The
+attribute native trait is automatically set to C<Array>.
+
     has_xpath_value_list 'streets' => './street',
         ...
     ;
@@ -101,8 +93,14 @@ sub has_xpath_value_list {
 
 =func has_xpath_value_map($attr_name, $xpath_query, $xpath_key, $xpath_value, @moose_params)
 
-    # isa automatically set to 'HashRef[Str]'
-    # native trait automatically set to 'Hash'
+Extracts a hash of strings according to the xpath query specified.  The
+attribute isa parameter is automatically set to C<HashRef[Str]>.  The
+attribute native trait is automatically set to C<Hash>.  The xpath query
+should represent the multiple elements you want to retrieve.  The xpath_key
+and xpath_value queries must specify how to lookup the key and value for
+each hash entry.  Most likely you'd want to use relative queries for the key
+and value like the example below shows.
+
     has_xpath_value_map 'employee_map' => './employees/*',
         './@ssn' => './name',
         ...
@@ -126,7 +124,10 @@ sub has_xpath_value_map {
 
 =func has_xpath_object($attr_name, $isa, $xpath_query, @moose_params)
 
-    # isa automatically set to 'My::Department'
+Extracts a single object according to the xpath query specified.  The
+attribute isa parameter is automatically set to a the specified class name. 
+In the example below it would be set to C<My::Department>.
+
     has_xpath_object 'department',
         'My::Department' => './department',
         ...
@@ -136,7 +137,11 @@ sub has_xpath_value_map {
 
 =func has_xpath_object($attr_name, $isa_map, $xpath_query, @moose_params)
 
-    # isa automatically set to 'My::Department|My::Team'
+Extracts a single object according to the xpath query specified.  The
+attribute isa parameter is automatically set to a union of the values in the
+specified hash.  In the example below it would be set to
+C<My::Department|My::Team>.
+
     has_xpath_object 'department',
         {
             'department' => 'My::Department',
@@ -164,8 +169,11 @@ sub has_xpath_object {
 
 =func has_xpath_object_list($attr_name, $isa, $xpath_query, @moose_params)
 
-    # isa automatically set to 'ArrayRef[My::Customer]'
-    # native trait automatically set to 'Array'
+Extracts an array of objects according to the xpath query specified.  The
+attribute isa parameter is automatically set to C<ArrayRef[My::Customer]>
+(in example below).  The attribute native trait is automatically set to
+C<Array>.
+
     has_xpath_object_list 'customers',
         'My::Customer' => './customer',
         ...
@@ -175,8 +183,11 @@ sub has_xpath_object {
 
 =func has_xpath_object_list($attr_name, $isa_map, $xpath_query, @moose_params)
 
-    # isa automatically set to 'ArrayRef[My::Customer|My::Partner]'
-    # native trait automatically set to 'Array'
+Extracts an array of objects according to the xpath query specified.  The
+attribute isa parameter is automatically set to
+C<ArrayRef[My::Customer|My::Partner]> (in example below).  The attribute
+native trait is automatically set to C<Array>.
+
     has_xpath_object_list 'externals',
         {
             'customer' => 'My::Customer',
@@ -205,8 +216,14 @@ sub has_xpath_object_list {
 
 =func has_xpath_object_map($attr_name, $isa, $xpath_query, $xpath_key, @moose_params)
 
-    # isa automatically set to 'HashRef[My::Product]'
-    # native trait automatically set to 'Hash'
+Extracts a hash of objects according to the xpath query specified.  The
+attribute isa parameter is automatically set to C<HashRef[My::Product]> (see
+example).  The attribute native trait is automatically set to C<Hash>.  The
+xpath query should represent the multiple elements you want to retrieve. 
+The xpath_key query must specify how to lookup the key for each hash entry. 
+Most likely you'd want to use relative queries for the key like the example
+below shows.
+
     has_xpath_object_map 'product_map' => 'My::Product',
         './products/*' => './@code',
         ...
@@ -216,8 +233,14 @@ sub has_xpath_object_list {
 
 =func has_xpath_object_map($attr_name, $isa_map, $xpath_query, $xpath_key, @moose_params)
 
-    # isa automatically set to 'HashRef[My::Product|My::My::Service]'
-    # native trait automatically set to 'Hash'
+Extracts a hash of objects according to the xpath query specified.  The
+attribute isa parameter is automatically set to
+C<HashRef[My::Product|My::Service]> (see example).  The attribute native
+trait is automatically set to C<Hash>.  The xpath query should represent the
+multiple elements you want to retrieve.  The xpath_key query must specify
+how to lookup the key for each hash entry.  Most likely you'd want to use
+relative queries for the key like the example below shows.
+
     has_xpath_object_map 'merchandise_map',
             {
             'service' => 'My::Service',
@@ -244,6 +267,20 @@ sub has_xpath_object_map {
     );
     return 1;
 }
+
+=func finalize_class()
+
+Convenience function that calls __PACKAGE__->meta->make_immutable() for you.
+Always returns true value.
+
+=cut
+
+sub finalize_class {
+    my ($meta) = @_;
+    $meta->make_immutable();
+    return 1; # so we can avoid the 1; at the end of the file
+}
+
 
 no Moose::Exporter;
 

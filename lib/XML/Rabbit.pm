@@ -231,6 +231,11 @@ Stevan Little (stevan)
 =head1 SEE ALSO
 
 =for :list
-* L<XML::Toolkit>
 * L<Moose>
 * L<XML::LibXML>
+* L<namespace::autoclean>
+* L<XML::Toolkit>
+* L<XML::Twig>
+* L<Mojo::DOM>
+* L<XPath tutorial|http://zvon.org/comp/r/tut-XPath_1.html>
+* L<XPath Specification|http://www.w3.org/TR/xpath/>

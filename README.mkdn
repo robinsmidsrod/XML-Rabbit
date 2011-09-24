@@ -94,6 +94,22 @@ XHTML does), you MUST specify it with `add_xpath_namespace()`, or else your
 xpath queries will not match anything.  The XML document is not scanned for
 XML namespaces during initialization.
 
+# FUNCTIONS
+
+## import
+
+Automatically loads [namespace::autoclean](http://search.cpan.org/perldoc?namespace::autoclean) into the caller's package and
+dispatches to L<XML::Rabbit::Sugar/"import"> (tail call).
+
+## unimport
+
+Dispatches to L<XML::Rabbit::Sugar/"unimport"> (tail call).
+
+## init_meta
+
+Initializes the metaclass of the calling class and adds the role
+[XML::Rabbit::Node](http://search.cpan.org/perldoc?XML::Rabbit::Node).
+
 # IMPORTS
 
 When you specify `use XML::Rabbit::Root` (or `use XML::Rabbit` in child
@@ -164,9 +180,14 @@ Stevan Little (stevan)
 
 # SEE ALSO
 
-- [XML::Toolkit](http://search.cpan.org/perldoc?XML::Toolkit)
 - [Moose](http://search.cpan.org/perldoc?Moose)
 - [XML::LibXML](http://search.cpan.org/perldoc?XML::LibXML)
+- [namespace::autoclean](http://search.cpan.org/perldoc?namespace::autoclean)
+- [XML::Toolkit](http://search.cpan.org/perldoc?XML::Toolkit)
+- [XML::Twig](http://search.cpan.org/perldoc?XML::Twig)
+- [Mojo::DOM](http://search.cpan.org/perldoc?Mojo::DOM)
+- [XPath tutorial](http://zvon.org/comp/r/tut-XPath_1.html)
+- [XPath Specification](http://www.w3.org/TR/xpath/)
 
 # SUPPORT
 
