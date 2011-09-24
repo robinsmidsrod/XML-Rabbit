@@ -15,14 +15,41 @@ my ($import, $unimport, $init_meta) = Moose::Exporter->build_import_methods(
     base_class_roles => ['XML::Rabbit::Node'],
 );
 
-# Automatically force namespace::autoclean onto caller
+=func import
+
+Automatically loads L<namespace::autoclean> into the caller's package and
+dispatches to L<XML::Rabbit::Sugar/"import"> (tail call).
+
+=cut
+
 sub import {
     namespace::autoclean->import( -cleanee => scalar caller );
-    goto &$import if $import;
+    return unless $import;
+    goto &$import;
 }
 
-sub unimport  { goto &$unimport  if $unimport;  }
-#sub init_meta { goto &$init_meta if $init_meta; }
+=func unimport
+
+Dispatches to L<XML::Rabbit::Sugar/"unimport"> (tail call).
+
+=cut
+
+sub unimport {
+    return unless $unimport;
+    goto &$unimport;
+}
+
+=func init_meta
+
+Initializes the metaclass of the calling class and adds the role
+L<XML::Rabbit::Node>.
+
+=cut
+
+#sub init_meta {
+#    return unless $init_meta;
+#    goto &$init_meta;
+#}
 
 # FIXME: https://rt.cpan.org/Ticket/Display.html?id=51561
 # Hopefully fixed by 2.06 (doy)
