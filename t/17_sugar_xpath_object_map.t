@@ -30,17 +30,14 @@ BEGIN {
 
     add_xpath_namespace 'xsd' => 'http://www.w3.org/2001/XMLSchema';
 
-    has_xpath_object_map 'element_map',
-        'MyXSD::Element' => '//xsd:element[@name]',
-        './@name',
-    ;
+    has_xpath_object_map 'element_map' => '//xsd:element[@name]',
+        './@name' => 'MyXSD::Element';
 
-    has_xpath_object_map 'element_and_group_map',
-        {
-            'xsd:element' => 'MyXSD::Element',
-            'xsd:group'   => 'MyXSD::Group',
-        },
-        '//xsd:element[@name]|//xsd:group[@name]' => './@name',
+    has_xpath_object_map 'element_and_group_map' => '//xsd:element[@name]|//xsd:group[@name]',
+        './@name' => {
+                         'xsd:element' => 'MyXSD::Element',
+                         'xsd:group'   => 'MyXSD::Group',
+                     },
     ;
 
     finalize_class;

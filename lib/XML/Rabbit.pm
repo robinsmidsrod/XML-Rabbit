@@ -80,16 +80,13 @@ sub init_meta {
 
     has_xpath_value 'title' => '/xhtml:html/xhtml:head/xhtml:title';
 
-    has_xpath_object 'body',
-        'W3C::XHTML::Body' => '/xhtml:html/xhtml:body',
-    ;
+    has_xpath_object 'body'  => '/xhtml:html/xhtml:body' => 'W3C::XHTML::Body';
 
-    has_xpath_object_list 'all_anchors_and_images',
+    has_xpath_object_list 'all_anchors_and_images' => '//xhtml:a|//xhtml:img',
         {
             'xhtml:a'   => 'W3C::XHTML::Anchor',
             'xhtml:img' => 'W3C::XHTML::Image',
         },
-        '//xhtml:a|//xhtml:img',
     ;
 
     finalize_class();
@@ -97,9 +94,7 @@ sub init_meta {
     package W3C::XHTML::Body;
     use XML::Rabbit;
 
-    has_xpath_object_list 'images',
-        'W3C::XHTML::Image' => './/xhtml:img',
-    ;
+    has_xpath_object_list 'images' => './/xhtml:img' => 'W3C::XHTML::Image';
 
     finalize_class();
 
