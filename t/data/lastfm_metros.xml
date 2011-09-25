@@ -1,0 +1,948 @@
+<?xml version="1.0" encoding="utf-8"?>
+<lfm status="ok">
+<metros>
+    <metro>
+        <name>Sydney</name>
+                <country>Australia</country>
+    </metro>
+    <metro>
+        <name>Adelaide</name>
+                <country>Australia</country>
+    </metro>
+    <metro>
+        <name>Melbourne</name>
+                <country>Australia</country>
+    </metro>
+    <metro>
+        <name>Linz</name>
+                <country>Austria</country>
+    </metro>
+    <metro>
+        <name>Graz</name>
+                <country>Austria</country>
+    </metro>
+    <metro>
+        <name>Innsbruck</name>
+                <country>Austria</country>
+    </metro>
+    <metro>
+        <name>Salzburg</name>
+                <country>Austria</country>
+    </metro>
+    <metro>
+        <name>Vienna</name>
+                <country>Austria</country>
+    </metro>
+    <metro>
+        <name>Minsk</name>
+                <country>Belarus</country>
+    </metro>
+    <metro>
+        <name>Charleroi</name>
+                <country>Belgium</country>
+    </metro>
+    <metro>
+        <name>Brussels</name>
+                <country>Belgium</country>
+    </metro>
+    <metro>
+        <name>Ghent</name>
+                <country>Belgium</country>
+    </metro>
+    <metro>
+        <name>Antwerp</name>
+                <country>Belgium</country>
+    </metro>
+    <metro>
+        <name>Liège</name>
+                <country>Belgium</country>
+    </metro>
+    <metro>
+        <name>Rio de Janeiro</name>
+                <country>Brazil</country>
+    </metro>
+    <metro>
+        <name>Belém</name>
+                <country>Brazil</country>
+    </metro>
+    <metro>
+        <name>São Paulo</name>
+                <country>Brazil</country>
+    </metro>
+    <metro>
+        <name>Salvador</name>
+                <country>Brazil</country>
+    </metro>
+    <metro>
+        <name>Fortaleza</name>
+                <country>Brazil</country>
+    </metro>
+    <metro>
+        <name>Belo Horizonte</name>
+                <country>Brazil</country>
+    </metro>
+    <metro>
+        <name>Brasília</name>
+                <country>Brazil</country>
+    </metro>
+    <metro>
+        <name>Curitiba</name>
+                <country>Brazil</country>
+    </metro>
+    <metro>
+        <name>Manaus</name>
+                <country>Brazil</country>
+    </metro>
+    <metro>
+        <name>Recife</name>
+                <country>Brazil</country>
+    </metro>
+    <metro>
+        <name>Porto Alegre</name>
+                <country>Brazil</country>
+    </metro>
+    <metro>
+        <name>Winnipeg</name>
+                <country>Canada</country>
+    </metro>
+    <metro>
+        <name>Calgary</name>
+                <country>Canada</country>
+    </metro>
+    <metro>
+        <name>Vancouver</name>
+                <country>Canada</country>
+    </metro>
+    <metro>
+        <name>Quebec</name>
+                <country>Canada</country>
+    </metro>
+    <metro>
+        <name>Edmonton</name>
+                <country>Canada</country>
+    </metro>
+    <metro>
+        <name>Saskatoon</name>
+                <country>Canada</country>
+    </metro>
+    <metro>
+        <name>Montreal</name>
+                <country>Canada</country>
+    </metro>
+    <metro>
+        <name>Ottawa</name>
+                <country>Canada</country>
+    </metro>
+    <metro>
+        <name>Toronto</name>
+                <country>Canada</country>
+    </metro>
+    <metro>
+        <name>Halifax</name>
+                <country>Canada</country>
+    </metro>
+    <metro>
+        <name>Valparaíso</name>
+                <country>Chile</country>
+    </metro>
+    <metro>
+        <name>Santiago</name>
+                <country>Chile</country>
+    </metro>
+    <metro>
+        <name>Guangzhou</name>
+                <country>China</country>
+    </metro>
+    <metro>
+        <name>Tianjin</name>
+                <country>China</country>
+    </metro>
+    <metro>
+        <name>Shanghai</name>
+                <country>China</country>
+    </metro>
+    <metro>
+        <name>Chongqing</name>
+                <country>China</country>
+    </metro>
+    <metro>
+        <name>Changsha</name>
+                <country>China</country>
+    </metro>
+    <metro>
+        <name>Beijing</name>
+                <country>China</country>
+    </metro>
+    <metro>
+        <name>Bogotá</name>
+                <country>Colombia</country>
+    </metro>
+    <metro>
+        <name>Copenhagen</name>
+                <country>Denmark</country>
+    </metro>
+    <metro>
+        <name>Helsinki</name>
+                <country>Finland</country>
+    </metro>
+    <metro>
+        <name>Bordeaux</name>
+                <country>France</country>
+    </metro>
+    <metro>
+        <name>Montpellier</name>
+                <country>France</country>
+    </metro>
+    <metro>
+        <name>Metz</name>
+                <country>France</country>
+    </metro>
+    <metro>
+        <name>Clermont-Ferrand</name>
+                <country>France</country>
+    </metro>
+    <metro>
+        <name>Nice</name>
+                <country>France</country>
+    </metro>
+    <metro>
+        <name>Rennes</name>
+                <country>France</country>
+    </metro>
+    <metro>
+        <name>Strasbourg</name>
+                <country>France</country>
+    </metro>
+    <metro>
+        <name>Lille</name>
+                <country>France</country>
+    </metro>
+    <metro>
+        <name>Marseille</name>
+                <country>France</country>
+    </metro>
+    <metro>
+        <name>Lyon</name>
+                <country>France</country>
+    </metro>
+    <metro>
+        <name>Paris</name>
+                <country>France</country>
+    </metro>
+    <metro>
+        <name>Nancy</name>
+                <country>France</country>
+    </metro>
+    <metro>
+        <name>Grenoble</name>
+                <country>France</country>
+    </metro>
+    <metro>
+        <name>Toulouse</name>
+                <country>France</country>
+    </metro>
+    <metro>
+        <name>Nantes</name>
+                <country>France</country>
+    </metro>
+    <metro>
+        <name>Cologne</name>
+                <country>Germany</country>
+    </metro>
+    <metro>
+        <name>Hamburg</name>
+                <country>Germany</country>
+    </metro>
+    <metro>
+        <name>Stuttgart</name>
+                <country>Germany</country>
+    </metro>
+    <metro>
+        <name>Berlin</name>
+                <country>Germany</country>
+    </metro>
+    <metro>
+        <name>Rostock</name>
+                <country>Germany</country>
+    </metro>
+    <metro>
+        <name>Dresden</name>
+                <country>Germany</country>
+    </metro>
+    <metro>
+        <name>Bremen</name>
+                <country>Germany</country>
+    </metro>
+    <metro>
+        <name>Munich</name>
+                <country>Germany</country>
+    </metro>
+    <metro>
+        <name>Frankfurt</name>
+                <country>Germany</country>
+    </metro>
+    <metro>
+        <name>Magdeburg</name>
+                <country>Germany</country>
+    </metro>
+    <metro>
+        <name>Hong Kong</name>
+                <country>Hong Kong</country>
+    </metro>
+    <metro>
+        <name>Belfast</name>
+                <country>Ireland</country>
+    </metro>
+    <metro>
+        <name>Dublin</name>
+                <country>Ireland</country>
+    </metro>
+    <metro>
+        <name>Florence</name>
+                <country>Italy</country>
+    </metro>
+    <metro>
+        <name>Turin</name>
+                <country>Italy</country>
+    </metro>
+    <metro>
+        <name>Bari</name>
+                <country>Italy</country>
+    </metro>
+    <metro>
+        <name>Milan</name>
+                <country>Italy</country>
+    </metro>
+    <metro>
+        <name>Rome</name>
+                <country>Italy</country>
+    </metro>
+    <metro>
+        <name>Naples</name>
+                <country>Italy</country>
+    </metro>
+    <metro>
+        <name>Genoa</name>
+                <country>Italy</country>
+    </metro>
+    <metro>
+        <name>Palermo</name>
+                <country>Italy</country>
+    </metro>
+    <metro>
+        <name>Bologna</name>
+                <country>Italy</country>
+    </metro>
+    <metro>
+        <name>Osaka</name>
+                <country>Japan</country>
+    </metro>
+    <metro>
+        <name>Sendai</name>
+                <country>Japan</country>
+    </metro>
+    <metro>
+        <name>Hiroshima</name>
+                <country>Japan</country>
+    </metro>
+    <metro>
+        <name>Kobe</name>
+                <country>Japan</country>
+    </metro>
+    <metro>
+        <name>Tokyo</name>
+                <country>Japan</country>
+    </metro>
+    <metro>
+        <name>Nagoya</name>
+                <country>Japan</country>
+    </metro>
+    <metro>
+        <name>Shizuoka</name>
+                <country>Japan</country>
+    </metro>
+    <metro>
+        <name>Sapporo</name>
+                <country>Japan</country>
+    </metro>
+    <metro>
+        <name>Kyoto</name>
+                <country>Japan</country>
+    </metro>
+    <metro>
+        <name>Fukuoka</name>
+                <country>Japan</country>
+    </metro>
+    <metro>
+        <name>Niigata</name>
+                <country>Japan</country>
+    </metro>
+    <metro>
+        <name>Saitama</name>
+                <country>Japan</country>
+    </metro>
+    <metro>
+        <name>Puebla</name>
+                <country>Mexico</country>
+    </metro>
+    <metro>
+        <name>Ciudad Juárez</name>
+                <country>Mexico</country>
+    </metro>
+    <metro>
+        <name>Guadalajara</name>
+                <country>Mexico</country>
+    </metro>
+    <metro>
+        <name>Mexico City</name>
+                <country>Mexico</country>
+    </metro>
+    <metro>
+        <name>Mérida</name>
+                <country>Mexico</country>
+    </metro>
+    <metro>
+        <name>Mexicali</name>
+                <country>Mexico</country>
+    </metro>
+    <metro>
+        <name>Monterrey</name>
+                <country>Mexico</country>
+    </metro>
+    <metro>
+        <name>Tijuana</name>
+                <country>Mexico</country>
+    </metro>
+    <metro>
+        <name>Villahermosa</name>
+                <country>Mexico</country>
+    </metro>
+    <metro>
+        <name>Christchurch</name>
+                <country>New Zealand</country>
+    </metro>
+    <metro>
+        <name>Wellington</name>
+                <country>New Zealand</country>
+    </metro>
+    <metro>
+        <name>Auckland</name>
+                <country>New Zealand</country>
+    </metro>
+    <metro>
+        <name>Bergen</name>
+                <country>Norway</country>
+    </metro>
+    <metro>
+        <name>Oslo</name>
+                <country>Norway</country>
+    </metro>
+    <metro>
+        <name>Łódź</name>
+                <country>Poland</country>
+    </metro>
+    <metro>
+        <name>Wrocław</name>
+                <country>Poland</country>
+    </metro>
+    <metro>
+        <name>Poznań</name>
+                <country>Poland</country>
+    </metro>
+    <metro>
+        <name>Gdańsk</name>
+                <country>Poland</country>
+    </metro>
+    <metro>
+        <name>Szczecin</name>
+                <country>Poland</country>
+    </metro>
+    <metro>
+        <name>Katowice</name>
+                <country>Poland</country>
+    </metro>
+    <metro>
+        <name>Cracow</name>
+                <country>Poland</country>
+    </metro>
+    <metro>
+        <name>Warsaw</name>
+                <country>Poland</country>
+    </metro>
+    <metro>
+        <name>Coimbra</name>
+                <country>Portugal</country>
+    </metro>
+    <metro>
+        <name>Matosinhos</name>
+                <country>Portugal</country>
+    </metro>
+    <metro>
+        <name>Lisbon</name>
+                <country>Portugal</country>
+    </metro>
+    <metro>
+        <name>Porto</name>
+                <country>Portugal</country>
+    </metro>
+    <metro>
+        <name>Bragança</name>
+                <country>Portugal</country>
+    </metro>
+    <metro>
+        <name>Aveiro</name>
+                <country>Portugal</country>
+    </metro>
+    <metro>
+        <name>Braga</name>
+                <country>Portugal</country>
+    </metro>
+    <metro>
+        <name>Évora</name>
+                <country>Portugal</country>
+    </metro>
+    <metro>
+        <name>Faro</name>
+                <country>Portugal</country>
+    </metro>
+    <metro>
+        <name>Setúbal</name>
+                <country>Portugal</country>
+    </metro>
+    <metro>
+        <name>Vila Nova de Gaia</name>
+                <country>Portugal</country>
+    </metro>
+    <metro>
+        <name>Ekaterinburg</name>
+                <country>Russian Federation</country>
+    </metro>
+    <metro>
+        <name>Saint Petersburg</name>
+                <country>Russian Federation</country>
+    </metro>
+    <metro>
+        <name>Moscow</name>
+                <country>Russian Federation</country>
+    </metro>
+    <metro>
+        <name>Penza</name>
+                <country>Russian Federation</country>
+    </metro>
+    <metro>
+        <name>Ufa</name>
+                <country>Russian Federation</country>
+    </metro>
+    <metro>
+        <name>Ryazan</name>
+                <country>Russian Federation</country>
+    </metro>
+    <metro>
+        <name>Barcelona</name>
+                <country>Spain</country>
+    </metro>
+    <metro>
+        <name>Bilbao</name>
+                <country>Spain</country>
+    </metro>
+    <metro>
+        <name>Gijón</name>
+                <country>Spain</country>
+    </metro>
+    <metro>
+        <name>Oviedo</name>
+                <country>Spain</country>
+    </metro>
+    <metro>
+        <name>Salamanca</name>
+                <country>Spain</country>
+    </metro>
+    <metro>
+        <name>Madrid</name>
+                <country>Spain</country>
+    </metro>
+    <metro>
+        <name>Valencia</name>
+                <country>Spain</country>
+    </metro>
+    <metro>
+        <name>Alicante</name>
+                <country>Spain</country>
+    </metro>
+    <metro>
+        <name>Murcia</name>
+                <country>Spain</country>
+    </metro>
+    <metro>
+        <name>Granada</name>
+                <country>Spain</country>
+    </metro>
+    <metro>
+        <name>Burgos</name>
+                <country>Spain</country>
+    </metro>
+    <metro>
+        <name>Zaragoza</name>
+                <country>Spain</country>
+    </metro>
+    <metro>
+        <name>Seville</name>
+                <country>Spain</country>
+    </metro>
+    <metro>
+        <name>A Coruña</name>
+                <country>Spain</country>
+    </metro>
+    <metro>
+        <name>Uppsala</name>
+                <country>Sweden</country>
+    </metro>
+    <metro>
+        <name>Umeå</name>
+                <country>Sweden</country>
+    </metro>
+    <metro>
+        <name>Malmö</name>
+                <country>Sweden</country>
+    </metro>
+    <metro>
+        <name>Stockholm</name>
+                <country>Sweden</country>
+    </metro>
+    <metro>
+        <name>Gothenburg</name>
+                <country>Sweden</country>
+    </metro>
+    <metro>
+        <name>Västerås</name>
+                <country>Sweden</country>
+    </metro>
+    <metro>
+        <name>Linköping</name>
+                <country>Sweden</country>
+    </metro>
+    <metro>
+        <name>Winterthur</name>
+                <country>Switzerland</country>
+    </metro>
+    <metro>
+        <name>Fribourg</name>
+                <country>Switzerland</country>
+    </metro>
+    <metro>
+        <name>St. Gallen</name>
+                <country>Switzerland</country>
+    </metro>
+    <metro>
+        <name>Lausanne</name>
+                <country>Switzerland</country>
+    </metro>
+    <metro>
+        <name>Berne</name>
+                <country>Switzerland</country>
+    </metro>
+    <metro>
+        <name>Lucerne</name>
+                <country>Switzerland</country>
+    </metro>
+    <metro>
+        <name>Basel</name>
+                <country>Switzerland</country>
+    </metro>
+    <metro>
+        <name>Zurich</name>
+                <country>Switzerland</country>
+    </metro>
+    <metro>
+        <name>Geneva</name>
+                <country>Switzerland</country>
+    </metro>
+    <metro>
+        <name>Taipei</name>
+                <country>Taiwan</country>
+    </metro>
+    <metro>
+        <name>Istanbul</name>
+                <country>Turkey</country>
+    </metro>
+    <metro>
+        <name>Antalya</name>
+                <country>Turkey</country>
+    </metro>
+    <metro>
+        <name>Adana</name>
+                <country>Turkey</country>
+    </metro>
+    <metro>
+        <name>Bursa</name>
+                <country>Turkey</country>
+    </metro>
+    <metro>
+        <name>İzmir</name>
+                <country>Turkey</country>
+    </metro>
+    <metro>
+        <name>Ankara</name>
+                <country>Turkey</country>
+    </metro>
+    <metro>
+        <name>Odesa</name>
+                <country>Ukraine</country>
+    </metro>
+    <metro>
+        <name>Kyiv</name>
+                <country>Ukraine</country>
+    </metro>
+    <metro>
+        <name>Exeter</name>
+                <country>United Kingdom</country>
+    </metro>
+    <metro>
+        <name>Cardiff</name>
+                <country>United Kingdom</country>
+    </metro>
+    <metro>
+        <name>Newport</name>
+                <country>United Kingdom</country>
+    </metro>
+    <metro>
+        <name>Bristol</name>
+                <country>United Kingdom</country>
+    </metro>
+    <metro>
+        <name>Birmingham</name>
+                <country>United Kingdom</country>
+    </metro>
+    <metro>
+        <name>Southampton</name>
+                <country>United Kingdom</country>
+    </metro>
+    <metro>
+        <name>Edinburgh</name>
+                <country>United Kingdom</country>
+    </metro>
+    <metro>
+        <name>Manchester</name>
+                <country>United Kingdom</country>
+    </metro>
+    <metro>
+        <name>Newcastle</name>
+                <country>United Kingdom</country>
+    </metro>
+    <metro>
+        <name>Liverpool</name>
+                <country>United Kingdom</country>
+    </metro>
+    <metro>
+        <name>Brighton</name>
+                <country>United Kingdom</country>
+    </metro>
+    <metro>
+        <name>Leeds</name>
+                <country>United Kingdom</country>
+    </metro>
+    <metro>
+        <name>Aberdeen</name>
+                <country>United Kingdom</country>
+    </metro>
+    <metro>
+        <name>Glasgow</name>
+                <country>United Kingdom</country>
+    </metro>
+    <metro>
+        <name>Nottingham</name>
+                <country>United Kingdom</country>
+    </metro>
+    <metro>
+        <name>Plymouth</name>
+                <country>United Kingdom</country>
+    </metro>
+    <metro>
+        <name>London</name>
+                <country>United Kingdom</country>
+    </metro>
+    <metro>
+        <name>Orlando</name>
+                <country>United States</country>
+    </metro>
+    <metro>
+        <name>Miami</name>
+                <country>United States</country>
+    </metro>
+    <metro>
+        <name>Phoenix</name>
+                <country>United States</country>
+    </metro>
+    <metro>
+        <name>Los Angeles</name>
+                <country>United States</country>
+    </metro>
+    <metro>
+        <name>San Diego</name>
+                <country>United States</country>
+    </metro>
+    <metro>
+        <name>San Francisco</name>
+                <country>United States</country>
+    </metro>
+    <metro>
+        <name>San Jose</name>
+                <country>United States</country>
+    </metro>
+    <metro>
+        <name>Sacramento</name>
+                <country>United States</country>
+    </metro>
+    <metro>
+        <name>Las Vegas</name>
+                <country>United States</country>
+    </metro>
+    <metro>
+        <name>West Palm Beach</name>
+                <country>United States</country>
+    </metro>
+    <metro>
+        <name>Portland</name>
+                <country>United States</country>
+    </metro>
+    <metro>
+        <name>Seattle</name>
+                <country>United States</country>
+    </metro>
+    <metro>
+        <name>Buffalo</name>
+                <country>United States</country>
+    </metro>
+    <metro>
+        <name>Rochester</name>
+                <country>United States</country>
+    </metro>
+    <metro>
+        <name>Syracuse</name>
+                <country>United States</country>
+    </metro>
+    <metro>
+        <name>Cincinnati</name>
+                <country>United States</country>
+    </metro>
+    <metro>
+        <name>Louisville</name>
+                <country>United States</country>
+    </metro>
+    <metro>
+        <name>Indianapolis</name>
+                <country>United States</country>
+    </metro>
+    <metro>
+        <name>St Louis</name>
+                <country>United States</country>
+    </metro>
+    <metro>
+        <name>Chicago</name>
+                <country>United States</country>
+    </metro>
+    <metro>
+        <name>Detroit</name>
+                <country>United States</country>
+    </metro>
+    <metro>
+        <name>Richmond</name>
+                <country>United States</country>
+    </metro>
+    <metro>
+        <name>Virginia Beach</name>
+                <country>United States</country>
+    </metro>
+    <metro>
+        <name>Baltimore</name>
+                <country>United States</country>
+    </metro>
+    <metro>
+        <name>Washington DC</name>
+                <country>United States</country>
+    </metro>
+    <metro>
+        <name>Pittsburgh</name>
+                <country>United States</country>
+    </metro>
+    <metro>
+        <name>Cleveland</name>
+                <country>United States</country>
+    </metro>
+    <metro>
+        <name>Columbus</name>
+                <country>United States</country>
+    </metro>
+    <metro>
+        <name>Minneapolis</name>
+                <country>United States</country>
+    </metro>
+    <metro>
+        <name>Philadelphia</name>
+                <country>United States</country>
+    </metro>
+    <metro>
+        <name>New York</name>
+                <country>United States</country>
+    </metro>
+    <metro>
+        <name>Tampa</name>
+                <country>United States</country>
+    </metro>
+    <metro>
+        <name>El Paso</name>
+                <country>United States</country>
+    </metro>
+    <metro>
+        <name>Milwaukee</name>
+                <country>United States</country>
+    </metro>
+    <metro>
+        <name>Denver</name>
+                <country>United States</country>
+    </metro>
+    <metro>
+        <name>Little Rock</name>
+                <country>United States</country>
+    </metro>
+    <metro>
+        <name>Memphis</name>
+                <country>United States</country>
+    </metro>
+    <metro>
+        <name>Nashville</name>
+                <country>United States</country>
+    </metro>
+    <metro>
+        <name>Atlanta</name>
+                <country>United States</country>
+    </metro>
+    <metro>
+        <name>Houston</name>
+                <country>United States</country>
+    </metro>
+    <metro>
+        <name>New Orleans</name>
+                <country>United States</country>
+    </metro>
+    <metro>
+        <name>Pensacola</name>
+                <country>United States</country>
+    </metro>
+    <metro>
+        <name>Jacksonville</name>
+                <country>United States</country>
+    </metro>
+    <metro>
+        <name>Austin</name>
+                <country>United States</country>
+    </metro>
+    <metro>
+        <name>Boston</name>
+                <country>United States</country>
+    </metro>
+    <metro>
+        <name>Wichita</name>
+                <country>United States</country>
+    </metro>
+</metros></lfm>

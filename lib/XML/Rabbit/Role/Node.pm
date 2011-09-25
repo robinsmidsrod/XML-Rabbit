@@ -77,10 +77,7 @@ Dumps the XML of the current node as a native perl string.
 
 sub dump_xml {
     my ($self) = @_;
-    return Encode::decode(
-        $self->node->ownerDocument->actualEncoding,
-        $self->node->toString(1),
-    );
+    return $self->node->toString(1);
 }
 
 no MooseX::Role::Parameterized;
