@@ -3,6 +3,9 @@
 use strict;
 use warnings;
 
+# PODNAME: xpath_extract
+# ABSTRACT: Extracts the matches for the given XPath query from an XML file
+
 binmode(STDOUT, ':encoding(UTF-8)');
 
 my $xpath = shift;

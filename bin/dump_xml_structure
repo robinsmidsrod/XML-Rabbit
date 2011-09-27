@@ -3,7 +3,8 @@
 use strict;
 use warnings;
 
-package main;
+# PODNAME: dump_xml_structure
+# ABSTRACT: Dumps the XPath structure of an XML file
 
 use XML::LibXML 1.70;
 use Scalar::Util qw(blessed);
