@@ -1,12 +1,16 @@
 Revision history for XML-Rabbit
 
 {{$NEXT}}
+        Added multiple helper/sugar functions. (GitHub #2)
+        Fixed problem with XML::Rabbit::Role::Node->dump_xml() throwing
+          exception because of wide characters in print.
 
 0.0.4     2011-03-22 16:16:02 Europe/Oslo
+        Fixed missing trait imports in XML::Rabbit::Role::Node.
 
 0.0.3     2010-09-16 20:51:06 Europe/Oslo
-	Fixed RT #61367 which caused issue with Class::MOP 1.05+ / Moose
-	1.10+ (Thanks to Jesse Luehrs)
+        Fixed RT #61367 which caused issue with Class::MOP 1.05+ / Moose
+        1.10+ (Thanks to Jesse Luehrs)
 
 0.0.2     2010-07-04 14:08:44 Europe/Oslo
         libxml 2.6.16 is incompatible (David Cantrell)
