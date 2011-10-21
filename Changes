@@ -1,6 +1,9 @@
 Revision history for XML-Rabbit
 
 {{$NEXT}}
+        Fixed bug with has_xpath_value_map throwing exception if
+          xpath_value query returns empty result set. (RT #71815)
+          Reported by Jeffery M. Thompson.
 
 0.1.0     2011-09-27 14:46:03 Europe/Oslo
         Added multiple helper/sugar functions. (GitHub #2)
