@@ -62,7 +62,9 @@ sub _build_default {
         my %node_map;
         foreach my $node ( $self->_find_nodes($parent, $xpath_query ) ) {
             my $key = $parent->xpc->findvalue( $self->xpath_key, $node );
-            $node_map{ $key } = $self->_create_instance( $parent, $class, $node );
+            if ( defined($key) and length $key > 0 ) {
+                $node_map{ $key } = $self->_create_instance( $parent, $class, $node );
+            }
         }
         return \%node_map;
     };

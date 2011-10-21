@@ -57,11 +57,10 @@ sub _build_default {
         my %node_map;
         foreach my $node ( $self->_find_nodes( $parent, $xpath_query ) ) {
             my $key = $parent->xpc->findvalue( $self->xpath_key, $node );
-            my $value = $parent->xpc->findvalue( $self->xpath_value, $node );
-            if ( ! ( defined($value) and length $value > 0 ) ) {
-                confess("xpath_key value is empty, please revise your xpath_query");
+            if ( defined($key) and length $key > 0 ) {
+                my $value = $parent->xpc->findvalue( $self->xpath_value, $node );
+                $node_map{$key} = $value;
             }
-            $node_map{$key} = $value;
         }
         return \%node_map;
     };
