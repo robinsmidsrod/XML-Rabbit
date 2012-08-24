@@ -274,7 +274,7 @@ Robin Smidsrød <robin@smidsrod.no>
 
 # COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2011 by Robin Smidsrød.
+This software is copyright (c) 2012 by Robin Smidsrød.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
