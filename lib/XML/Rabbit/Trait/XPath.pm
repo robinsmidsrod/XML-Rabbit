@@ -138,15 +138,22 @@ sub _resolve_class {
     my ($self) = @_;
 
     # Figure out classes mentioned in type constraint (isa)
-    my @classes;
+    my %classes;
     if ( $self->has_type_constraint ) {
         Data::Visitor::Callback->new({
             object => 'visit_ref',
             'Moose::Meta::TypeConstraint::Union'         => sub { return $_[1]->type_constraints; },
-            'Moose::Meta::TypeConstraint::Class'         => sub { push @classes, $_[1]->class; return $_[1]; },
+            'Moose::Meta::TypeConstraint::Class'         => sub { $classes{ $_[1]->class } = 1; return $_[1]; },
             'Moose::Meta::TypeConstraint::Parameterized' => sub { return $_[1]->type_parameter; },
         })->visit($self->type_constraint);
     }
+
+    # RT#81519: The above code was supposed to not return duplicate class
+    # namess when they are not present in the TC.  Perl 5.17.6 introduces
+    # hash seed randomization, which caused the above code to return
+    # duplicates.  Use a hash to kill duplicates.  Data::Visitor::Callback
+    # should be fixed to avoid this problem.
+    my @classes = keys %classes;
 
     # Runtime load each class
     foreach my $class ( @classes ) {

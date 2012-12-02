@@ -1,6 +1,9 @@
 Revision history for XML-Rabbit
 
 {{$NEXT}}
+        Fixed bug with duplicate class names being returned by
+         Data::Visitor::Callback when traversing a Moose type constraint
+         on perl 5.17.6. Reported by Andreas J. König. (RT #81519)
 
 0.1.1     2011-10-23 14:56:18 Europe/Oslo
         Fixed bug with has_xpath_value_map throwing exception if
