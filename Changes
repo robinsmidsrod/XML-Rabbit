@@ -1,6 +1,8 @@
 Revision history for XML-Rabbit
 
 {{$NEXT}}
+
+0.2.1     2012-12-02 17:44:34 Europe/Oslo
         Updated all traits to use Moose::Util::meta_attribute_alias()
           to specify trait aliases. Requires at least Moose 0.89.
         Fixed bug with duplicate class names being returned by
