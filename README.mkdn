@@ -94,13 +94,13 @@ XML namespaces during initialization.
 ## import
 
 Automatically loads [namespace::autoclean](http://search.cpan.org/perldoc?namespace::autoclean) into the caller's package and
-dispatches to L<XML::Rabbit::Sugar/"import"> (tail call).
+dispatches to ["import" in XML::Rabbit::Sugar](http://search.cpan.org/perldoc?XML::Rabbit::Sugar#import) (tail call).
 
 ## unimport
 
-Dispatches to L<XML::Rabbit::Sugar/"unimport"> (tail call).
+Dispatches to ["unimport" in XML::Rabbit::Sugar](http://search.cpan.org/perldoc?XML::Rabbit::Sugar#unimport) (tail call).
 
-## init_meta
+## init\_meta
 
 Initializes the metaclass of the calling class and adds the role
 [XML::Rabbit::Node](http://search.cpan.org/perldoc?XML::Rabbit::Node).
@@ -135,7 +135,7 @@ The trait applied to the attribute will wrap the type constraint union in an
 ArrayRef if the trait name is XPathObjectList and as a HashRef if the trait
 name is XPathObjectMap.  As all the traits that end with List return array
 references, their `isa` must be an ArrayRef.  The same is valid for the
-*Map traits, just that they return HashRef instead of ArrayRef.
+\*Map traits, just that they return HashRef instead of ArrayRef.
 
 The namespace prefix used in `isa_map` MUST be specified in the
 `namespace_map`. If a prefix is used in `isa_map` without a corresponding
@@ -149,7 +149,7 @@ Namespaces explicitly declared in the XML are usable with the prefix
 specified in the XML (except if you use `isa_map`). Be aware that a prefix
 must usually be declared for the default namespace (xmlns=...) to be able to
 use it in XPath queries. See the example above (on XHTML) for details. See
-L<XML::LibXML::Node/findnodes> for more information.
+["findnodes" in XML::LibXML::Node](http://search.cpan.org/perldoc?XML::LibXML::Node#findnodes) for more information.
 
 Because XML::Rabbit uses XML::LibXML's DOM parser it is limited to handling
 XML documents that can fit in available memory. Unfortunately there is no
@@ -181,7 +181,7 @@ Stevan Little (stevan)
 - [XML::Toolkit](http://search.cpan.org/perldoc?XML::Toolkit)
 - [XML::Twig](http://search.cpan.org/perldoc?XML::Twig)
 - [Mojo::DOM](http://search.cpan.org/perldoc?Mojo::DOM)
-- [XPath tutorial](http://zvon.org/comp/r/tut-XPath_1.html)
+- [XPath tutorial](http://zvon.org/comp/r/tut-XPath\_1.html)
 - [XPath Specification](http://www.w3.org/TR/xpath/)
 - [Implementing WWW::LastFM, a client library to the Last.FM API, with XML::Rabbit](http://blog.robin.smidsrod.no/2011/09/30/implementing-www-lastfm-part-1)
 
@@ -191,66 +191,72 @@ Stevan Little (stevan)
 
 You can find documentation for this module with the perldoc command.
 
-  perldoc XML::Rabbit
+    perldoc XML::Rabbit
 
 ## Websites
 
 The following websites have more information about this module, and may be of help to you. As always,
 in addition to those websites please use your favorite search engine to discover more resources.
 
+- MetaCPAN
+
+    A modern, open-source CPAN search engine, useful to view POD in HTML format.
+
+    [http://metacpan.org/release/XML-Rabbit](http://metacpan.org/release/XML-Rabbit)
+
 - Search CPAN
 
-The default CPAN search engine, useful to view POD in HTML format.
+    The default CPAN search engine, useful to view POD in HTML format.
 
-[http://search.cpan.org/dist/XML-Rabbit](http://search.cpan.org/dist/XML-Rabbit)
+    [http://search.cpan.org/dist/XML-Rabbit](http://search.cpan.org/dist/XML-Rabbit)
 
 - RT: CPAN's Bug Tracker
 
-The RT ( Request Tracker ) website is the default bug/issue tracking system for CPAN.
+    The RT ( Request Tracker ) website is the default bug/issue tracking system for CPAN.
 
-[http://rt.cpan.org/NoAuth/Bugs.html?Dist=XML-Rabbit](http://rt.cpan.org/NoAuth/Bugs.html?Dist=XML-Rabbit)
+    [http://rt.cpan.org/NoAuth/Bugs.html?Dist=XML-Rabbit](http://rt.cpan.org/NoAuth/Bugs.html?Dist=XML-Rabbit)
 
 - AnnoCPAN
 
-The AnnoCPAN is a website that allows community annonations of Perl module documentation.
+    The AnnoCPAN is a website that allows community annotations of Perl module documentation.
 
-[http://annocpan.org/dist/XML-Rabbit](http://annocpan.org/dist/XML-Rabbit)
+    [http://annocpan.org/dist/XML-Rabbit](http://annocpan.org/dist/XML-Rabbit)
 
 - CPAN Ratings
 
-The CPAN Ratings is a website that allows community ratings and reviews of Perl modules.
+    The CPAN Ratings is a website that allows community ratings and reviews of Perl modules.
 
-[http://cpanratings.perl.org/d/XML-Rabbit](http://cpanratings.perl.org/d/XML-Rabbit)
+    [http://cpanratings.perl.org/d/XML-Rabbit](http://cpanratings.perl.org/d/XML-Rabbit)
 
 - CPAN Forum
 
-The CPAN Forum is a web forum for discussing Perl modules.
+    The CPAN Forum is a web forum for discussing Perl modules.
 
-[http://cpanforum.com/dist/XML-Rabbit](http://cpanforum.com/dist/XML-Rabbit)
+    [http://cpanforum.com/dist/XML-Rabbit](http://cpanforum.com/dist/XML-Rabbit)
 
 - CPANTS
 
-The CPANTS is a website that analyzes the Kwalitee ( code metrics ) of a distribution.
+    The CPANTS is a website that analyzes the Kwalitee ( code metrics ) of a distribution.
 
-[http://cpants.perl.org/dist/overview/XML-Rabbit](http://cpants.perl.org/dist/overview/XML-Rabbit)
+    [http://cpants.perl.org/dist/overview/XML-Rabbit](http://cpants.perl.org/dist/overview/XML-Rabbit)
 
 - CPAN Testers
 
-The CPAN Testers is a network of smokers who run automated tests on uploaded CPAN distributions.
+    The CPAN Testers is a network of smokers who run automated tests on uploaded CPAN distributions.
 
-[http://www.cpantesters.org/distro/X/XML-Rabbit](http://www.cpantesters.org/distro/X/XML-Rabbit)
+    [http://www.cpantesters.org/distro/X/XML-Rabbit](http://www.cpantesters.org/distro/X/XML-Rabbit)
 
 - CPAN Testers Matrix
 
-The CPAN Testers Matrix is a website that provides a visual way to determine what Perls/platforms PASSed for a distribution.
+    The CPAN Testers Matrix is a website that provides a visual overview of the test results for a distribution on various Perls/platforms.
 
-[http://matrix.cpantesters.org/?dist=XML-Rabbit](http://matrix.cpantesters.org/?dist=XML-Rabbit)
+    [http://matrix.cpantesters.org/?dist=XML-Rabbit](http://matrix.cpantesters.org/?dist=XML-Rabbit)
 
 - CPAN Testers Dependencies
 
-The CPAN Testers Dependencies is a website that shows a chart of the test results of all dependencies for a distribution.
+    The CPAN Testers Dependencies is a website that shows a chart of the test results of all dependencies for a distribution.
 
-[http://deps.cpantesters.org/?module=XML::Rabbit](http://deps.cpantesters.org/?module=XML::Rabbit)
+    [http://deps.cpantesters.org/?module=XML::Rabbit](http://deps.cpantesters.org/?module=XML::Rabbit)
 
 ## Bugs / Feature Requests
 
@@ -266,7 +272,7 @@ from your repository :)
 
 [http://github.com/robinsmidsrod/XML-Rabbit](http://github.com/robinsmidsrod/XML-Rabbit)
 
-  git clone git://github.com/robinsmidsrod/XML-Rabbit.git
+    git clone git://github.com/robinsmidsrod/XML-Rabbit.git
 
 # AUTHOR
 
@@ -274,7 +280,7 @@ Robin Smidsrød <robin@smidsrod.no>
 
 # COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2011 by Robin Smidsrød.
+This software is copyright (c) 2012 by Robin Smidsrød.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
