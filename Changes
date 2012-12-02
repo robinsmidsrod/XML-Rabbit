@@ -2,7 +2,7 @@ Revision history for XML-Rabbit
 
 {{$NEXT}}
         Updated all traits to use Moose::Util::meta_attribute_alias()
-          to specify trait alias.
+          to specify trait aliases. Requires at least Moose 0.89.
         Fixed bug with duplicate class names being returned by
           Data::Visitor::Callback when traversing a Moose type constraint
           on perl 5.17.6. Reported by Andreas J. König. (RT #81519)
