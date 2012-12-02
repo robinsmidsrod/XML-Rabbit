@@ -8,7 +8,7 @@ package XML::Rabbit::Sugar;
 use Scalar::Util qw(blessed);
 use Carp qw(confess);
 
-use Moose (); # no magic, just load
+use Moose 0.89 (); # no magic, just load
 use Moose::Exporter;
 
 Moose::Exporter->setup_import_methods(

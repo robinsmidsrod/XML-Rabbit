@@ -26,11 +26,9 @@ sub _build_default {
     };
 }
 
-no Moose::Role;
+Moose::Util::meta_attribute_alias('XPathValue');
 
-## no critic qw(Modules::ProhibitMultiplePackages)
-package Moose::Meta::Attribute::Custom::Trait::XPathValue;
-sub register_implementation { return 'XML::Rabbit::Trait::XPathValue' }
+no Moose::Role;
 
 1;
 

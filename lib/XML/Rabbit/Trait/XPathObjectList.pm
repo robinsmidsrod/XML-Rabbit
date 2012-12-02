@@ -54,11 +54,9 @@ sub _build_default {
     };
 }
 
-no Moose::Role;
+Moose::Util::meta_attribute_alias('XPathObjectList');
 
-## no critic qw(Modules::ProhibitMultiplePackages)
-package Moose::Meta::Attribute::Custom::Trait::XPathObjectList;
-sub register_implementation { return 'XML::Rabbit::Trait::XPathObjectList' }
+no Moose::Role;
 
 1;
 

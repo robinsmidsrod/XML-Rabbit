@@ -66,11 +66,9 @@ sub _build_default {
     };
 }
 
-no Moose::Role;
+Moose::Util::meta_attribute_alias('XPathValueMap');
 
-## no critic qw(Modules::ProhibitMultiplePackages)
-package Moose::Meta::Attribute::Custom::Trait::XPathValueMap;
-sub register_implementation { return 'XML::Rabbit::Trait::XPathValueMap' }
+no Moose::Role;
 
 1;
 

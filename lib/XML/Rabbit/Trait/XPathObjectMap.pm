@@ -70,11 +70,9 @@ sub _build_default {
     };
 }
 
-no Moose::Role;
+Moose::Util::meta_attribute_alias('XPathObjectMap');
 
-## no critic qw(Modules::ProhibitMultiplePackages)
-package Moose::Meta::Attribute::Custom::Trait::XPathObjectMap;
-sub register_implementation { return 'XML::Rabbit::Trait::XPathObjectMap' }
+no Moose::Role;
 
 1;
 

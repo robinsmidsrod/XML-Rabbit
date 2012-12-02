@@ -262,10 +262,9 @@ no Moose::Util::TypeConstraints;
         };
     }
 
-    no Moose::Role;
+    Moose::Util::meta_attribute_alias('XPathSomething');
 
-    package Moose::Meta::Attribute::Custom::Trait::XPathSomething;
-    sub register_implementation { 'XML::Rabbit::Trait::XPathSomething' }
+    no Moose::Role;
 
     1;
 
