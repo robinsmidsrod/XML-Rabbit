@@ -44,7 +44,7 @@ around '_process_options' => sub {
                 push @classes, $value,
             }
             # Build union isa
-            my $isa = join('|',@classes);
+            my $isa = join('|', @classes);
             # If traits indicate XPathObjectList, assume an ArrayRef
             if ( Perl6::Junction::any( @{ $options->{'traits'} } ) == qr/^XML::Rabbit::Trait::XPathObjectList$/x ) {
                 $isa = "ArrayRef[$isa]";
@@ -205,11 +205,13 @@ sub _create_instance {
     # Used for optional elements
     return unless $node;
 
-    unless( $class ) {
-        my $node_name = ( $node->namespaceURI ? '[' . $node->namespaceURI . ']' : "" ) . $node->localname;
+    unless ( $class ) {
+        my $node_name = ( $node->namespaceURI ? '[' . $node->namespaceURI . ']' : "" )
+                      . $node->localname;
         $class = $self->isa_map->{ $node_name };
     }
     confess("Unable to resolve class for node " . $node->nodeName) unless $class;
+
     Class::MOP::load_class($class); # FIXME: This should be fixed at line 153
     my $instance = $class->new(
         xpc           => $parent->xpc,
