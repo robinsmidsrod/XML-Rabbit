@@ -1,6 +1,9 @@
 Revision history for XML-Rabbit
 
 {{$NEXT}}
+        Gotten rid of Data::Visitor::Callback used to parse type
+          constraints. Reported by Alceu Rodrigues de Freitas Junior
+          (RT #81753). Solution contributed by chromatic.
 
 0.2.1     2012-12-02 17:44:34 Europe/Oslo
         Updated all traits to use Moose::Util::meta_attribute_alias()
