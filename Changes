@@ -1,6 +1,8 @@
 Revision history for XML-Rabbit
 
 {{$NEXT}}
+
+0.3.0     2013-03-15 15:24:53 Europe/Oslo
         Gotten rid of Data::Visitor::Callback used to parse type
           constraints. Reported by Alceu Rodrigues de Freitas Junior
           (RT #81753). Solution contributed by chromatic.
