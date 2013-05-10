@@ -3,12 +3,13 @@
 use strict;
 use warnings;
 
-package main;
+# PODNAME: dump_xml_structure
+# ABSTRACT: Dumps the XPath structure of an XML file
 
 use XML::LibXML 1.70;
 use Scalar::Util qw(blessed);
 
-binmode STDOUT, ':utf8';
+binmode STDOUT, ':encoding(UTF-8)';
 
 my $dom = XML::LibXML->load_xml(
     location => $ARGV[0],

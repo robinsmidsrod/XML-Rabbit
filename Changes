@@ -2,11 +2,34 @@ Revision history for XML-Rabbit
 
 {{$NEXT}}
 
+0.3.0     2013-03-15 15:24:53 Europe/Oslo
+        Gotten rid of Data::Visitor::Callback used to parse type
+          constraints. Reported by Alceu Rodrigues de Freitas Junior
+          (RT #81753). Solution contributed by chromatic.
+
+0.2.1     2012-12-02 17:44:34 Europe/Oslo
+        Updated all traits to use Moose::Util::meta_attribute_alias()
+          to specify trait aliases. Requires at least Moose 0.89.
+        Fixed bug with duplicate class names being returned by
+          Data::Visitor::Callback when traversing a Moose type constraint
+          on perl 5.17.6. Reported by Andreas J. König. (RT #81519)
+
+0.1.1     2011-10-23 14:56:18 Europe/Oslo
+        Fixed bug with has_xpath_value_map throwing exception if
+          xpath_value query returns empty result set. (RT #71815)
+          Reported by Jeffery M. Thompson.
+
+0.1.0     2011-09-27 14:46:03 Europe/Oslo
+        Added multiple helper/sugar functions. (GitHub #2)
+        Fixed problem with XML::Rabbit::Role::Node->dump_xml() throwing
+          exception because of wide characters in print.
+
 0.0.4     2011-03-22 16:16:02 Europe/Oslo
+        Fixed missing trait imports in XML::Rabbit::Role::Node.
 
 0.0.3     2010-09-16 20:51:06 Europe/Oslo
-	Fixed RT #61367 which caused issue with Class::MOP 1.05+ / Moose
-	1.10+ (Thanks to Jesse Luehrs)
+        Fixed RT #61367 which caused issue with Class::MOP 1.05+ / Moose
+        1.10+ (Thanks to Jesse Luehrs)
 
 0.0.2     2010-07-04 14:08:44 Europe/Oslo
         libxml 2.6.16 is incompatible (David Cantrell)

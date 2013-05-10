@@ -5,7 +5,6 @@ package XML::Rabbit::Trait::XPath;
 use Moose::Role;
 use Moose::Util::TypeConstraints;
 use Perl6::Junction ();
-use Data::Visitor::Callback ();
 
 # ABSTRACT: Base role for other xpath traits
 
@@ -44,7 +43,7 @@ around '_process_options' => sub {
                 push @classes, $value,
             }
             # Build union isa
-            my $isa = join('|',@classes);
+            my $isa = join('|', @classes);
             # If traits indicate XPathObjectList, assume an ArrayRef
             if ( Perl6::Junction::any( @{ $options->{'traits'} } ) == qr/^XML::Rabbit::Trait::XPathObjectList$/x ) {
                 $isa = "ArrayRef[$isa]";
@@ -138,20 +137,49 @@ sub _resolve_class {
     my ($self) = @_;
 
     # Figure out classes mentioned in type constraint (isa)
-    my @classes;
+    my %classes;
     if ( $self->has_type_constraint ) {
-        Data::Visitor::Callback->new({
-            object => 'visit_ref',
-            'Moose::Meta::TypeConstraint::Union'         => sub { return $_[1]->type_constraints; },
-            'Moose::Meta::TypeConstraint::Class'         => sub { push @classes, $_[1]->class; return $_[1]; },
-            'Moose::Meta::TypeConstraint::Parameterized' => sub { return $_[1]->type_parameter; },
-        })->visit($self->type_constraint);
+
+        # Visit each part of the TC in turn, deconstruct and extract class names
+        my @to_visit = $self->type_constraint;
+        while (my $item = shift @to_visit) {
+            next unless blessed $item;
+            if ( $item->isa('Moose::Meta::TypeConstraint::Class') ) {
+                # Just a plain string that is a class
+                $classes{ $item->class } = 1;
+            }
+            elsif ( $item->isa('Moose::Meta::TypeConstraint::Union') ) {
+                # ArrayRef[Something|SomethingElse]
+                push @to_visit, @{ $item->type_constraints };
+            }
+            elsif ( $item->isa('Moose::Meta::TypeConstraint::Parameterized') ) {
+                # Maybe[Something], ArrayRef[Something] or HashRef[Something]
+                push @to_visit, $item->type_parameter;
+            }
+            elsif ( $item->isa('Moose::Meta::TypeConstraint::Parameterizable') ) {
+                # Built-in like ArrayRef or HashRef without a parameter
+                next;
+            }
+            else {
+                #warn("Unsupported TC detected: $item");
+            }
+        }
+
+        # Some debugging aid
+        #my $tc_name = $self->type_constraint->name;
+        #my $found = join(", ", sort keys %classes);
+        #warn("Classes found in TC '$tc_name': $found\n");
     }
 
+    # RT#81519: The above code was supposed to not return duplicate class
+    # namess when they are not present in the TC.  Perl 5.17.6 introduces
+    # hash seed randomization, which caused the above code to return
+    # duplicates.  Use a hash to kill duplicates.  Data::Visitor::Callback
+    # should be fixed to avoid this problem.
+    my @classes = keys %classes;
+
     # Runtime load each class
-    foreach my $class ( @classes ) {
-        Class::MOP::load_class($class);
-    }
+    Class::MOP::load_class($_) for @classes;
 
     # Return 0 if multiple classes found,
     # _create_instance() must use $self->isa_map to resolve class name
@@ -198,11 +226,14 @@ sub _create_instance {
     # Used for optional elements
     return unless $node;
 
-    unless( $class ) {
-        my $node_name = ( $node->namespaceURI ? '[' . $node->namespaceURI . ']' : "" ) . $node->localname;
+    unless ( $class ) {
+        my $node_name = ( $node->namespaceURI ? '[' . $node->namespaceURI . ']' : "" )
+                      . $node->localname;
         $class = $self->isa_map->{ $node_name };
     }
     confess("Unable to resolve class for node " . $node->nodeName) unless $class;
+
+    Class::MOP::load_class($class); # FIXME: This should be fixed at line 153
     my $instance = $class->new(
         xpc           => $parent->xpc,
         node          => $node,
@@ -252,10 +283,9 @@ no Moose::Util::TypeConstraints;
         };
     }
 
-    no Moose::Role;
+    Moose::Util::meta_attribute_alias('XPathSomething');
 
-    package Moose::Meta::Attribute::Custom::Trait::XPathSomething;
-    sub register_implementation { 'XML::Rabbit::Trait::XPathSomething' }
+    no Moose::Role;
 
     1;
 

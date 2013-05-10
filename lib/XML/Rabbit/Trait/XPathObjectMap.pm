@@ -62,17 +62,17 @@ sub _build_default {
         my %node_map;
         foreach my $node ( $self->_find_nodes($parent, $xpath_query ) ) {
             my $key = $parent->xpc->findvalue( $self->xpath_key, $node );
-            $node_map{ $key } = $self->_create_instance( $parent, $class, $node );
+            if ( defined($key) and length $key > 0 ) {
+                $node_map{ $key } = $self->_create_instance( $parent, $class, $node );
+            }
         }
         return \%node_map;
     };
 }
 
-no Moose::Role;
+Moose::Util::meta_attribute_alias('XPathObjectMap');
 
-## no critic qw(Modules::ProhibitMultiplePackages)
-package Moose::Meta::Attribute::Custom::Trait::XPathObjectMap;
-sub register_implementation { return 'XML::Rabbit::Trait::XPathObjectMap' }
+no Moose::Role;
 
 1;
 

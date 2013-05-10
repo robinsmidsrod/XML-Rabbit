@@ -1,0 +1,4 @@
+# From https://gist.github.com/fc52d1d20a986d3fe380
+# Enable construct_with param on Object xpath traits
+# to be able to send in additional constructor params
+# when creating sub-objects.
