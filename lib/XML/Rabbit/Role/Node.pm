@@ -27,7 +27,7 @@ parameter 'xpc'           => ( isa => 'HashRef', default => sub { +{} } );
 =attr namespace_map
 
 A HashRef of strings that defines the prefix/namespace XML mappings for the
-XPath parser. Usually overriden in a subclass like this:
+XPath parser. Usually overridden in a subclass like this:
 
     has '+namespace_map' => (
         default => sub { {
