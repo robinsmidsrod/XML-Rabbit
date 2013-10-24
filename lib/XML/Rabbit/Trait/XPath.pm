@@ -172,7 +172,7 @@ sub _resolve_class {
     }
 
     # RT#81519: The above code was supposed to not return duplicate class
-    # namess when they are not present in the TC.  Perl 5.17.6 introduces
+    # names when they are not present in the TC.  Perl 5.17.6 introduces
     # hash seed randomization, which caused the above code to return
     # duplicates.  Use a hash to kill duplicates.  Data::Visitor::Callback
     # should be fixed to avoid this problem.
