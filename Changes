@@ -1,6 +1,8 @@
 Revision history for XML-Rabbit
 
 {{$NEXT}}
+
+0.4.0     2013-11-29 11:18:57 Europe/Oslo
         Fixed RT#90975 (reported by Upasana Shukla)
             Replaced deprecated Class::MOP::load_class() with
             Class::Load::load_class(). Module::Runtime::require_module()
