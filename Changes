@@ -1,6 +1,11 @@
 Revision history for XML-Rabbit
 
 {{$NEXT}}
+        Fixed RT#90975 (reported by Upasana Shukla)
+            Replaced deprecated Class::MOP::load_class() with
+            Class::Load::load_class(). Module::Runtime::require_module()
+            couldn't be used because of tests with package definitions in
+            BEGIN blocks.
 
 0.3.0     2013-03-15 15:24:53 Europe/Oslo
         Gotten rid of Data::Visitor::Callback used to parse type
