@@ -52,6 +52,9 @@ trait is automatically set to C<String>.
         ...
     ;
 
+Default values can be set with C<xml_default> as the C<default> value will
+be lost.
+
 =cut
 
 sub has_xpath_value {
