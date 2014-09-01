@@ -3,10 +3,17 @@ use warnings;
 
 package XML::Rabbit::Trait::XPathValue;
 use Moose::Role;
+use Scalar::Util qw(blessed);
 
 with 'XML::Rabbit::Trait::XPath';
 
 # ABSTRACT: Single value xpath extractor trait
+
+has xml_default => (
+    is  => 'ro',
+    isa => 'Str',
+    predicate => 'has_xml_default',
+);
 
 =method _build_default
 
@@ -22,7 +29,9 @@ sub _build_default {
             $parent,
             $self->_resolve_xpath_query( $parent ),
         );
-        return blessed($node) ? $node->to_literal . "" : "";
+        return blessed($node)        ? $node->to_literal
+            : $self->has_xml_default ? $self->xml_default
+            :                          '';
     };
 }
 
