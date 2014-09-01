@@ -52,20 +52,18 @@ trait is automatically set to C<String>.
         ...
     ;
 
-Default values can be set with C<xml_default> as the C<default> value will
-be lost.
-
 =cut
 
 sub has_xpath_value {
-    my ($meta, $attr_name, $xpath_query, @moose_params) = @_;
+    my ($meta, $attr_name, $xpath_query, %moose_params) = @_;
     $meta->add_attribute($attr_name,
         is          => 'ro',
         isa         => 'Str',
         traits      => [qw( XPathValue String )],
         xpath_query => $xpath_query,
         default     => '',
-        @moose_params,
+        xml_default => $moose_params{default},
+        %moose_params,
     );
     return 1;
 }
