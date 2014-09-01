@@ -13,3 +13,5 @@ equivalent_modules = XML::Rabbit XML::Rabbit::Root
 # Allows us to set use strict;use warnings before package keyword
 [-Modules::RequireExplicitPackage]
 [Lax::RequireExplicitPackage::ExceptForPragmata]
+
+[-Subroutines::ProhibitBuiltinHomonyms]
