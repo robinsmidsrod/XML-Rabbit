@@ -2,6 +2,7 @@ use strict;
 use warnings;
 
 package XML::Rabbit;
+
 use 5.008;
 
 # ABSTRACT: Consume XML with Moose and xpath queries

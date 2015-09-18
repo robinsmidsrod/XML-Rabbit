@@ -44,6 +44,7 @@ sub print_xml {
 ## no critic qw(Modules::ProhibitMultiplePackages)
 BEGIN {
     package XML::Rabbit::XPathExtract;
+
     use Moose;
     with 'XML::Rabbit::RootNode';
 
@@ -69,6 +70,7 @@ BEGIN {
     __PACKAGE__->meta->make_immutable();
 
     package XPathObject;
+
     use Moose;
     with 'XML::Rabbit::Node';
 

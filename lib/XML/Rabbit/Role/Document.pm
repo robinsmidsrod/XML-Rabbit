@@ -2,6 +2,7 @@ use strict;
 use warnings;
 
 package XML::Rabbit::Role::Document;
+
 use Moose::Role;
 
 use XML::LibXML 1.69 ();

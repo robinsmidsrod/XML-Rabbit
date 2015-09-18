@@ -2,6 +2,7 @@ use strict;
 use warnings;
 
 package XML::Rabbit::Root;
+
 use 5.008;
 
 # ABSTRACT: Root class with sugar functions available

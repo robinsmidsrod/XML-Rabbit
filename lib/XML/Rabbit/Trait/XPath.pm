@@ -2,6 +2,7 @@ use strict;
 use warnings;
 
 package XML::Rabbit::Trait::XPath;
+
 use Moose::Role;
 use Moose::Util::TypeConstraints;
 use Perl6::Junction ();

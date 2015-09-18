@@ -2,6 +2,7 @@ use strict;
 use warnings;
 
 package XML::Rabbit::Role::Node;
+
 use MooseX::Role::Parameterized;
 
 use Encode ();

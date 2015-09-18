@@ -2,6 +2,7 @@ use strict;
 use warnings;
 
 package XML::Rabbit::Node;
+
 use Moose::Role;
 
 # ABSTRACT: Node base class

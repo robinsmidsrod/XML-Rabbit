@@ -2,6 +2,7 @@ use strict;
 use warnings;
 
 package XML::Rabbit::Trait::XPathValueMap;
+
 use Moose::Role;
 
 with 'XML::Rabbit::Trait::XPath';

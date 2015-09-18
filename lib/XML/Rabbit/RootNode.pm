@@ -2,6 +2,7 @@ use strict;
 use warnings;
 
 package XML::Rabbit::RootNode;
+
 use Moose::Role;
 with 'XML::Rabbit::Role::Document';
 
