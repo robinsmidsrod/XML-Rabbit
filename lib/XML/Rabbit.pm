@@ -68,7 +68,19 @@ sub init_meta {
 
 =head1 SYNOPSIS
 
-    my $xhtml = W3C::XHTML->new( file => 'index.xhtml' );
+    my $xhtml = W3C::XHTML->new(
+        file => 'index.xhtml',
+
+        # or string...
+        xml => $xml,
+
+        # or filehandle...
+        fh => $fh,
+
+        # or XML::LibXML::Document object
+        dom => $dom,
+    );
+
     print "Title: " . $xhtml->title . "\n";
     print "First image source: " . $xhtml->body->images->[0]->src . "\n";
 
