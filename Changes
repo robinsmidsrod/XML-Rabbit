@@ -1,6 +1,7 @@
 Revision history for XML-Rabbit
 
 {{$NEXT}}
+        Replaced Class::MOP::class_of() calls with Moose::Util::find_meta().
 
 0.4.0     2013-11-29 11:18:57 Europe/Oslo
         Fixed RT#90975 (reported by Upasana Shukla)

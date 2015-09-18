@@ -61,7 +61,7 @@ sub init_meta {
         for   => $opts{for_class},
         roles => ['XML::Rabbit::RootNode']
     );
-    return Class::MOP::class_of($opts{for_class});
+    return Moose::Util::find_meta($opts{for_class});
 }
 
 1;
