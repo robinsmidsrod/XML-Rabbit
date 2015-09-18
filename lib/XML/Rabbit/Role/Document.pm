@@ -77,7 +77,7 @@ has '_parser' => (
     is      => 'ro',
     isa     => 'XML::LibXML',
     lazy    => 1,
-    default => sub { XML::LibXML->new(), },
+    default => sub { XML::LibXML->new( huge => 1 ), },
 );
 
 =method dump_document_xml
