@@ -1,6 +1,8 @@
 Revision history for XML-Rabbit
 
 {{$NEXT}}
+
+0.4.1     2015-09-18 15:45:02+02:00 Europe/Oslo
         Replaced Class::MOP::class_of() calls with Moose::Util::find_meta().
         Added huge => 1 parameter to LibXML DOM parser, to support large
           text nodes.
