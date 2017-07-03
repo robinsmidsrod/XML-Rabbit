@@ -272,8 +272,8 @@ in addition to those websites please use your favorite search engine to discover
 
 ## Bugs / Feature Requests
 
-Please report any bugs or feature requests by email to `bug-xml-rabbit at rt.cpan.org`, or through
-the web interface at [https://rt.cpan.org/Public/Bug/Report.html?Queue=XML-Rabbit](https://rt.cpan.org/Public/Bug/Report.html?Queue=XML-Rabbit). You will be automatically notified of any
+Please report any bugs or feature requests through the web
+interface at [http://github.com/robinsmidsrod/XML-Rabbit/issues](http://github.com/robinsmidsrod/XML-Rabbit/issues). You will be automatically notified of any
 progress on the request by the system.
 
 ## Source Code
