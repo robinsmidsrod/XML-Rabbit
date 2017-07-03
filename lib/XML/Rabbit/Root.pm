@@ -35,7 +35,7 @@ Dispatches to L<XML::Rabbit::Sugar/"unimport"> (tail call).
 
 =cut
 
-sub unimport {
+sub unimport { ## no critic qw(Subroutines::ProhibitBuiltinHomonyms)
     return unless $unimport;
     goto &$unimport;
 }
