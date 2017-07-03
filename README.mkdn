@@ -81,7 +81,7 @@ You can return multiple values from the XML either as arrays or hashes,
 depending on how you need to work with the data from the XML document.
 
 The example in the synopsis shows how to create a class hierarchy that
-enables easy retrival of certain information from an XHTML document.
+enables easy retrieval of certain information from an XHTML document.
 
 Also notice that if you specify an xpath query that can return multiple XML
 elements, you need to specify a hash map (xml tag => class name) instead of
@@ -94,7 +94,7 @@ a `Str` type constraint.  Array and hash-returning attributes automatically
 set their isa to `ArrayRef[Str]` and `HashRef[Str]` respectively.
 
 All the helper methods and their associated arguments are explained in
-[XML::Rabbit::Sugar](http://search.cpan.org/perldoc?XML::Rabbit::Sugar) detail.
+[XML::Rabbit::Sugar](https://metacpan.org/pod/XML::Rabbit::Sugar) detail.
 
 Be aware that if your XML document contains a default XML namespace (like
 XHTML does), you MUST specify it with `add_xpath_namespace()`, or else your
@@ -105,17 +105,17 @@ XML namespaces during initialization.
 
 ## import
 
-Automatically loads [namespace::autoclean](http://search.cpan.org/perldoc?namespace::autoclean) into the caller's package and
-dispatches to ["import" in XML::Rabbit::Sugar](http://search.cpan.org/perldoc?XML::Rabbit::Sugar#import) (tail call).
+Automatically loads [namespace::autoclean](https://metacpan.org/pod/namespace::autoclean) into the caller's package and
+dispatches to ["import" in XML::Rabbit::Sugar](https://metacpan.org/pod/XML::Rabbit::Sugar#import) (tail call).
 
 ## unimport
 
-Dispatches to ["unimport" in XML::Rabbit::Sugar](http://search.cpan.org/perldoc?XML::Rabbit::Sugar#unimport) (tail call).
+Dispatches to ["unimport" in XML::Rabbit::Sugar](https://metacpan.org/pod/XML::Rabbit::Sugar#unimport) (tail call).
 
 ## init\_meta
 
 Initializes the metaclass of the calling class and adds the role
-[XML::Rabbit::Node](http://search.cpan.org/perldoc?XML::Rabbit::Node).
+[XML::Rabbit::Node](https://metacpan.org/pod/XML::Rabbit::Node).
 
 # IMPORTS
 
@@ -161,7 +161,7 @@ Namespaces explicitly declared in the XML are usable with the prefix
 specified in the XML (except if you use `isa_map`). Be aware that a prefix
 must usually be declared for the default namespace (xmlns=...) to be able to
 use it in XPath queries. See the example above (on XHTML) for details. See
-["findnodes" in XML::LibXML::Node](http://search.cpan.org/perldoc?XML::LibXML::Node#findnodes) for more information.
+["findnodes" in XML::LibXML::Node](https://metacpan.org/pod/XML::LibXML::Node#findnodes) for more information.
 
 Because XML::Rabbit uses XML::LibXML's DOM parser it is limited to handling
 XML documents that can fit in available memory. Unfortunately there is no
@@ -187,13 +187,13 @@ Stevan Little (stevan)
 
 # SEE ALSO
 
-- [Moose](http://search.cpan.org/perldoc?Moose)
-- [XML::LibXML](http://search.cpan.org/perldoc?XML::LibXML)
-- [namespace::autoclean](http://search.cpan.org/perldoc?namespace::autoclean)
-- [XML::Toolkit](http://search.cpan.org/perldoc?XML::Toolkit)
-- [XML::Twig](http://search.cpan.org/perldoc?XML::Twig)
-- [Mojo::DOM](http://search.cpan.org/perldoc?Mojo::DOM)
-- [XPath tutorial](http://zvon.org/comp/r/tut-XPath\_1.html)
+- [Moose](https://metacpan.org/pod/Moose)
+- [XML::LibXML](https://metacpan.org/pod/XML::LibXML)
+- [namespace::autoclean](https://metacpan.org/pod/namespace::autoclean)
+- [XML::Toolkit](https://metacpan.org/pod/XML::Toolkit)
+- [XML::Twig](https://metacpan.org/pod/XML::Twig)
+- [Mojo::DOM](https://metacpan.org/pod/Mojo::DOM)
+- [XPath tutorial](http://zvon.org/comp/r/tut-XPath_1.html)
 - [XPath Specification](http://www.w3.org/TR/xpath/)
 - [Implementing WWW::LastFM, a client library to the Last.FM API, with XML::Rabbit](http://blog.robin.smidsrod.no/2011/09/30/implementing-www-lastfm-part-1)
 
@@ -226,7 +226,7 @@ in addition to those websites please use your favorite search engine to discover
 
     The RT ( Request Tracker ) website is the default bug/issue tracking system for CPAN.
 
-    [http://rt.cpan.org/NoAuth/Bugs.html?Dist=XML-Rabbit](http://rt.cpan.org/NoAuth/Bugs.html?Dist=XML-Rabbit)
+    [https://rt.cpan.org/Public/Dist/Display.html?Name=XML-Rabbit](https://rt.cpan.org/Public/Dist/Display.html?Name=XML-Rabbit)
 
 - AnnoCPAN
 
@@ -250,7 +250,7 @@ in addition to those websites please use your favorite search engine to discover
 
     The CPANTS is a website that analyzes the Kwalitee ( code metrics ) of a distribution.
 
-    [http://cpants.perl.org/dist/overview/XML-Rabbit](http://cpants.perl.org/dist/overview/XML-Rabbit)
+    [http://cpants.cpanauthors.org/dist/XML-Rabbit](http://cpants.cpanauthors.org/dist/XML-Rabbit)
 
 - CPAN Testers
 
@@ -273,7 +273,7 @@ in addition to those websites please use your favorite search engine to discover
 ## Bugs / Feature Requests
 
 Please report any bugs or feature requests by email to `bug-xml-rabbit at rt.cpan.org`, or through
-the web interface at [http://rt.cpan.org/NoAuth/ReportBug.html?Queue=XML-Rabbit](http://rt.cpan.org/NoAuth/ReportBug.html?Queue=XML-Rabbit). You will be automatically notified of any
+the web interface at [https://rt.cpan.org/Public/Bug/Report.html?Queue=XML-Rabbit](https://rt.cpan.org/Public/Bug/Report.html?Queue=XML-Rabbit). You will be automatically notified of any
 progress on the request by the system.
 
 ## Source Code
@@ -292,7 +292,7 @@ Robin Smidsrød <robin@smidsrod.no>
 
 # COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2015 by Robin Smidsrød.
+This software is copyright (c) 2017 by Robin Smidsrød.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
