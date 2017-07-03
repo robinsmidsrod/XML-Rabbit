@@ -142,7 +142,7 @@ You can return multiple values from the XML either as arrays or hashes,
 depending on how you need to work with the data from the XML document.
 
 The example in the synopsis shows how to create a class hierarchy that
-enables easy retrival of certain information from an XHTML document.
+enables easy retrieval of certain information from an XHTML document.
 
 Also notice that if you specify an xpath query that can return multiple XML
 elements, you need to specify a hash map (xml tag => class name) instead of
