@@ -7,9 +7,6 @@ equivalent_modules = XML::Rabbit XML::Rabbit::Root
 [TestingAndDebugging::RequireUseWarnings]
 equivalent_modules = XML::Rabbit XML::Rabbit::Root
 
-# These policies we don't use
-[-Miscellanea::RequireRcsKeywords]
-
 # Allows us to set use strict;use warnings before package keyword
 [-Modules::RequireExplicitPackage]
 [Lax::RequireExplicitPackage::ExceptForPragmata]
