@@ -94,6 +94,20 @@ sub dump_document_xml {
     );
 }
 
+=method validate_document_xml
+
+Returns a true value if the XML document is possible to parse (i.e. well-formed).
+Throws an exception (from the underlying parser) if the XML document is not
+possible to parse.
+
+=cut
+
+sub validate_document_xml {
+    my ( $self ) = @_;
+    return unless $self->_document;
+    return 1;
+}
+
 no Moose::Role;
 
 1;

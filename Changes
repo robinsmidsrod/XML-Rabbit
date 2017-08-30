@@ -4,6 +4,8 @@ Revision history for XML-Rabbit
         Updated bugtracker to point to GitHub issues instead of RT.
         Improve method used to exit early if incompatible LibXML version is
           detected.
+        Added a method to root node to verify that XML document is
+          well-formed.
 
 0.4.1     2015-09-18 15:45:02+02:00 Europe/Oslo
         Replaced Class::MOP::class_of() calls with Moose::Util::find_meta().

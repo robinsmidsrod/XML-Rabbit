@@ -81,6 +81,11 @@ sub init_meta {
         dom => $dom,
     );
 
+    # Print a warning if XML document is not well-formed
+    # Most likely you'll want your application code to do something smarter
+    eval { $xhtml->validate_document_xml(); };
+    warn("XML is not well-formed: $@") if $@;
+
     print "Title: " . $xhtml->title . "\n";
     print "First image source: " . $xhtml->body->images->[0]->src . "\n";
 
