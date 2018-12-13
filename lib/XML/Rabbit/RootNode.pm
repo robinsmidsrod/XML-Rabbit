@@ -4,7 +4,6 @@ use warnings;
 package XML::Rabbit::RootNode;
 
 use Moose::Role;
-with 'XML::Rabbit::Role::Document';
 
 # ABSTRACT: Root node base class
 
@@ -16,10 +15,12 @@ use XML::Rabbit::Trait::XPathObject;
 use XML::Rabbit::Trait::XPathObjectList;
 use XML::Rabbit::Trait::XPathObjectMap;
 
-with 'XML::Rabbit::Role::Node' => {
-    'node' => { lazy => 1, builder => '_build__node' },
-    'xpc'  => { lazy => 1, builder => '_build__xpc'  },
-};
+with
+    'XML::Rabbit::Role::Document',
+    'XML::Rabbit::Role::Node' => {
+        'node' => { lazy => 1, builder => '_build__node' },
+        'xpc'  => { lazy => 1, builder => '_build__xpc'  },
+    };
 
 =attr node
 
