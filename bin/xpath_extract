@@ -72,7 +72,7 @@ BEGIN {
     package XPathObject;
 
     use Moose;
-    with 'XML::Rabbit::Node';
+    with 'XML::Rabbit::Node'; ## no critic (Moose::ProhibitMultipleWiths)
 
     no Moose;
     __PACKAGE__->meta->make_immutable();
